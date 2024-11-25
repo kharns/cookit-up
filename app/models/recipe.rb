@@ -3,5 +3,4 @@ class Recipe < ApplicationRecord
   has_one_attached :photo
 
   validates :title, :ingredient_list, :content, :difficulty, :cooking_time, presence: true
-  
 end
