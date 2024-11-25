@@ -1,0 +1,2 @@
+class FridgeScansController < ApplicationController
+end
