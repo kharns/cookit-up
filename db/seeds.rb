@@ -12,7 +12,7 @@
 
 
 
-#  CHAT GPT ANSWER TYPE:
+#  CHAT GPT ANSWER TEMPLATE:
 # {
 #   "id": "chatcmpl-AXVUgD60UirUUXYDxZhP0ENRgsvXC",
 #   "object": "chat.completion",
@@ -47,3 +47,12 @@
 #   },
 #   "system_fingerprint": "fp_0705bf87c0"
 # }
+
+
+
+#  CHATGPT PROMPT TEMPLATE FOR TEXT
+# client = OpenAI::Client.new
+# client.chat(parameters: {
+#   model: "gpt-4o-mini",
+#   messages: [{ role: "user", content: "Tell me why Ruby is an elegant coding language"}]
+# })
