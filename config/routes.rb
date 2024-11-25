@@ -9,4 +9,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :fridge_scans, only: %i[show new create update] do
+    resources :recipes, only: %i[create index]
+  end
+  resources :recipes, only: %i[show update] do
+    collection do
+      get :favourites
+    end
+  end
 end

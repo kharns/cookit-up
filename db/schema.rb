@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_25_131633) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_25_140131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fridge_scans", force: :cascade do |t|
+    t.string "ingredient_list"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_fridge_scans_on_user_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.string "ingredient_list"
+    t.text "content"
+    t.boolean "favourite"
+    t.string "cooking_time"
+    t.integer "difficulty"
+    t.bigint "fridge_scan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fridge_scan_id"], name: "index_recipes_on_fridge_scan_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +43,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_25_131633) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "fridge_scans", "users"
+  add_foreign_key "recipes", "fridge_scans"
 end
