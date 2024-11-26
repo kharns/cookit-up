@@ -50,8 +50,6 @@ require "open-uri"
 #   "system_fingerprint": "fp_0705bf87c0"
 # }
 
-
-
 #  CHATGPT PROMPT TEMPLATE FOR TEXT
 # client = OpenAI::Client.new
 # client.chat(parameters: {
