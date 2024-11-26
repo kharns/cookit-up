@@ -1,5 +1,5 @@
 class FridgeScansController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create]
+  skip_before_action :authenticate_user!, only: %i[new create show]
 
   def show
     @fridge_scan = FridgeScan.find(params[:id])
@@ -47,7 +47,7 @@ class FridgeScansController < ApplicationController
     ############ END OpenAI ############
 
     @fridge_scan.save
-    redirect_to fridge_scan(@fridge_scan)
+    redirect_to fridge_scan_path(@fridge_scan)
   end
 
   private
