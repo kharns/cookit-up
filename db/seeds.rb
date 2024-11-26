@@ -1,4 +1,5 @@
 require 'faker'
+require 'cloudinary'
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -109,7 +110,12 @@ end
 
 puts "Creating 10 recipes..."
 10.times do
+   # Upload a sample image to Cloudinary and get the URL
+   uploaded_image =
+  Cloudinary::Uploader.upload(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food']))
+
   Recipe.create!(
+    photo: uploaded_image['url'], # Save the URL of the uploaded image
     title: Faker::Food.dish,
     ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
     content: Faker::Food.description,
