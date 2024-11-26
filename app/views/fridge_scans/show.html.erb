@@ -1,0 +1,7 @@
+<h1>Show Fridge Scan</h1>
+
+<ul>
+  <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
+    <li><%= ingredient %></li>
+  <% end %>
+</ul>

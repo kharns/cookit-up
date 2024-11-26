@@ -1,3 +1,5 @@
+require 'faker'
+require 'cloudinary'
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -7,7 +9,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
 
 
 
@@ -56,3 +57,74 @@
 #   model: "gpt-4o-mini",
 #   messages: [{ role: "user", content: "Tell me why Ruby is an elegant coding language"}]
 # })
+
+# Effacer toutes les données existantes
+puts "Cleaning database..."
+Recipe.destroy_all
+FridgeScan.destroy_all
+User.destroy_all
+
+# # Créer des utilisateurs
+# puts "Creating users..."
+# user1 = User.create!(name: "Alice Dupont", email: "alice@example.com", password: "password123")
+# user2 = User.create!(name: "Bob Martin", email: "bob@example.com", password: "password456")
+
+# Créer des recettes associées aux FridgeScans
+# puts "Creating recipes..."
+# Recipe.create!(
+#   title: "Poulet au riz",
+#   ingredient_list: "Poulet, Riz, Oignons, Épices",
+#   content: "1. Cuire le riz. 2. Faire revenir le poulet avec les oignons. 3. Mélanger et assaisonner.",
+#   cooking_time: "30 minutes",
+#   guest: 4,
+#   fridge_scan: fridge_scan1,
+#   favourite: true
+# )
+
+# Recipe.create!(
+#   title: "Boeuf bourguignon",
+#   ingredient_list: "Boeuf, Carottes, Pommes de terre, Vin rouge",
+#   content: "1. Faire revenir le boeuf. 2. Ajouter les légumes et le vin. 3. Mijoter pendant 2 heures.",
+#   cooking_time: "2 heures",
+#   guest: 6,
+#   fridge_scan: fridge_scan2,
+#   favourite: false
+# )
+
+puts "Creating 10 users..."
+10.times do
+  User.create!(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: "password123"
+  )
+end
+
+puts "Creating 10 fridge scans..."
+10.times do
+  FridgeScan.create!(
+    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
+    user: User.all.sample
+  )
+end
+
+puts "Creating 10 recipes..."
+10.times do
+   # Upload a sample image to Cloudinary and get the URL
+   uploaded_image =
+  Cloudinary::Uploader.upload(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food']))
+
+  Recipe.create!(
+    photo: uploaded_image['url'], # Save the URL of the uploaded image
+    title: Faker::Food.dish,
+    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
+    content: Faker::Food.description,
+    cooking_time: "#{Faker::Number.between(from: 10, to: 120)} minutes",
+    difficulty: Faker::Number.between(from: 1, to: 5),
+    guest: Faker::Number.between(from: 1, to: 8),
+    fridge_scan: FridgeScan.all.sample,
+    favourite: Faker::Boolean.boolean
+  )
+end
+
+puts "Seed completed!"
