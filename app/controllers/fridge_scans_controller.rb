@@ -51,6 +51,7 @@ class FridgeScansController < ApplicationController
   end
 
   def update
+    @new_ingredient = ""
   end
 
   private

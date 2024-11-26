@@ -1,7 +1,10 @@
 <h1>Show Fridge Scan</h1>
 
-<%= link_to "Add an ingredient", fridge_scan_path %>
-
+<%# <%= link-to "Add an ingredient to the list", fridge_scan_path(@fridge_scan) %>
+<%# <%= render "fridge_scans/form" %> %>
+<input type="text">
+<input type="submit">
+<%# faire un form avec text et submit relié à mon new_ingredient de la méthode update du show %>
 <ul>
   <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
     <li><%= ingredient %></li>
