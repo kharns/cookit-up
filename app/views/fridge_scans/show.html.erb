@@ -1,6 +1,6 @@
 <h1>Show Fridge Scan</h1>
 
-<a href="#">Add ingredient</a>
+<%= link_to "Add an ingredient", fridge_scan_path %>
 
 <ul>
   <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>

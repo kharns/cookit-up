@@ -50,6 +50,9 @@ class FridgeScansController < ApplicationController
     redirect_to fridge_scan_path(@fridge_scan)
   end
 
+  def update
+  end
+
   private
 
   def scan_params
