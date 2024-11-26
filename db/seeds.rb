@@ -1,5 +1,6 @@
 require 'faker'
 require 'cloudinary'
+require "open-uri"
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -110,12 +111,8 @@ end
 
 puts "Creating 10 recipes..."
 10.times do
-   # Upload a sample image to Cloudinary and get the URL
-   uploaded_image =
-  Cloudinary::Uploader.upload(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food']))
-
-  Recipe.create!(
-    photo: uploaded_image['url'], # Save the URL of the uploaded image
+  # Upload a sample image to Cloudinary and get the URL
+  recipe = Recipe.new(
     title: Faker::Food.dish,
     ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
     content: Faker::Food.description,
@@ -125,6 +122,10 @@ puts "Creating 10 recipes..."
     fridge_scan: FridgeScan.all.sample,
     favourite: Faker::Boolean.boolean
   )
+
+  file = URI.parse(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food'])).open
+  recipe.photo.attach(io: file, filename: recipe.title, content_type: "image/png")
+  recipe.save
 end
 
 puts "Seed completed!"
