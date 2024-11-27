@@ -8,11 +8,20 @@
 <%= render 'form', fridge_scan: @fridge_scan %>
 
 <h2>Ingredient list</h2>
-<ul>
-  <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-    <li><%= ingredient %></li>
-  <% end %>
-</ul>
+<%# Check box Select all %>
+<input id="select-all-checkbox" name="select-all" type="checkbox">
+<label for="select-all-checkbox">Select all</label>
+
+<form>
+<div class="form-group">
+  <ul>
+    <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
+      <input type="checkbox" class="form-check-input">
+      <li><%= ingredient %></li>
+    <% end %>
+  </ul>
+</div>
+</form>
 
 
 <%= simple_form_for [@fridge_scan, @recipe] do |f| %>
@@ -20,3 +29,7 @@
   <%= f.input :guest, collection: (1..10), selected: 2 %>
   <%= f.submit %>
 <% end %>
+
+<%# <% @recipes.each do |recipe| %>
+  <%# <%= cl_image_tag(recipe.photo.key) %>
+<%# <% end %>
