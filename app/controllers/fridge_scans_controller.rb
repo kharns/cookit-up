@@ -51,7 +51,31 @@ class FridgeScansController < ApplicationController
   end
 
   def update
-    @new_ingredient = ""
+    @fridge_scan = FridgeScan.find(params[:id])
+    # On extrait le nouvel ingrédient des paramètres du formulaire.
+    new_ingredient = params[:fridge_scan][:new_ingredient]
+
+    # On vérifie (.present?) si un nouvel ingrédient a été fourni.
+    if new_ingredient.present?
+      # On divise la liste actuelle d'ingrédients en un tableau (.split).
+      current_ingredients = @fridge_scan.ingredient_list.split(", ")
+      # On ajoute le nouvel ingrédient à ce tableau.
+      current_ingredients.unshift(new_ingredient)
+      # On reconvertit le tableau en chaîne de caractères et on met à jour l'attribut 'ingredient_list'.
+      @fridge_scan.ingredient_list = current_ingredients.join(", ")
+
+      # On tente de sauvegarder les modifications.
+      if @fridge_scan.save
+        # Si la sauvegarde réussit, on redirige vers la page de visualisation du FridgeScan avec un message de succès.
+        redirect_to @fridge_scan, notice: 'Ingredient successfully add !'
+      else
+        # Si la sauvegarde échoue, on réaffiche la page show (probablement pour montrer les erreurs de validation).
+        render :show
+      end
+    else
+      # Si aucun nouvel ingrédient n'est fourni, on redirige vers la page de visualisation du FridgeScan avec un message d'alerte.
+      redirect_to @fridge_scan, alert: 'Please add a valid ingredient.'
+    end
   end
 
   private
