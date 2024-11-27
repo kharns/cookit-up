@@ -1,0 +1,17 @@
+<h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
+
+<p><strong>cooking time:</strong> <%= @recipe.cooking_time %></p>
+<p><strong>difficulty:</strong> <%= @recipe.difficulty %></p>
+
+<h3 class="card-ingredients-show">Ingredients:</h3>
+  <ul> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
+  <li><%= ingredient.strip %></li>
+    <% end %>
+</ul>
+
+<h3 class="steps">Steps to be a chef :</h3>
+<p><%= @recipe.content%></p>
+
+
+<h3>CONGRATULATIONS !
+YOU’RE A CHEF</h3>
