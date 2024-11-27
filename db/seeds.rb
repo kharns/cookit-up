@@ -65,67 +65,150 @@ Recipe.destroy_all
 FridgeScan.destroy_all
 User.destroy_all
 
-# # Créer des utilisateurs
-# puts "Creating users..."
-# user1 = User.create!(name: "Alice Dupont", email: "alice@example.com", password: "password123")
-# user2 = User.create!(name: "Bob Martin", email: "bob@example.com", password: "password456")
 
-# Créer des recettes associées aux FridgeScans
-# puts "Creating recipes..."
-# Recipe.create!(
-#   title: "Poulet au riz",
-#   ingredient_list: "Poulet, Riz, Oignons, Épices",
-#   content: "1. Cuire le riz. 2. Faire revenir le poulet avec les oignons. 3. Mélanger et assaisonner.",
-#   cooking_time: "30 minutes",
-#   guest: 4,
-#   fridge_scan: fridge_scan1,
-#   favourite: true
-# )
-
-# Recipe.create!(
-#   title: "Boeuf bourguignon",
-#   ingredient_list: "Boeuf, Carottes, Pommes de terre, Vin rouge",
-#   content: "1. Faire revenir le boeuf. 2. Ajouter les légumes et le vin. 3. Mijoter pendant 2 heures.",
-#   cooking_time: "2 heures",
-#   guest: 6,
-#   fridge_scan: fridge_scan2,
-#   favourite: false
-# )
-
-puts "Creating 10 users..."
-10.times do
-  User.create!(
-    name: Faker::Name.name,
-    email: Faker::Internet.email,
-    password: "password123"
-  )
-end
+puts "Creating 3 users..."
+# users = User.all
+user1 = User.create!(name: "bob", email: "bob@bob.com", password: "123456")
+user2 = User.create!(name: "tom", email: "tom@tom.com", password: "123456")
+user3 = User.create!(name: "jo", email: "jo@jo.com", password: "123456")
 
 puts "Creating 10 fridge scans..."
+ingredients = [
+  "tomato", "lettuce", "cheddar cheese", "mozzarella", "chicken breast", "ground beef", "carrot", "red onion",
+  "potato", "garlic", "bell pepper", "cucumber", "spinach", "mushroom", "egg", "milk", "Greek yogurt",
+  "whole wheat bread", "pasta", "brown rice", "apple", "banana", "orange", "lemon", "olive oil", "butter",
+  "salt", "black pepper", "sugar", "all-purpose flour", "bacon", "salmon fillet", "broccoli", "cauliflower",
+  "zucchini", "eggplant", "asparagus", "green beans", "peas", "corn", "avocado", "kale", "celery", "beets",
+  "sweet potato", "pumpkin", "squash", "parsley", "cilantro", "basil", "thyme", "rosemary", "oregano",
+  "soy sauce", "mustard", "mayonnaise", "ketchup", "hot sauce", "vinegar", "honey", "maple syrup",
+  "peanut butter", "almond milk", "coconut milk", "tofu", "tempeh", "quinoa", "oats", "almonds", "walnuts",
+  "cashews", "sunflower seeds", "chia seeds", "flax seeds", "raisins", "dried cranberries", "chocolate chips",
+  "vanilla extract", "baking powder", "baking soda", "yeast", "cream cheese", "sour cream", "heavy cream",
+  "buttermilk", "feta cheese", "parmesan cheese", "goat cheese", "blue cheese", "ham", "turkey", "salami",
+  "prosciutto", "tuna", "sardines", "shrimp", "crab meat", "clams", "mussels", "capers", "olives", "pickles",
+  "sun-dried tomatoes", "artichoke hearts", "roasted red peppers", "jalapeños", "chili powder", "cumin",
+  "paprika", "cinnamon", "nutmeg", "ginger", "turmeric", "cardamom", "coriander", "fennel seeds"
+]
+
+fridge_scans = []
 10.times do
-  FridgeScan.create!(
-    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
-    user: User.all.sample
+  fridge_scans << FridgeScan.create!(
+    ingredient_list: ingredients.sample(rand(8..15)).join(", "),
+    user: [user1, user2, user3].sample
   )
 end
+
+puts "Created #{FridgeScan.count} fridge scans"
+
 
 puts "Creating 10 recipes..."
-10.times do
-  # Upload a sample image to Cloudinary and get the URL
-  recipe = Recipe.new(
-    title: Faker::Food.dish,
-    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
-    content: Faker::Food.description,
-    cooking_time: "#{Faker::Number.between(from: 10, to: 120)} minutes",
-    difficulty: Faker::Number.between(from: 1, to: 5),
-    guest: Faker::Number.between(from: 1, to: 8),
-    fridge_scan: FridgeScan.all.sample,
-    favourite: Faker::Boolean.boolean
-  )
+recipes = [
+  {
+    title: "Spaghetti Carbonara",
+    ingredient_list: "spaghetti, eggs, pancetta, parmesan cheese, black pepper",
+    content: "A creamy and savory Italian classic",
+    cooking_time: "25 minutes",
+    difficulty: 3,
+    guest: 4,
+    favourite: true,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Caesar Salad",
+    ingredient_list: "romaine lettuce, croutons, parmesan cheese, grilled chicken, caesar dressing",
+    content: "A fresh and crunchy salad with a creamy dressing",
+    cooking_time: "20 minutes",
+    difficulty: 2,
+    guest: 2,
+    favourite: false,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Beef Stroganoff",
+    ingredient_list: "beef sirloin, mushrooms, onions, sour cream, egg noodles",
+    content: "A hearty Russian dish with tender beef and a creamy sauce",
+    cooking_time: "35 minutes",
+    difficulty: 3,
+    guest: 4,
+    favourite: true,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Vegetable Stir-Fry",
+    ingredient_list: "mixed vegetables, tofu, soy sauce, ginger, garlic, sesame oil",
+    content: "A quick and healthy vegetarian dish packed with flavors",
+    cooking_time: "15 minutes",
+    difficulty: 2,
+    guest: 3,
+    favourite: false,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Chocolate Lava Cake",
+    ingredient_list: "dark chocolate, butter, eggs, sugar, flour",
+    content: "A decadent dessert with a gooey chocolate center",
+    cooking_time: "18 minutes",
+    difficulty: 1,
+    guest: 2,
+    favourite: true,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Grilled Salmon with Lemon-Dill Sauce",
+    ingredient_list: "salmon fillet, lemon, dill, Greek yogurt, garlic",
+    content: "A light and flavorful seafood dish perfect for summer",
+    cooking_time: "22 minutes",
+    difficulty: 3,
+    guest: 4,
+    favourite: true,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Homemade Pizza Margherita",
+    ingredient_list: "pizza dough, tomato sauce, fresh mozzarella, basil leaves, olive oil",
+    content: "A classic Italian pizza with simple, fresh ingredients",
+    cooking_time: "30 minutes",
+    difficulty: 3,
+    guest: 3,
+    favourite: false,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Chicken Noodle Soup",
+    ingredient_list: "chicken breast, egg noodles, carrots, celery, onion, chicken broth",
+    content: "A comforting soup that's perfect for cold days",
+    cooking_time: "45 minutes",
+    difficulty: 2,
+    guest: 6,
+    favourite: true,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Beef Tacos",
+    ingredient_list: "ground beef, taco shells, lettuce, tomato, cheese, sour cream",
+    content: "A fun and customizable Mexican-inspired meal",
+    cooking_time: "25 minutes",
+    difficulty: 2,
+    guest: 4,
+    favourite: false,
+    fridge_scan_id: fridge_scans.sample.id
+  },
+  {
+    title: "Mushroom Risotto",
+    ingredient_list: "arborio rice, mushrooms, onion, white wine, parmesan cheese, vegetable broth",
+    content: "A creamy Italian rice dish with earthy mushroom flavors",
+    cooking_time: "40 minutes",
+    difficulty: 1,
+    guest: 4,
+    favourite: true,
+    fridge_scan_id: fridge_scans.sample.id
+  }
+]
 
-  file = URI.parse(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food'])).open
-  recipe.photo.attach(io: file, filename: recipe.title, content_type: "image/png")
-  recipe.save
+recipes.each do |recipe_data|
+  recipe = Recipe.new(recipe_data)
+  recipe.save!
 end
 
+puts "#{Recipe.count} recipes created."
 puts "Seed completed!"
