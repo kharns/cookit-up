@@ -110,22 +110,100 @@ puts "Creating 10 fridge scans..."
 end
 
 puts "Creating 10 recipes..."
-10.times do
-  # Upload a sample image to Cloudinary and get the URL
-  recipe = Recipe.new(
-    title: Faker::Food.dish,
-    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
-    content: Faker::Food.description,
-    cooking_time: "#{Faker::Number.between(from: 10, to: 120)} minutes",
-    difficulty: Faker::Number.between(from: 1, to: 5),
-    guest: Faker::Number.between(from: 1, to: 8),
-    fridge_scan: FridgeScan.all.sample,
-    favourite: Faker::Boolean.boolean
-  )
+recipes = [
+  {
+    title: "Spaghetti Carbonara",
+    ingredient_list: "spaghetti, eggs, pancetta, parmesan cheese, black pepper",
+    content: "A creamy and savory Italian classic",
+    cooking_time: "25 minutes",
+    difficulty: 3,
+    guest: 4,
+    favourite: true
+  },
+  {
+    title: "Caesar Salad",
+    ingredient_list: "romaine lettuce, croutons, parmesan cheese, grilled chicken, caesar dressing",
+    content: "A fresh and crunchy salad with a creamy dressing",
+    cooking_time: "20 minutes",
+    difficulty: 2,
+    guest: 2,
+    favourite: false
+  },
+  {
+    title: "Beef Stroganoff",
+    ingredient_list: "beef sirloin, mushrooms, onions, sour cream, egg noodles",
+    content: "A hearty Russian dish with tender beef and a creamy sauce",
+    cooking_time: "35 minutes",
+    difficulty: 3,
+    guest: 4,
+    favourite: true
+  },
+  {
+    title: "Vegetable Stir-Fry",
+    ingredient_list: "mixed vegetables, tofu, soy sauce, ginger, garlic, sesame oil",
+    content: "A quick and healthy vegetarian dish packed with flavors",
+    cooking_time: "15 minutes",
+    difficulty: 2,
+    guest: 3,
+    favourite: false
+  },
+  {
+    title: "Chocolate Lava Cake",
+    ingredient_list: "dark chocolate, butter, eggs, sugar, flour",
+    content: "A decadent dessert with a gooey chocolate center",
+    cooking_time: "18 minutes",
+    difficulty: 1,
+    guest: 2,
+    favourite: true
+  },
+  {
+    title: "Grilled Salmon with Lemon-Dill Sauce",
+    ingredient_list: "salmon fillet, lemon, dill, Greek yogurt, garlic",
+    content: "A light and flavorful seafood dish perfect for summer",
+    cooking_time: "22 minutes",
+    difficulty: 3,
+    guest: 4,
+    favourite: true
+  },
+  {
+    title: "Homemade Pizza Margherita",
+    ingredient_list: "pizza dough, tomato sauce, fresh mozzarella, basil leaves, olive oil",
+    content: "A classic Italian pizza with simple, fresh ingredients",
+    cooking_time: "30 minutes",
+    difficulty: 3,
+    guest: 3,
+    favourite: false
+  },
+  {
+    title: "Chicken Noodle Soup",
+    ingredient_list: "chicken breast, egg noodles, carrots, celery, onion, chicken broth",
+    content: "A comforting soup that's perfect for cold days",
+    cooking_time: "45 minutes",
+    difficulty: 2,
+    guest: 6,
+    favourite: true
+  },
+  {
+    title: "Beef Tacos",
+    ingredient_list: "ground beef, taco shells, lettuce, tomato, cheese, sour cream",
+    content: "A fun and customizable Mexican-inspired meal",
+    cooking_time: "25 minutes",
+    difficulty: 2,
+    guest: 4,
+    favourite: false
+  },
+  {
+    title: "Mushroom Risotto",
+    ingredient_list: "arborio rice, mushrooms, onion, white wine, parmesan cheese, vegetable broth",
+    content: "A creamy Italian rice dish with earthy mushroom flavors",
+    cooking_time: "40 minutes",
+    difficulty: 1,
+    guest: 4,
+    favourite: true
+  }
+]
 
-  file = URI.parse(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food'])).open
-  recipe.photo.attach(io: file, filename: recipe.title, content_type: "image/png")
-  recipe.save
-end
+###########################################
+
 
 puts "Seed completed!"
