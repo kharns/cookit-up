@@ -3,6 +3,7 @@ class FridgeScansController < ApplicationController
 
   def show
     @fridge_scan = FridgeScan.find(params[:id])
+    @recipe = Recipe.new
   end
 
   def new
