@@ -1,4 +1,7 @@
 
+.recipe-grid {
+  list-style-type: none;
+}
 
 .card-recipe > img {
   height: 100px;
@@ -7,10 +10,12 @@
 }
 
 .heart-card {
-position: absolute;
-right: 0;
-top: 0;
+
 padding-right: 3%;
+  button {
+    border: none;
+    background-color: transparent;
+  }
 }
 
 
@@ -38,7 +43,7 @@ padding-right: 3%;
 .time-difficulty {
   display: flex;
   justify-content: space-between;
-  
+
   }
 
 .card-recipe-infos {
@@ -52,4 +57,6 @@ padding-right: 3%;
 .title-card {
   right: 16px;
   top: 0px;
+  font-family: poppins;
+  text-decoration: none;
 }
