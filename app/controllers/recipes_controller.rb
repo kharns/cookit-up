@@ -1,4 +1,5 @@
 require "json"
+require "open-uri"
 
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
@@ -55,19 +56,32 @@ class RecipesController < ApplicationController
 
     serialized_response = request.dig("choices", 0, "message", "content")
     recipes = JSON.parse(serialized_response)["recipes"]
-    raise
     # for each recipe => create new recipe
     recipes.each do |recipe|
+      # CREATE RECIPE
       new_recipe = Recipe.new(
-        title: recipe[:title],
-        ingredient_list: recipe[:ingredient_list],
-        difficulty: recipe[:difficulty],
-        cooking_time: recipe[:cooking_time],
-        content: recipe[:cooking_steps].join('%%'),
-        guest: number_of_guests
+        title: recipe["title"],
+        ingredient_list: recipe["ingredient_list"],
+        difficulty: recipe["difficulty"],
+        cooking_time: recipe["cooking_time"],
+        content: recipe["cooking_steps"].join('%%'), # Join with %% so that we can retrieve easily each step in the recipe show
+        guest: number_of_guests,
+        fridge_scan:
       )
+      # CREATE RECIPE PHOTO
+      recipe_photo = client.images.generate(parameters: {
+        prompt: "A recipe image of #{new_recipe.title}", size: "256x256"
+      })
+      # ATTACH RECIPE PHOTO
+      photo_url = recipe_photo["data"][0]["url"]
+      file = URI.parse(photo_url).open
+      new_recipe.photo.attach(io: file, filename: "AI #{new_recipe.title}.jpg", content_type: 'image/jpeg')
+      # SAVE THE RECIPE
+      new_recipe.save
     end
-
+    # REDIRECT TO
+    raise
+    redirect_to fridge_scan_recipes_path(fridge_scan)
   end
 
   private
