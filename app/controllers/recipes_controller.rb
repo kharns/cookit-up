@@ -52,21 +52,22 @@ class RecipesController < ApplicationController
         temperature: 0.7
       })
 
-    # request = client.chat(
-    #   parameters: {
-    #     model: "gpt-4o-mini",
-    #     messages: [{ role: "user", content: message }],
-    #     temperature: 0.7,
-    #     response_format: { type: "json_object"}
-    #     }
-    #   )
 
     serialized_response = request.dig("choices", 0, "message", "content")
-    response = JSON.parse(serialized_response)
-
+    recipes = JSON.parse(serialized_response)["recipes"]
     raise
     # for each recipe => create new recipe
-      @recipe = Recipe.new
+    recipes.each do |recipe|
+      new_recipe = Recipe.new(
+        title: recipe[:title],
+        ingredient_list: recipe[:ingredient_list],
+        difficulty: recipe[:difficulty],
+        cooking_time: recipe[:cooking_time],
+        content: recipe[:cooking_steps].join('%%'),
+        guest: number_of_guests
+      )
+    end
+
   end
 
   private
