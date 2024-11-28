@@ -4,58 +4,17 @@ require "open-uri"
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
 
-  # params given by the "search" button : guest, difficulty, cooking_time
   def create
-    # on récupère les paramètres de recherches
-    number_of_guests = params[:recipe][:guest]
+    @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
 
-    search_difficulty = params[:recipe][:difficulty]
+    # pour éviter de générer de nouvelles recettes lorsqu'on revient en arrière
+    # puis qu'on recherche sans changer les paramètres, il faudrait ajouter une/des colonne(s)
+    # "paramètres de recherche" dans la recette pour pouvoir vérifier s'ils ont changé
+    # Ne pas afficher les recettes précédentes si changement de params
 
-    # on récupère les ingrédients du fridge_scan
-    fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-    search_ingredients = fridge_scan.ingredient_list
-    # search_ingredients = "peach, pie, oranges, blueberries, bananas, green grapes, orange juice, sandwich wrap, red bell pepper, yellow bell pepper, yogurt"
-    # on fait le prompt a chatGPT pour récupérer :
-    recipes_count = 3
-    # X recettes avec les ingrédients du frigo
-    # en appliquant les paramètres de recherche s'il y en a
-    difficulty_instruction = case search_difficulty
-    when "1"
-      "return only easy recipes (1)"
-    when "2"
-      "return only easy and medium recipes (1 and 2 out of 3)"
-    else
-      "return at least one recipe from each difficulty (1, 2 and 3)"
-    end
+    # call of the private method that generates recipes
+    recipes = generate_recipes
 
-        # sinon définir suivant la recette : difficulty & cooking_time
-      # format des recettes : title, ingredients, steps
-    # On récupère la réponse de chatGPT avec toutes nos recettes
-    # on met en forme dans un array de hash (recipes)
-    # on itère sur chaque recipe en faisant un Recipe.new
-
-    # IN : ingredients, params(difficulty, cooking_time, guest(default: 2))
-    # OUT : title, ingredient_list, content(steps), photo, favourite(false)
-
-    ###### OpenAI #######
-    message = "I want a list of #{recipes_count} recipes, following these instructions:
-    Here are all the ingredients available for the recipes: #{search_ingredients}.
-    The recipes are for #{number_of_guests} people.
-    Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
-    the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time, cooking_steps"
-
-    client = OpenAI::Client.new
-    request = client.chat(
-      parameters: {
-        model: "gpt-4o-mini",
-        response_format: { type: "json_object" },
-        messages: [{ role: "user", content: message}],
-        temperature: 0.7
-      })
-
-
-    serialized_response = request.dig("choices", 0, "message", "content")
-    recipes = JSON.parse(serialized_response)["recipes"]
     # for each recipe => create new recipe
     recipes.each do |recipe|
       # CREATE RECIPE
@@ -65,24 +24,18 @@ class RecipesController < ApplicationController
         difficulty: recipe["difficulty"],
         cooking_time: recipe["cooking_time"],
         content: recipe["cooking_steps"].join('%%'), # Join with %% so that we can retrieve easily each step in the recipe show
-        guest: number_of_guests,
-        fridge_scan:
+        guest: params[:recipe][:guest],
+        fridge_scan: @fridge_scan
       )
-      # CREATE RECIPE PHOTO
-      recipe_photo = client.images.generate(parameters: {
-        prompt: "A recipe image of #{new_recipe.title}", size: "256x256"
-      })
-      # ATTACH RECIPE PHOTO
-      photo_url = recipe_photo["data"][0]["url"]
-      file = URI.parse(photo_url).open
-      new_recipe.photo.attach(io: file, filename: "AI #{new_recipe.title}.jpg", content_type: 'image/jpeg')
+      # call of the private method that generates image and attach it to the recipe
+      generate_recipe_image(new_recipe)
+
       # SAVE THE RECIPE
       new_recipe.save
     end
-    # REDIRECT TO
-    redirect_to fridge_scan_recipes_path(fridge_scan)
+    # REDIRECT TO Recipes index
+    redirect_to fridge_scan_recipes_path(@fridge_scan)
   end
-
 
   def index
     fridge_scan = FridgeScan.find(params[:fridge_scan_id])
@@ -118,15 +71,70 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:guest, :difficulty, :cooking_time)
   end
+
+  def set_openai_message
+    # on récupère les paramètres de recherches
+    number_of_guests = params[:recipe][:guest]
+    search_difficulty = params[:recipe][:difficulty]
+
+    # on récupère les ingrédients du fridge_scan
+    search_ingredients = @fridge_scan.ingredient_list
+
+    # définition du nombre de recettes à générer
+    recipes_count = 3
+
+    # en appliquant les paramètres de recherche s'il y en a
+    difficulty_instruction = case search_difficulty
+    when "1"
+      "return only easy recipes (1)"
+    when "2"
+      "return only easy and medium recipes (1 and 2 out of 3)"
+    else
+      "return at least one recipe from each difficulty (1, 2 and 3)"
+    end
+
+    # Message à transmettre à OpenAI
+    message = "I want a list of #{recipes_count} different recipes, following these instructions:
+    Here are all the ingredients available for the recipes: #{search_ingredients}.
+    The recipes are for #{number_of_guests} people.
+    Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
+    the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
+    cooking_steps."
+
+    return message
+  end
+
+  # Méthode de génération d'un array de recettes via OpenAI
+  def generate_recipes
+    # Appel de la méthode privée de création du message à transmettre à OpenAI
+    message = set_openai_message
+    client = OpenAI::Client.new
+    # Paramètres de la requête
+    request = client.chat(
+      parameters: {
+        model: "gpt-4o-mini",
+        response_format: { type: "json_object" }, # pour obtenir un format JSON en sortie
+        messages: [{ role: "user", content: message }],
+        temperature: 0.7 # standard sur OpenAI, définit la précision de la réponse
+      })
+
+    # Récupération de la réponse d'OpenAI
+    serialized_response = request.dig("choices", 0, "message", "content")
+    # On extrait de la réponse l'array de recettes
+    recipes = JSON.parse(serialized_response)["recipes"]
+    return recipes
+  end
+
+  # Méthode de génération d'image et ajout de cette image à la recette
+  def generate_recipe_image(recipe)
+    client = OpenAI::Client.new
+    # Image generation prompt
+    recipe_photo = client.images.generate(parameters: {
+      prompt: "A recipe image of #{recipe.title}", size: "256x256"
+    })
+    # ATTACH RECIPE PHOTO
+    photo_url = recipe_photo["data"][0]["url"]
+    file = URI.parse(photo_url).open
+    recipe.photo.attach(io: file, filename: "AI #{recipe.title}.jpg", content_type: 'image/jpeg')
+  end
 end
-
-
-#  CHATGPT PROMPT TEMPLATE FOR TEXT
-# client = OpenAI::Client.new
-# client.chat(parameters: {
-#   model: "gpt-4o-mini",
-#   messages: [{ role: "user", content: "Tell me why Ruby is an elegant coding language"}]
-# })
-
-# example of ingredient list
-# "peach, pie, oranges, blueberries, bananas, green grapes, orange juice, sandwich wrap, red bell pepper, yellow bell pepper, yogurt"

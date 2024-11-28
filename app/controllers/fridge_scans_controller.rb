@@ -37,7 +37,7 @@ class FridgeScansController < ApplicationController
     # response request
     response = client.chat(
       parameters: {
-        model: "gpt-4o", # Required.
+        model: "gpt-4o-mini", # Required.
         messages: [{ role: "user", content: messages}], # Required.
       }
     )
