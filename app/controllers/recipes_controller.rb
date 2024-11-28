@@ -5,7 +5,6 @@ class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
   # params given by the "search" button : guest, difficulty, cooking_time
   def create
-    raise
     # on récupère les paramètres de recherches
     number_of_guests = params[:recipe][:guest]
 

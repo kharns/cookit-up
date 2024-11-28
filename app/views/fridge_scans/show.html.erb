@@ -22,7 +22,7 @@
   <%= simple_form_for [@fridge_scan, @recipe], html: { class: 'px-4 py-3' } do |f| %>
       <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
       <div class="form-check mb-3">
-        <%= check_box_tag "recipe[ingredient_ids][]", ingredient, false,
+        <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
           id: ingredient.parameterize,
           data: {
             target: "checkbox.item",
@@ -44,22 +44,7 @@
 
   </div>
 </div>
+
 <%# Bouton Create Recipe %>
-      <%= f.submit "Create Recipe", class: 'btn btn-primary' %>
-    <% end %>
-
-
-  <%# <ul class="list-group">
-    <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-      <%# <li class="list-group-item d-flex justify-content-between align-items-center"> %>
-        <%# <%= ingredient.capitalize %>
-        <%# <%= check_box_tag "ingredient_ids[]", ingredient, true, %>
-            <%# class: "form-check-input", %>
-            <%# data: { %>
-              <%# checkbox_target: "item", %>
-              <%# action: "checkbox#toggleItem" %>
-            <%# }
-        %>
-      <%# </li> %>
-    <%# <% end %>
-  <%# </ul> %>
+  <%= f.submit "Create Recipe", class: 'btn btn-primary' %>
+<% end %>
