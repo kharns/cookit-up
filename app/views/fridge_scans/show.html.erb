@@ -18,8 +18,8 @@
 
   <ul class="list-group">
     <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-      <li class="list-group-item">
-        <div class="form-check">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= ingredient.capitalize %>
           <%= check_box_tag "ingredient_ids[]", ingredient, true,
               class: "form-check-input",
               data: {
@@ -27,9 +27,6 @@
                 action: "checkbox#toggleItem"
               }
           %>
-          <label class="form-check-label" for="ingredient_ids_<%= ingredient.parameterize %>">
-            <%= ingredient.capitalize %>
-          </label>
         </div>
       </li>
     <% end %>
