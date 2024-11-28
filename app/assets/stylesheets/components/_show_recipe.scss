@@ -1,17 +1,41 @@
+.container {
+  margin: 0 auto;
+}
+
 .title-pages {
   color: #A2580E;
   text-align: center;
 }
 
-.card-ingredients-show {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
 
 .steps {
   color: #A2580E;
   text-align: center;
   background-color: #e9e373;
+  border-radius: 100px;
+  margin: 5px 10px 5px 10px;
+}
 
+.card-show-recipe {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.chef-toque-icon {
+  width: 20px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.montre-icon {
+  width: 20px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
+.show-recipe-photo {
+  border-radius: 10px;
 }
