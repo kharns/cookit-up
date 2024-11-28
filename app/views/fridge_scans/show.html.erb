@@ -1,8 +1,44 @@
 <h1>Show Fridge Scan</h1>
 
+<<<<<<< HEAD
 <ul>
   <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
     <li><%= ingredient %></li>
   <% end %>
 </ul>
 <%= link_to "recipes", fridge_scan_recipes_path(@fridge_scan) %>
+=======
+<%# <%= link-to "Add an ingredient to the list", fridge_scan_path(@fridge_scan) %>
+<%# <%= render "fridge_scans/form" %>
+<%# faire un form avec text et submit relié à mon new_ingredient de la méthode update du show %>
+
+<h3>Add a new ingredient :</h3>
+<%= render 'form', fridge_scan: @fridge_scan %>
+
+<h2>Ingredient list</h2>
+<%# Check box Select all %>
+<input id="select-all-checkbox" name="select-all" type="checkbox">
+<label for="select-all-checkbox">Select all</label>
+
+<form>
+<div class="form-group">
+  <ul>
+    <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
+      <input type="checkbox" class="form-check-input">
+      <li><%= ingredient %></li>
+    <% end %>
+  </ul>
+</div>
+</form>
+
+
+<%= simple_form_for [@fridge_scan, @recipe] do |f| %>
+  <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
+  <%= f.input :guest, collection: (1..10), selected: 2 %>
+  <%= f.submit %>
+<% end %>
+
+<%# <% @recipes.each do |recipe| %>
+  <%# <%= cl_image_tag(recipe.photo.key) %>
+<%# <% end %>
+>>>>>>> master

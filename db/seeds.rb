@@ -1,63 +1,5 @@
-require 'faker'
 require 'cloudinary'
 require "open-uri"
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-
-
-
-#  CHAT GPT ANSWER TEMPLATE:
-# {
-#   "id": "chatcmpl-AXVUgD60UirUUXYDxZhP0ENRgsvXC",
-#   "object": "chat.completion",
-#   "created": 1732549250,
-#   "model": "gpt-4o-mini-2024-07-18",
-#   "choices": [
-#     {
-#       "index": 0,
-#       "message": {
-#         "role": "assistant",
-#         "content": "Sure! Here's a simple recipe for guacamole using avocado, cilantro, and lime:\n\n### Simple Guacamole Recipe\n\n**Ingredients:**\n- 2 ripe avocados\n- 1 lime (juiced)\n- 1/4 cup fresh cilantro (chopped)\n- Salt to taste\n- Optional: diced onion, diced tomato, or minced garlic for added flavor\n\n**Instructions:**\n\n1. **Prepare the Avocados:**\n   - Cut the avocados in half, remove the pit, and scoop the flesh into a mixing bowl.\n\n2. **Mash the Avocados:**\n   - Using a fork or a potato masher, mash the avocado to your desired consistency (smooth or chunky).\n\n3. **Add Lime Juice:**\n   - Pour the lime juice over the mashed avocado. This adds flavor and helps prevent browning.\n\n4. **Mix in Cilantro:**\n   - Add the chopped cilantro to the bowl and mix well.\n\n5. **Season:**\n   - Add salt to taste. You can also include any optional ingredients if desired.\n\n6. **Serve:**\n   - Enjoy your guacamole with tortilla chips, on tacos, or as a topping for your favorite dishes!\n\n### Tips:\n- For extra flavor, you can add minced garlic, diced onion, or diced tomatoes.\n- Adjust the lime and salt according to your taste preference.\n\nEnjoy your homemade guacamole!",
-#         "refusal": null
-#       },
-#       "logprobs": null,
-#       "finish_reason": "stop"
-#     }
-#   ],
-#   "usage": {
-#     "prompt_tokens": 24,
-#     "completion_tokens": 282,
-#     "total_tokens": 306,
-#     "prompt_tokens_details": {
-#       "cached_tokens": 0,
-#       "audio_tokens": 0
-#     },
-#     "completion_tokens_details": {
-#       "reasoning_tokens": 0,
-#       "audio_tokens": 0,
-#       "accepted_prediction_tokens": 0,
-#       "rejected_prediction_tokens": 0
-#     }
-#   },
-#   "system_fingerprint": "fp_0705bf87c0"
-# }
-
-
-
-#  CHATGPT PROMPT TEMPLATE FOR TEXT
-# client = OpenAI::Client.new
-# client.chat(parameters: {
-#   model: "gpt-4o-mini",
-#   messages: [{ role: "user", content: "Tell me why Ruby is an elegant coding language"}]
-# })
 
 # Effacer toutes les données existantes
 puts "Cleaning database..."
@@ -65,67 +7,192 @@ Recipe.destroy_all
 FridgeScan.destroy_all
 User.destroy_all
 
-# # Créer des utilisateurs
-# puts "Creating users..."
-# user1 = User.create!(name: "Alice Dupont", email: "alice@example.com", password: "password123")
-# user2 = User.create!(name: "Bob Martin", email: "bob@example.com", password: "password456")
 
-# Créer des recettes associées aux FridgeScans
-# puts "Creating recipes..."
-# Recipe.create!(
-#   title: "Poulet au riz",
-#   ingredient_list: "Poulet, Riz, Oignons, Épices",
-#   content: "1. Cuire le riz. 2. Faire revenir le poulet avec les oignons. 3. Mélanger et assaisonner.",
-#   cooking_time: "30 minutes",
-#   guest: 4,
-#   fridge_scan: fridge_scan1,
-#   favourite: true
-# )
-
-# Recipe.create!(
-#   title: "Boeuf bourguignon",
-#   ingredient_list: "Boeuf, Carottes, Pommes de terre, Vin rouge",
-#   content: "1. Faire revenir le boeuf. 2. Ajouter les légumes et le vin. 3. Mijoter pendant 2 heures.",
-#   cooking_time: "2 heures",
-#   guest: 6,
-#   fridge_scan: fridge_scan2,
-#   favourite: false
-# )
-
-puts "Creating 10 users..."
-10.times do
-  User.create!(
-    name: Faker::Name.name,
-    email: Faker::Internet.email,
-    password: "password123"
-  )
-end
+puts "Creating 3 users..."
+# users = User.all
+user1 = User.create!(name: "bob", email: "bob@bob.com", password: "123456")
+user2 = User.create!(name: "tom", email: "tom@tom.com", password: "123456")
+user3 = User.create!(name: "jo", email: "jo@jo.com", password: "123456")
 
 puts "Creating 10 fridge scans..."
+ingredients = [
+  "tomato", "lettuce", "cheddar cheese", "mozzarella", "chicken breast", "ground beef", "carrot", "red onion",
+  "potato", "garlic", "bell pepper", "cucumber", "spinach", "mushroom", "egg", "milk", "Greek yogurt",
+  "whole wheat bread", "pasta", "brown rice", "apple", "banana", "orange", "lemon", "olive oil", "butter",
+  "salt", "black pepper", "sugar", "all-purpose flour", "bacon", "salmon fillet", "broccoli", "cauliflower",
+  "zucchini", "eggplant", "asparagus", "green beans", "peas", "corn", "avocado", "kale", "celery", "beets",
+  "sweet potato", "pumpkin", "squash", "parsley", "cilantro", "basil", "thyme", "rosemary", "oregano",
+  "soy sauce", "mustard", "mayonnaise", "ketchup", "hot sauce", "vinegar", "honey", "maple syrup",
+  "peanut butter", "almond milk", "coconut milk", "tofu", "tempeh", "quinoa", "oats", "almonds", "walnuts",
+  "cashews", "sunflower seeds", "chia seeds", "flax seeds", "raisins", "dried cranberries", "chocolate chips",
+  "vanilla extract", "baking powder", "baking soda", "yeast", "cream cheese", "sour cream", "heavy cream",
+  "buttermilk", "feta cheese", "parmesan cheese", "goat cheese", "blue cheese", "ham", "turkey", "salami",
+  "prosciutto", "tuna", "sardines", "shrimp", "crab meat", "clams", "mussels", "capers", "olives", "pickles",
+  "sun-dried tomatoes", "artichoke hearts", "roasted red peppers", "jalapeños", "chili powder", "cumin",
+  "paprika", "cinnamon", "nutmeg", "ginger", "turmeric", "cardamom", "coriander", "fennel seeds"
+]
+
+fridge_scans = []
 10.times do
-  FridgeScan.create!(
-    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
-    user: User.all.sample
+  fridge_scans << FridgeScan.create!(
+    ingredient_list: ingredients.sample(rand(8..15)).join(", "),
+    user: [user1, user2, user3].sample
   )
 end
 
-puts "Creating 10 recipes..."
-10.times do
-  # Upload a sample image to Cloudinary and get the URL
-  recipe = Recipe.new(
-    title: Faker::Food.dish,
-    ingredient_list: Array.new(5) { Faker::Food.ingredient }.join(", "),
-    content: Faker::Food.description,
-    cooking_time: "#{Faker::Number.between(from: 10, to: 120)} minutes",
-    difficulty: Faker::Number.between(from: 1, to: 5),
-    guest: Faker::Number.between(from: 1, to: 8),
-    fridge_scan: FridgeScan.all.sample,
-    favourite: Faker::Boolean.boolean
-  )
 
-  file = URI.parse(Faker::LoremFlickr.image(size: "300x300", search_terms: ['food'])).open
-  recipe.photo.attach(io: file, filename: recipe.title, content_type: "image/png")
-  recipe.save
-end
+# Creating recipes and associating them with fridge scans and photos
+
+# Recipe 1: Beef Stroganoff
+file = URI.parse("https://ohsnapmacros.com/wp-content/uploads/2023/12/beefstroganoff.jpg").open
+recipe1 = Recipe.new(
+  title: "Beef Stroganoff",
+  ingredient_list: "beef sirloin, mushrooms, onions, sour cream, egg noodles",
+  content: "A hearty Russian dish with tender beef and a creamy sauce.",
+  cooking_time: "35 minutes",
+  difficulty: 3,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe1.photo.attach(io: file, filename: "#{recipe1.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe1.save!
+
+# Recipe 2: Vegetable Stir-Fry
+file = URI.parse("https://kristineskitchenblog.com/wp-content/uploads/2024/01/vegetable-stir-fry-22-3.jpg").open
+recipe2 = Recipe.new(
+  title: "Vegetable Stir-Fry",
+  ingredient_list: "mixed vegetables, tofu, soy sauce, ginger, garlic",
+  content: "A quick and healthy vegetarian dish packed with flavors.",
+  cooking_time: "15 minutes",
+  difficulty: 2,
+  guest: 3,
+  favourite: false,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe2.photo.attach(io: file, filename: "#{recipe2.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe2.save!
+
+# Recipe 3: Chocolate Lava Cake
+file = URI.parse("https://www.acouplecooks.com/wp-content/uploads/2022/02/Lava-Cake-005s.jpg").open
+recipe3 = Recipe.new(
+  title: "Chocolate Lava Cake",
+  ingredient_list: "dark chocolate, butter, eggs, sugar, flour",
+  content: "A decadent dessert with a gooey chocolate center.",
+  cooking_time: "18 minutes",
+  difficulty: 1,
+  guest: 2,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe3.photo.attach(io: file, filename: "#{recipe3.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe3.save!
+
+# Recipe 4: Grilled Salmon with Lemon-Dill Sauce
+file = URI.parse("https://cookaifood.com/media/cache/thumb_600/bundles/project/images/recipes/2250_1_1703256451.png").open
+recipe4 = Recipe.new(
+  title: "Grilled Salmon with Lemon-Dill Sauce",
+  ingredient_list: "salmon fillet, lemon, dill, Greek yogurt, garlic",
+  content: "A light and flavorful seafood dish perfect for summer.",
+  cooking_time: "22 minutes",
+  difficulty: 3,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe4.photo.attach(io: file, filename: "#{recipe4.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe4.save!
+
+# Recipe 5: Homemade Pizza Margherita
+file = URI.parse("https://kitchenswagger.com/wp-content/uploads/2023/05/margherita-pizza-close.jpg").open
+recipe5 = Recipe.new(
+  title: "Homemade Pizza Margherita",
+  ingredient_list: "pizza dough, tomato sauce, fresh mozzarella, basil leaves",
+  content: "A classic Italian pizza with simple and fresh ingredients.",
+  cooking_time: "30 minutes",
+  difficulty: 3,
+  guest: 3,
+  favourite: false,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe5.photo.attach(io: file, filename: "#{recipe5.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe5.save!
+
+# Recipe 6: Chicken Noodle Soup
+file = URI.parse("https://www.cubesnjuliennes.com/wp-content/uploads/2022/01/Homemade-Chicken-Noodle-Soup-Recipe.jpg").open
+recipe6 = Recipe.new(
+  title: "Chicken Noodle Soup",
+  ingredient_list: "chicken breast, egg noodles, carrots, celery, onion",
+  content: "A comforting soup that's perfect for cold days.",
+  cooking_time: "45 minutes",
+  difficulty: 2,
+  guest: 6,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe6.photo.attach(io: file, filename: "#{recipe6.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe6.save!
+
+# Recipe 7: Beef Tacos
+file = URI.parse("https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg").open
+recipe7 = Recipe.new(
+  title:"Beef Tacos",
+  ingredient_list:"ground beef,taco shells,lettuce,tomato cheese,sour cream",
+  content:"A fun and customizable Mexican-inspired meal.",
+  cooking_time:"25 minutes",
+  difficulty:"2",
+  guest:"4",
+  favourite:false,
+  fridge_scan_id: fridge_scans.sample.id
+)
+recipe7.photo.attach(io:file ,filename:"#{ recipe7.title.parameterize }.jpg",content_type:'image/jpeg')
+recipe7.save!
+
+# 8 Mushroom Risotto
+recipe8 = Recipe.new(
+  title: "Mushroom Risotto",
+  ingredient_list: "arborio rice, mushrooms, onion, white wine, parmesan cheese, vegetable broth",
+  content: "A creamy Italian rice dish with earthy mushroom flavors",
+  cooking_time: "40 minutes",
+  difficulty: 1,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://www.allrecipes.com/thmb/854efwMYEwilYjKr0FiF4FkwBvM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/85389-gourmet-mushroom-risotto-DDMFS-4x3-a8a80a8deb064c6a8f15452b808a0258.jpg").open
+recipe8.photo.attach(io: file, filename: "#{recipe8.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe8.save!
+
+# 9 Carbonara
+recipe9 = Recipe.new(
+  title: "Spaghetti Carbonara",
+  ingredient_list: "spaghetti, eggs, pancetta, parmesan cheese, black pepper",
+  content: "A creamy and savory Italian classic.",
+  cooking_time: "25 minutes",
+  difficulty: 3,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://assets.bonappetit.com/photos/5a6f48f94f860a026c60fd71/1:1/w_2560%2Cc_limit/pasta-carbonara.jpg").open
+recipe9.photo.attach(io: file, filename: "#{recipe9.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe9.save!
+
+# 10 Caesar Salad
+recipe10 = Recipe.new(
+  title: "Caesar Salad",
+  ingredient_list: "romaine lettuce, croutons, parmesan cheese, grilled chicken, caesar dressing",
+  content: "A fresh and crunchy salad with a creamy dressing.",
+  cooking_time: "20 minutes",
+  difficulty: 2,
+  guest: 2,
+  favourite: false,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://s23209.pcdn.co/wp-content/uploads/2023/01/220905_DD_Chx-Caesar-Salad_051-500x375.jpg").open
+recipe10.photo.attach(io: file, filename: "#{recipe10.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe10.save!
+
+puts "#{Recipe.count} recipes created."
 
 puts "Seed completed!"
