@@ -3,19 +3,38 @@
 
 <h2>Ingredient list</h2>
 <%# Check box Select all %>
-<input id="select-all-checkbox" name="select-all" type="checkbox">
-<label for="select-all-checkbox">Select all</label>
 
-<form>
-<div class="form-group">
-  <ul>
+<div data-controller="checkbox">
+  <div class="form-check">
+    <%= check_box_tag "select_all", nil, true,
+        class: "form-check-input",
+        data: {
+          checkbox_target: "all",
+          action: "checkbox#toggleAll"
+        }
+    %>
+    <label class="form-check-label" for="select_all">Select All Ingredients</label>
+  </div>
+
+  <ul class="list-group">
     <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-      <input type="checkbox" class="form-check-input">
-      <li><%= ingredient %></li>
+      <li class="list-group-item">
+        <div class="form-check">
+          <%= check_box_tag "ingredient_ids[]", ingredient, true,
+              class: "form-check-input",
+              data: {
+                checkbox_target: "item",
+                action: "checkbox#toggleItem"
+              }
+          %>
+          <label class="form-check-label" for="ingredient_ids_<%= ingredient.parameterize %>">
+            <%= ingredient.capitalize %>
+          </label>
+        </div>
+      </li>
     <% end %>
   </ul>
 </div>
-</form>
 
 
 <%= simple_form_for [@fridge_scan, @recipe] do |f| %>
