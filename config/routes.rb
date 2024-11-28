@@ -19,5 +19,8 @@ Rails.application.routes.draw do
     end
   end
   resources :recipes, only: %i[show update] do
+    collection do
+      get :favourites
+    end
   end
 end
