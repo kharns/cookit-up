@@ -1,1 +1,30 @@
 // Specific CSS for your home-page
+
+.homepage-background{
+  background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), url(frigo_home.png);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight:900;
+    text-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 1px 0 white, -1px 0 0 white, -1px -1px 0 white, 0 -1px 0 white, 1px -1px 0 white;
+  }
+}
+
+.home-buttons{
+  margin-top: 30px;
+  background-color: #F5D351;
+  border: 4px solid #FFF0B9;
+  padding: 10px;
+  text-align: center;
+  color: $orange-text;
+  text-decoration: none;
+  border-radius: 30px;
+  margin-inline: 30px;
+  font-size: 20px;
+}
