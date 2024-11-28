@@ -1,24 +1,30 @@
 
 .recipe-grid {
   list-style-type: none;
+  display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 15px;
+  position: absolute;
 }
 
-.card-recipe > img {
+.card-recipe img {
   height: 100px;
   width: 100%;
   object-fit: cover;
 }
 
 .heart-card {
-
 padding-right: 3%;
-  button {
-    border: none;
-    background-color: transparent;
-  }
+a {
+  border: none;
+  position: absolute;
+  top: 50%;
+  right: 50;
+  background-color: transparent;
+  z-index: 2;
+ }
 }
-
 
 .card-recipe h2 {
   font-size: 16px;
@@ -58,6 +64,13 @@ padding-right: 3%;
 .title-card {
   right: 16px;
   top: 0px;
-  font-family: poppins;
+  color: black;
   text-decoration: none;
+}
+
+#title-index {
+  color: #A2580E;
+  font-size: 34px;
+  text-align: center;
+  padding-top: 15px;
 }
