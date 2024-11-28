@@ -2,6 +2,8 @@ require "json"
 require "open-uri"
 
 class RecipesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[create]
+  
   def index
     fridge_scan = FridgeScan.find(params[:fridge_scan_id])
     @recipes = fridge_scan.recipes
@@ -29,8 +31,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-  skip_before_action :authenticate_user!, only: %i[create]
-
+  end
   # params given by the "search" button : guest, difficulty, cooking_time
   def create
     # on récupère les paramètres de recherches
