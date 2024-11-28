@@ -3,40 +3,6 @@ require "open-uri"
 
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
-<<<<<<< HEAD
-  
-  def index
-    fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-    @recipes = fridge_scan.recipes
-  end
-
-  def add_favorite
-    @recipe = Recipe.find(params[:id])
-    @recipe.favourite = true
-    if @recipe.save!
-      redirect_to fridge_scan_recipes_path(FridgeScan.find(params[:fridge_scan_id]))
-    else
-      render :index, status: :unprocessable_entity
-    end
-  end
-
-  def remove_favorite
-    @recipe = Recipe.find(params[:id])
-    @recipe.favourite = false
-    if @recipe.save!
-      redirect_to fridge_scan_recipes_path(FridgeScan.find(params[:fridge_scan_id]))
-    else
-      render :index, status: :unprocessable_entity
-    end
-  end
-
-  def show
-    @recipe = Recipe.find(params[:id])
-  end
-=======
-
-
->>>>>>> master
   # params given by the "search" button : guest, difficulty, cooking_time
   def create
     # on récupère les paramètres de recherches
@@ -101,6 +67,7 @@ class RecipesController < ApplicationController
         guest: number_of_guests,
         fridge_scan:
       )
+      
       # CREATE RECIPE PHOTO
       recipe_photo = client.images.generate(parameters: {
         prompt: "A recipe image of #{new_recipe.title}", size: "256x256"
