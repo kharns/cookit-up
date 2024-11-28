@@ -2,6 +2,8 @@ require "json"
 require "open-uri"
 
 class RecipesController < ApplicationController
+  def show
+    @recipe = Recipe.find(params[:id])
   skip_before_action :authenticate_user!, only: %i[create]
 
   # params given by the "search" button : guest, difficulty, cooking_time
