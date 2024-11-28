@@ -5,6 +5,7 @@
 .title-pages {
   color: #A2580E;
   text-align: center;
+  margin: 3px 3px 3px 3px;
 }
 
 
@@ -13,10 +14,10 @@
   text-align: center;
   background-color: #e9e373;
   border-radius: 100px;
-  margin: 5px 10px 5px 10px;
+  margin: 10px 10px 5px 10px;
 }
 
-.card-show-recipe {
+.card-show-image-ingredients {
   display: flex;
   justify-content: space-evenly;
 }
@@ -24,18 +25,46 @@
 .chef-toque-icon {
   width: 20px;
   height: auto;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .montre-icon {
   width: 20px;
   height: auto;
-  display: inline-block;
-  vertical-align: middle;
-
+  margin-left: 5px;
 }
 
 .show-recipe-photo {
   border-radius: 10px;
+  margin: 5px 3px 3px 3px;
+}
+
+.icons-show-recipe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 5px;
+}
+
+.icons-show {
+  display: flex;
+  align-items: center;
+}
+
+
+.card-ingredients-show h3 {
+  text-align: center;
+}
+
+.message-congratulations {
+  background-color: #DCF57A;
+  border-radius: 100px;
+  height: 70px;
+}
+
+
+.message-congratulations h3 {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #874605;
+  margin-top: 20px;
 }

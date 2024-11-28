@@ -1,26 +1,38 @@
 <div class="container">
   <h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
 
-  <div class="card-show-recipe">
+  <div class="card-show-image-ingredients">
     <%= cl_image_tag(@recipe.photo.key, width: 186, height: 277, crop: :fill, gravity: :face, class:"show-recipe-photo") %>
     <div>
-      <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= @recipe.cooking_time.delete('^0-9') %>'</p>
-      <p><% @recipe.difficulty.times do %>
-      <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
-      <% end %>
-      </p>
+      <div class="icons-show-recipe">
+        <div class="icons-show">
+          <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= @recipe.cooking_time.delete('^0-9') %>'</p>
+          </div>
+          <div class="icons-show">
+            <p><% @recipe.difficulty.times do %>
+            <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
+            <% end %>
+            </p>
+          </div>
+      </div>
 
-      <h3 class="card-ingredients-show">Ingredients:</h3>
-        <ul> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
-        <li><%= ingredient.strip %></li>
-          <% end %>
-      </ul>
+      <div class="card-ingredients-show">
+        <h3 >Ingredients:</h3>
+          <ul> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
+          <li><%= ingredient.strip %></li>
+            <% end %>
+        </ul>
+      </div>
     </div>
   </div>
+
   <h3 class="steps">Steps to be a chef :</h3>
-  <p><%= @recipe.content%></p>
 
+  <ul> <% @recipe.content.split('%%').each do |step| %>
+  <li><%= step.strip %></li> <% end %>
+  </ul>
 
-  <h3>CONGRATULATIONS !
-  YOU’RE A CHEF</h3>
+  <div class="message-congratulations">
+    <h3>CONGRATULATIONS ! <br>YOU’RE A CHEF</h3>
+    </div>
 </div>
