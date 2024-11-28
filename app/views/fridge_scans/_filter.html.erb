@@ -1,5 +1,0 @@
-<%= simple_form_for [@fridge_scan, @recipe] do |f| %>
-  <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
-  <%= f.input :guest, collection: (1..10), selected: 2 %>
-  <%= f.submit %>
-<% end %>

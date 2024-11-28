@@ -2,9 +2,9 @@
 <%= render 'form', fridge_scan: @fridge_scan %>
 
 <h2>Ingredient list</h2>
-<%# Check box Select all %>
 
 <div data-controller="checkbox">
+  <%# Check box Select all %>
   <div class="form-check mb-3">
     <%= check_box_tag "select_all", nil, true,
         class: "form-check-input",
@@ -18,33 +18,48 @@
     </label>
   </div>
 
-  <ul class="list-group">
-    <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= ingredient.capitalize %>
-        <%= check_box_tag "ingredient_ids[]", ingredient, true,
-            class: "form-check-input",
-            data: {
-              checkbox_target: "item",
-              action: "checkbox#toggleItem"
-            }
+  <%# Check box Select item %>
+  <%= simple_form_for [@fridge_scan, @recipe], html: { class: 'px-4 py-3' } do |f| %>
+      <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
+      <div class="form-check mb-3">
+        <%= check_box_tag "recipe[ingredient_ids][]", ingredient, false,
+          id: ingredient.parameterize,
+          data: {
+            target: "checkbox.item",
+            action: "checkbox#toggleItem" }
         %>
-      </li>
-    <% end %>
-  </ul>
+        <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
+      </div>
+      <% end %>
 </div>
 
+<%# Filter Bouton %>
 <div class="btn-group dropup">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     Filter
   </button>
   <div class="dropdown-menu">
-    <%= simple_form_for [@fridge_scan, @recipe], html: { class: 'px-4 py-3' } do |f| %>
       <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
       <%= f.input :guest, collection: (1..10), selected: 2 %>
+
   </div>
 </div>
+<%# Bouton Create Recipe %>
       <%= f.submit "Create Recipe", class: 'btn btn-primary' %>
     <% end %>
 
-    <%# <%= render 'filter', fridge_scan: @fridge_scan %>
+
+  <%# <ul class="list-group">
+    <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
+      <%# <li class="list-group-item d-flex justify-content-between align-items-center"> %>
+        <%# <%= ingredient.capitalize %>
+        <%# <%= check_box_tag "ingredient_ids[]", ingredient, true, %>
+            <%# class: "form-check-input", %>
+            <%# data: { %>
+              <%# checkbox_target: "item", %>
+              <%# action: "checkbox#toggleItem" %>
+            <%# }
+        %>
+      <%# </li> %>
+    <%# <% end %>
+  <%# </ul> %>

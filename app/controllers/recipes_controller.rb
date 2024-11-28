@@ -5,6 +5,7 @@ class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
   # params given by the "search" button : guest, difficulty, cooking_time
   def create
+    raise
     # on récupère les paramètres de recherches
     number_of_guests = params[:recipe][:guest]
 
@@ -27,8 +28,8 @@ class RecipesController < ApplicationController
       "return at least one recipe from each difficulty (1, 2 and 3)"
     end
 
-        # sinon définir suivant la recette : difficulty & cooking_time
-      # format des recettes : title, ingredients, steps
+    # sinon définir suivant la recette : difficulty & cooking_time
+    # format des recettes : title, ingredients, steps
     # On récupère la réponse de chatGPT avec toutes nos recettes
     # on met en forme dans un array de hash (recipes)
     # on itère sur chaque recipe en faisant un Recipe.new
@@ -50,24 +51,24 @@ class RecipesController < ApplicationController
         response_format: { type: "json_object" },
         messages: [{ role: "user", content: message}],
         temperature: 0.7
-      })
+        })
 
 
-    serialized_response = request.dig("choices", 0, "message", "content")
-    recipes = JSON.parse(serialized_response)["recipes"]
-    # for each recipe => create new recipe
-    recipes.each do |recipe|
-      # CREATE RECIPE
-      new_recipe = Recipe.new(
-        title: recipe["title"],
-        ingredient_list: recipe["ingredient_list"],
-        difficulty: recipe["difficulty"],
-        cooking_time: recipe["cooking_time"],
-        content: recipe["cooking_steps"].join('%%'), # Join with %% so that we can retrieve easily each step in the recipe show
-        guest: number_of_guests,
-        fridge_scan:
-      )
-      
+        serialized_response = request.dig("choices", 0, "message", "content")
+        recipes = JSON.parse(serialized_response)["recipes"]
+        # for each recipe => create new recipe
+        recipes.each do |recipe|
+          # CREATE RECIPE
+          new_recipe = Recipe.new(
+            title: recipe["title"],
+            ingredient_list: recipe["ingredient_list"],
+            difficulty: recipe["difficulty"],
+            cooking_time: recipe["cooking_time"],
+            content: recipe["cooking_steps"].join('%%'), # Join with %% so that we can retrieve easily each step in the recipe show
+            guest: number_of_guests,
+            fridge_scan:
+          )
+
       # CREATE RECIPE PHOTO
       recipe_photo = client.images.generate(parameters: {
         prompt: "A recipe image of #{new_recipe.title}", size: "256x256"
