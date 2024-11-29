@@ -3,16 +3,10 @@ require "open-uri"
 
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
-  
+
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
 
-
-    # sinon définir suivant la recette : difficulty & cooking_time
-    # format des recettes : title, ingredients, steps
-    # On récupère la réponse de chatGPT avec toutes nos recettes
-    # on met en forme dans un array de hash (recipes)
-    # on itère sur chaque recipe en faisant un Recipe.new
     # pour éviter de générer de nouvelles recettes lorsqu'on revient en arrière
     # puis qu'on recherche sans changer les paramètres, il faudrait ajouter une/des colonne(s)
     # "paramètres de recherche" dans la recette pour pouvoir vérifier s'ils ont changé
@@ -20,48 +14,6 @@ class RecipesController < ApplicationController
 
     # call of the private method that generates recipes
     recipes = generate_recipes
-
-
-    ###### OpenAI #######
-    message = "I want a list of #{recipes_count} recipes, following these instructions:
-    Here are all the ingredients available for the recipes: #{search_ingredients}.
-    The recipes are for #{number_of_guests} people.
-    Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
-    the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time, cooking_steps"
-
-    client = OpenAI::Client.new
-    request = client.chat(
-      parameters: {
-        model: "gpt-4o-mini",
-        response_format: { type: "json_object" },
-        messages: [{ role: "user", content: message}],
-        temperature: 0.7
-        })
-
-
-        serialized_response = request.dig("choices", 0, "message", "content")
-        recipes = JSON.parse(serialized_response)["recipes"]
-        # for each recipe => create new recipe
-        recipes.each do |recipe|
-          # CREATE RECIPE
-          new_recipe = Recipe.new(
-            title: recipe["title"],
-            ingredient_list: recipe["ingredient_list"],
-            difficulty: recipe["difficulty"],
-            cooking_time: recipe["cooking_time"],
-            content: recipe["cooking_steps"].join('%%'), # Join with %% so that we can retrieve easily each step in the recipe show
-            guest: number_of_guests,
-            fridge_scan:
-          )
-
-      # CREATE RECIPE PHOTO
-      recipe_photo = client.images.generate(parameters: {
-        prompt: "A recipe image of #{new_recipe.title}", size: "256x256"
-      })
-      # ATTACH RECIPE PHOTO
-      photo_url = recipe_photo["data"][0]["url"]
-      file = URI.parse(photo_url).open
-      new_recipe.photo.attach(io: file, filename: "AI #{new_recipe.title}.jpg", content_type: 'image/jpeg')
 
     # for each recipe => create new recipe
     recipes.each do |recipe|
@@ -77,7 +29,6 @@ class RecipesController < ApplicationController
       )
       # call of the private method that generates image and attach it to the recipe
       generate_recipe_image(new_recipe)
-
 
       # SAVE THE RECIPE
       new_recipe.save
