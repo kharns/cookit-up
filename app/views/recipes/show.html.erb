@@ -2,7 +2,11 @@
   <h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
 
   <div class="card-show-image-ingredients">
-    <%= cl_image_tag(@recipe.photo.key, width: 186, height: 277, crop: :fill, gravity: :face, class:"show-recipe-photo") %>
+    <% if @recipe.photo.key.nil? %>
+      <%= image_tag("repas", width: 186, height: 277, class:"show-recipe-photo object-fit-cover") %>
+    <% else %>
+      <%= cl_image_tag(@recipe.photo.key, width: 186, height: 277, crop: :fill, gravity: :face, class:"show-recipe-photo") %>
+    <% end %>
     <div>
       <div class="icons-show-recipe">
         <div class="icons-show">
@@ -18,26 +22,25 @@
 
       <div class="card-ingredients-show">
         <h3 >Ingredients:</h3>
-          <ul> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
-          <li><%= ingredient.strip %></li>
-            <% end %>
-        </ul>
+            <ul class="list-unstyled poppins"> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
+          <div class="list-ingredients-show">
+              <li><%= ingredient.strip.capitalize %></li>
+          </div>
+              <% end %>
+            </ul>
       </div>
     </div>
   </div>
 
   <h3 class="steps">Steps to be a chef :</h3>
 
- <ol> <% @recipe.content.split('%%').each_with_index do |step, index| %>
-<li>Step <%= index + 1 %>: <%= step.split(':').drop(1).join(':') %></li> <% end %>
-</ol>
-   <!--<ul> <% @recipe.content.split('%%').each do |step| %>
-  <li><%= step.strip %></li> <% end %>
-  </ul>-->
+  <ul class="list-unstyled poppins"> <% @recipe.content.split('%%').each_with_index do |step, index| %>
+    <li class="ms-3"><strong>Step <%= index + 1 %>:</strong> <br> <%= step.split(':').drop(1).join(':') %></li> <% end %>
+  </ul>
 
   <div class="message-congratulations">
     <div>
-      <h3>CONGRATULATIONS ! <br>     YOU’RE A CHEF</h3>
+      <h3>CONGRATULATIONS ! <br>  YOU’RE A CHEF</h3>
     </div>
   </div>
 </div>

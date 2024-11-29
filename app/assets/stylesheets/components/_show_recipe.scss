@@ -2,14 +2,17 @@
   margin: 0 auto;
 }
 
+/* title recipe */
 .title-pages {
+  font-family: "Chocolate Classical Sans", sans-serif;;
   color: #A2580E;
   text-align: center;
   margin: 3px 3px 3px 3px;
 }
 
-
+ /* title Steps to be a chef : */
 .steps {
+  font-family: "Chocolate Classical Sans", sans-serif;;
   color: #A2580E;
   text-align: center;
   background-color: #e9e373;
@@ -17,9 +20,24 @@
   margin: 10px 10px 5px 10px;
 }
 
+/* div image recete, ingredients, minutes et difficulté*/
 .card-show-image-ingredients {
   display: flex;
   justify-content: space-evenly;
+}
+
+/* photo de la recette*/
+.show-recipe-photo {
+  border-radius: 10px;
+  margin: 5px 3px 3px 3px;
+}
+
+.icons-show-recipe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-inline: 5px;
 }
 
 .chef-toque-icon {
@@ -33,28 +51,22 @@
   margin-left: 5px;
 }
 
-.show-recipe-photo {
-  border-radius: 10px;
-  margin: 5px 3px 3px 3px;
-}
-
-.icons-show-recipe {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-top: 5px;
-}
-
-.icons-show {
-  display: flex;
-  align-items: center;
-}
-
-
+/* title ingredients*/
 .card-ingredients-show h3 {
-  text-align: center;
+  text-align:left;
+  font-family: "Poppins", sans-serif;
 }
 
+/* title et ingredients*/
+.card-ingredients-show {
+  font-family: "Poppins", sans-serif;
+}
+
+.list-ingredients-show {
+  margin-left: 2px;
+}
+
+/* message de congratulations*/
 .message-congratulations {
   display: flex;
   background-color: #DCF57A;
@@ -64,9 +76,8 @@
   justify-content: center;
 }
 
-
 .message-congratulations h3 {
-  font-size: 1.3rem;
+  font-family: "Quando", serif;
+  font-size: 1.1rem;
   color: #874605;
-  margin-top: 12px;
 }

@@ -6,7 +6,6 @@ class RecipesController < ApplicationController
 
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-
     # pour éviter de générer de nouvelles recettes lorsqu'on revient en arrière
     # puis qu'on recherche sans changer les paramètres, il faudrait ajouter une/des colonne(s)
     # "paramètres de recherche" dans la recette pour pouvoir vérifier s'ils ont changé
@@ -38,14 +37,14 @@ class RecipesController < ApplicationController
 
   def index
     fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-    @recipes = fridge_scan.recipes
+    @recipes = fridge_scan.recipes.sort_by(&:created_at)
   end
 
   def add_favorite
     @recipe = Recipe.find(params[:id])
     @recipe.favourite = true
     if @recipe.save!
-      redirect_to fridge_scan_recipes_path(FridgeScan.find(params[:fridge_scan_id]))
+      redirect_to fridge_scan_recipes_path(@recipe.fridge_scan)
     else
       render :index, status: :unprocessable_entity
     end
@@ -55,7 +54,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.favourite = false
     if @recipe.save!
-      redirect_to fridge_scan_recipes_path(FridgeScan.find(params[:fridge_scan_id]))
+      redirect_to fridge_scan_recipes_path(@recipe.fridge_scan)
     else
       render :index, status: :unprocessable_entity
     end
@@ -75,9 +74,7 @@ class RecipesController < ApplicationController
     # on récupère les paramètres de recherches
     number_of_guests = params[:recipe][:guest]
     search_difficulty = params[:recipe][:difficulty]
-
-    # on récupère les ingrédients du fridge_scan
-    search_ingredients = @fridge_scan.ingredient_list
+    search_ingredients = params[:recipe][:ingredient_ids]
 
     # définition du nombre de recettes à générer
     recipes_count = 6
@@ -85,7 +82,7 @@ class RecipesController < ApplicationController
     # en appliquant les paramètres de recherche s'il y en a
     difficulty_instruction = case search_difficulty
     when "1"
-      "return only easy recipes (1)"
+      "return only easy recipes (1 out of 3)"
     when "2"
       "return only easy and medium recipes (1 and 2 out of 3)"
     else
@@ -93,12 +90,14 @@ class RecipesController < ApplicationController
     end
 
     # Message à transmettre à OpenAI
-    message = "I want a list of #{recipes_count} different recipes, following these instructions:
-    Here are all the ingredients available for the recipes: #{search_ingredients}.
+    message = "I want a list of maximum #{recipes_count} different recipes, following these instructions:
+    Here are all the ingredients available for the recipes: #{search_ingredients.join(', ')}.
     The recipes are for #{number_of_guests} people.
     Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
-    cooking_steps."
+    cooking_steps.
+    Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
+    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'"
 
     return message
   end
@@ -111,7 +110,7 @@ class RecipesController < ApplicationController
     # Paramètres de la requête
     request = client.chat(
       parameters: {
-        model: "gpt-4o-mini",
+        model: "gpt-3.5-turbo",
         response_format: { type: "json_object" }, # pour obtenir un format JSON en sortie
         messages: [{ role: "user", content: message }],
         temperature: 0.7 # standard sur OpenAI, définit la précision de la réponse
