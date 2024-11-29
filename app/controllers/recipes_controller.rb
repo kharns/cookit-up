@@ -2,7 +2,7 @@ require "json"
 require "open-uri"
 
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create index show]
+skip_before_action :authenticate_user!, only: %i[create index show]
 
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
