@@ -3,7 +3,7 @@ require "open-uri"
 
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
-  
+
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
 
@@ -187,3 +187,4 @@ class RecipesController < ApplicationController
     recipe.photo.attach(io: file, filename: "AI #{recipe.title}.jpg", content_type: 'image/jpeg')
   end
 end
+
