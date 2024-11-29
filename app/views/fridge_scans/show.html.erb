@@ -2,28 +2,50 @@
 <%= render 'form', fridge_scan: @fridge_scan %>
 
 <h2>Ingredient list</h2>
-<%# Check box Select all %>
-<input id="select-all-checkbox" name="select-all" type="checkbox">
-<label for="select-all-checkbox">Select all</label>
 
-<form>
-<div class="form-group">
-  <ul>
-    <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-      <input type="checkbox" class="form-check-input">
-      <li><%= ingredient %></li>
-    <% end %>
-  </ul>
+<div data-controller="checkbox">
+  <%# Check box Select all %>
+  <div class="form-check mb-3">
+    <%= check_box_tag "select_all", nil, true,
+        class: "form-check-input",
+        data: {
+          checkbox_target: "all",
+          action: "checkbox#toggleAll"
+        }
+    %>
+    <label class="form-check-label" for="select_all" data-checkbox-target="label">
+      Select All Ingredients
+    </label>
+  </div>
+
+  <%# Check box Select item %>
+  <%= simple_form_for [@fridge_scan, @recipe],  html: { class: 'px-4 py-3' } do |f| %>
+      <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
+      <div class="form-check mb-3">
+        <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
+          id: ingredient.parameterize,
+          data: {
+            target: "checkbox.item",
+            action: "checkbox#toggleItem" }
+        %>
+        <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
+      </div>
+      <% end %>
+
+
+  <%# Filter Bouton %>
+  <div class="btn-group dropup">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter
+    </button>
+    <div class="dropdown-menu">
+        <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
+        <%= f.input :guest, collection: (1..10), selected: 2 %>
+
+    </div>
+  </div>
+
+  <%# Bouton Create Recipe %>
+    <%= f.submit "Create Recipe", class: 'btn btn-primary' %>
+  <% end %>
 </div>
-</form>
-
-
-<%= simple_form_for [@fridge_scan, @recipe] do |f| %>
-  <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
-  <%= f.input :guest, collection: (1..10), selected: 2 %>
-  <%= f.submit %>
-<% end %>
-
-<%# <% @recipes.each do |recipe| %>
-  <%# <%= cl_image_tag(recipe.photo.key) %>
-<%# <% end %>
