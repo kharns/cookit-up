@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
 
+  
 
     # sinon définir suivant la recette : difficulty & cooking_time
     # format des recettes : title, ingredients, steps
@@ -187,4 +188,3 @@ class RecipesController < ApplicationController
     recipe.photo.attach(io: file, filename: "AI #{recipe.title}.jpg", content_type: 'image/jpeg')
   end
 end
-
