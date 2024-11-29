@@ -97,7 +97,8 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
     cooking_steps.
     Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
-    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'"
+    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'
+    IMPORTANT : I need at least 2 recipes."
 
     return message
   end
@@ -110,16 +111,16 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     # Paramètres de la requête
     request = client.chat(
       parameters: {
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         response_format: { type: "json_object" }, # pour obtenir un format JSON en sortie
         messages: [{ role: "user", content: message }],
         temperature: 0.7 # standard sur OpenAI, définit la précision de la réponse
       })
 
     # Récupération de la réponse d'OpenAI
-    serialized_response = request.dig("choices", 0, "message", "content")
+    @serialized_response = request.dig("choices", 0, "message", "content")
     # On extrait de la réponse l'array de recettes
-    recipes = JSON.parse(serialized_response)["recipes"]
+    recipes = JSON.parse(@serialized_response)["recipes"]
     return recipes
   end
 
