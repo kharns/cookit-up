@@ -9,7 +9,7 @@
           <li class="card-recipe">
             <%= link_to recipe_path(recipe) do %>
               <% if recipe.photo.key.nil? %>
-                <%= image_tag("repas") %>
+                <%= image_tag("repas.png") %>
               <% else %>
                 <%= cl_image_tag(recipe.photo.key) %>
               <% end %>
