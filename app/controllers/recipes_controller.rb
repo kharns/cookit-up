@@ -2,7 +2,7 @@ require "json"
 require "open-uri"
 
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create]
+  skip_before_action :authenticate_user!, only: %i[create index show]
 
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
         fridge_scan: @fridge_scan
       )
       # call of the private method that generates image and attach it to the recipe
-      generate_recipe_image(new_recipe)
+      # generate_recipe_image(new_recipe)
 
       # SAVE THE RECIPE
       new_recipe.save
@@ -80,7 +80,7 @@ class RecipesController < ApplicationController
     search_ingredients = @fridge_scan.ingredient_list
 
     # définition du nombre de recettes à générer
-    recipes_count = 3
+    recipes_count = 6
 
     # en appliquant les paramètres de recherche s'il y en a
     difficulty_instruction = case search_difficulty
