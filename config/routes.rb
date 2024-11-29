@@ -12,15 +12,15 @@ Rails.application.routes.draw do
 
   resources :fridge_scans, only: %i[show new create update] do
     resources :recipes, only: %i[create index] do
-      member do
-        get :add_favorite
-        get :remove_favorite
-      end
     end
   end
   resources :recipes, only: %i[show update] do
     collection do
       get :favourites
+    end
+    member do
+      patch :add_favorite
+      patch :remove_favorite
     end
   end
 end
