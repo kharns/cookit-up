@@ -28,11 +28,16 @@
 
   <h3 class="steps">Steps to be a chef :</h3>
 
-  <ul> <% @recipe.content.split('%%').each do |step| %>
+ <ol> <% @recipe.content.split('%%').each_with_index do |step, index| %>
+<li>Step <%= index + 1 %>: <%= step.split(':').drop(1).join(':') %></li> <% end %>
+</ol>
+   <!--<ul> <% @recipe.content.split('%%').each do |step| %>
   <li><%= step.strip %></li> <% end %>
-  </ul>
+  </ul>-->
 
   <div class="message-congratulations">
-    <h3>CONGRATULATIONS ! <br>YOU’RE A CHEF</h3>
+    <div>
+      <h3>CONGRATULATIONS ! <br>     YOU’RE A CHEF</h3>
     </div>
+  </div>
 </div>

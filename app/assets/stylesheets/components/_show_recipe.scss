@@ -56,15 +56,17 @@
 }
 
 .message-congratulations {
+  display: flex;
   background-color: #DCF57A;
   border-radius: 100px;
   height: 70px;
+  align-items: center;
+  justify-content: center;
 }
 
 
 .message-congratulations h3 {
   font-size: 1.3rem;
-  text-align: center;
   color: #874605;
-  margin-top: 20px;
+  margin-top: 12px;
 }
