@@ -5,6 +5,7 @@
     <%# INDEX %>
     <ul class="recipe-grid">
       <% @recipes.each do |recipe| %>
+
           <li class="card-recipe">
             <%= link_to recipe_path(recipe) do %>
               <%= cl_image_tag(recipe.photo.key) %>
