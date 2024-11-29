@@ -96,7 +96,8 @@ class RecipesController < ApplicationController
     Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
     cooking_steps.
-    Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx']."
+    Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
+    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'"
 
     return message
   end

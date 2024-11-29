@@ -22,9 +22,9 @@
 
       <div class="card-ingredients-show">
         <h3 >Ingredients:</h3>
-            <ul> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
+            <ul class="list-unstyled poppins"> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
           <div class="list-ingredients-show">
-              <li><%= ingredient.strip %></li>
+              <li><%= ingredient.strip.capitalize %></li>
           </div>
               <% end %>
             </ul>
@@ -34,8 +34,8 @@
 
   <h3 class="steps">Steps to be a chef :</h3>
 
-  <ul> <% @recipe.content.split('%%').each_with_index do |step, index| %>
-    <li><strong>Step <%= index + 1 %>:</strong> <br> <%= step.split(':').drop(1).join(':') %></li> <% end %>
+  <ul class="list-unstyled poppins"> <% @recipe.content.split('%%').each_with_index do |step, index| %>
+    <li class="ms-3"><strong>Step <%= index + 1 %>:</strong> <br> <%= step.split(':').drop(1).join(':') %></li> <% end %>
   </ul>
 
   <div class="message-congratulations">
