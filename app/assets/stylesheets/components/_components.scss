@@ -15,15 +15,10 @@
 }
 
 .heart-card {
-padding-right: 3%;
-a {
-  border: none;
   position: absolute;
-  top: 50%;
-  right: 50;
-  background-color: transparent;
-  z-index: 2;
- }
+  top: 10px;
+  right: 27px;
+  font-size: 1.5rem;
 }
 
 .card-recipe h2 {

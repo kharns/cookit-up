@@ -39,7 +39,7 @@ class RecipesController < ApplicationController
 
   def index
     fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-    @recipes = fridge_scan.recipes
+    @recipes = fridge_scan.recipes.sort_by(&:created_at)
   end
 
   def add_favorite
