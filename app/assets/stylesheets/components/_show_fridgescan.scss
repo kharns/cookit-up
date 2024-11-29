@@ -4,24 +4,73 @@
   color:#A2580E
 }
 
-.add-ingredient {
-  background-color: #F5D351;
-  border-radius: 10px; 
+#fridge_scan_new_ingredient {
+  background-color: rgb(138, 227, 138);
+  width: 90%;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
 }
-
-// #add-input{
-//   background-color: rgb(114, 208, 114);
-// }
+.add-ingredient {
+  color: white;
+}
 
 #select-all {
   color: white;
-  background-color: #F5D351;
+  font-size: larger;
+  background-color: #f2dc84;
   border-radius: 10px;
   margin-top: 10px;
 }
 
 #each-ingredient {
   color: white;
+  font-size: large;
   background-color: #F5D351;
   border-radius: 10px;
+  padding: 2px;
+}
+
+.form-check-label {
+  padding: 2px;
+}
+
+.btn-group {
+  position: fixed;
+    bottom: 0px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+#btn-create {
+  position: fixed;
+    bottom: 0px;
+    right: 40px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.dropdown-menu.show {
+  padding: 3px;
+  background-color: #F5D351;
+  border-radius: 7px;
+  color: white;
+}
+
+.end-page-btn {
+  position: fixed;
+    bottom: 0px;
+}
+
+.btn-warning {
+  --bs-btn-color: white;
+}
+
+.form-check-input:checked {
+  background-color: #F5D351;
+  border-color: #F5D351;
+}
+
+.form-check-input {
+  --bs-form-check-bg: white ;
 }
