@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
 
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-
+    raise
     # pour éviter de générer de nouvelles recettes lorsqu'on revient en arrière
     # puis qu'on recherche sans changer les paramètres, il faudrait ajouter une/des colonne(s)
     # "paramètres de recherche" dans la recette pour pouvoir vérifier s'ils ont changé
@@ -75,9 +75,7 @@ class RecipesController < ApplicationController
     # on récupère les paramètres de recherches
     number_of_guests = params[:recipe][:guest]
     search_difficulty = params[:recipe][:difficulty]
-
-    # on récupère les ingrédients du fridge_scan
-    search_ingredients = @fridge_scan.ingredient_list
+    search_ingredients = params[:recipe][:ingredient_ids]
 
     # définition du nombre de recettes à générer
     recipes_count = 6
@@ -94,7 +92,7 @@ class RecipesController < ApplicationController
 
     # Message à transmettre à OpenAI
     message = "I want a list of #{recipes_count} different recipes, following these instructions:
-    Here are all the ingredients available for the recipes: #{search_ingredients}.
+    Here are all the ingredients available for the recipes: #{search_ingredients.join(', ')}.
     The recipes are for #{number_of_guests} people.
     Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
