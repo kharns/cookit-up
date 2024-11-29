@@ -1,5 +1,5 @@
 class FridgeScansController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new create show]
+  skip_before_action :authenticate_user!, only: %i[new create show update]
 
   def show
     @fridge_scan = FridgeScan.find(params[:id])
