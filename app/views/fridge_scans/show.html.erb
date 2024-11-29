@@ -19,7 +19,7 @@
   </div>
 
   <%# Check box Select item %>
-  <%= simple_form_for [@fridge_scan, @recipe], html: { class: 'px-4 py-3' } do |f| %>
+  <%= simple_form_for [@fridge_scan, @recipe],  html: { class: 'px-4 py-3' } do |f| %>
       <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
       <div class="form-check mb-3">
         <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
@@ -31,7 +31,7 @@
         <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
       </div>
       <% end %>
-</div>
+
 
 <%# Filter Bouton %>
 <div class="btn-group dropup">
