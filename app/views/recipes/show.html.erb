@@ -1,17 +1,46 @@
-<h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
+<div class="container">
+  <h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
 
-<p><strong>cooking time:</strong> <%= @recipe.cooking_time %></p>
-<p><strong>difficulty:</strong> <%= @recipe.difficulty %></p>
-
-<h3 class="card-ingredients-show">Ingredients:</h3>
-  <ul> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
-  <li><%= ingredient.strip %></li>
+  <div class="card-show-image-ingredients">
+    <% if @recipe.photo.key.nil? %>
+      <%= image_tag("repas", width: 186, height: 277, class:"show-recipe-photo object-fit-cover") %>
+    <% else %>
+      <%= cl_image_tag(@recipe.photo.key, width: 186, height: 277, crop: :fill, gravity: :face, class:"show-recipe-photo") %>
     <% end %>
-</ul>
+    <div>
+      <div class="icons-show-recipe">
+        <div class="icons-show">
+          <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= @recipe.cooking_time.delete('^0-9') %>'</p>
+          </div>
+          <div class="icons-show">
+            <p><% @recipe.difficulty.times do %>
+            <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
+            <% end %>
+            </p>
+          </div>
+      </div>
 
-<h3 class="steps">Steps to be a chef :</h3>
-<p><%= @recipe.content%></p>
+      <div class="card-ingredients-show">
+        <h3 >Ingredients:</h3>
+            <ul class="list-unstyled poppins"> <% @recipe.ingredient_list.split(',').each do |ingredient| %>
+          <div class="list-ingredients-show">
+              <li><%= ingredient.strip.capitalize %></li>
+          </div>
+              <% end %>
+            </ul>
+      </div>
+    </div>
+  </div>
 
+  <h3 class="steps">Steps to be a chef :</h3>
 
-<h3>CONGRATULATIONS !
-YOU’RE A CHEF</h3>
+  <ul class="list-unstyled poppins"> <% @recipe.content.split('%%').each_with_index do |step, index| %>
+    <li class="ms-3"><strong>Step <%= index + 1 %>:</strong> <br> <%= step.split(':').drop(1).join(':') %></li> <% end %>
+  </ul>
+
+  <div class="message-congratulations">
+    <div>
+      <h3>CONGRATULATIONS ! <br>  YOU’RE A CHEF</h3>
+    </div>
+  </div>
+</div>
