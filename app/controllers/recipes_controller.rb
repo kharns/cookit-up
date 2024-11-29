@@ -14,7 +14,6 @@ class RecipesController < ApplicationController
 
     # call of the private method that generates recipes
     recipes = generate_recipes
-
     # for each recipe => create new recipe
     recipes.each do |recipe|
       # CREATE RECIPE
