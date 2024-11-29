@@ -33,18 +33,19 @@
       <% end %>
 
 
-<%# Filter Bouton %>
-<div class="btn-group dropup">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    Filter
-  </button>
-  <div class="dropdown-menu">
-      <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
-      <%= f.input :guest, collection: (1..10), selected: 2 %>
+  <%# Filter Bouton %>
+  <div class="btn-group dropup">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Filter
+    </button>
+    <div class="dropdown-menu">
+        <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
+        <%= f.input :guest, collection: (1..10), selected: 2 %>
 
+    </div>
   </div>
-</div>
 
-<%# Bouton Create Recipe %>
-  <%= f.submit "Create Recipe", class: 'btn btn-primary' %>
-<% end %>
+  <%# Bouton Create Recipe %>
+    <%= f.submit "Create Recipe", class: 'btn btn-primary' %>
+  <% end %>
+</div>
