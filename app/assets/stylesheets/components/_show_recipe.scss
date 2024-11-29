@@ -35,8 +35,9 @@
 .icons-show-recipe {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: 5px;
+  margin-inline: 5px;
 }
 
 .chef-toque-icon {
@@ -52,7 +53,7 @@
 
 /* title ingredients*/
 .card-ingredients-show h3 {
-  text-align: center;
+  text-align:left;
   font-family: "Poppins", sans-serif;
 }
 
@@ -79,9 +80,4 @@
   font-family: "Quando", serif;
   font-size: 1.1rem;
   color: #874605;
-}
-
-ul {
-  list-style-type: none;
-  font-family: "Poppins", sans-serif;
 }
