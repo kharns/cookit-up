@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :fridge_scans, only: %i[show new create update] do
     resources :recipes, only: %i[create index] do
       member do
-        patch :add_favorite
-        patch :remove_favorite
+        get :add_favorite
+        get :remove_favorite
       end
     end
   end
