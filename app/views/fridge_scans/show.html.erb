@@ -8,15 +8,15 @@
       </div>
 
       <%# Check box Select all %>
-      <div id="select-all" class="form-check mb-3">
-        <%= check_box_tag "select_all", nil, true,
+      <div class="form-check mb-3">
+        <%= check_box_tag "select-all", nil, true,
             class: "form-check-input",
             data: {
               checkbox_target: "all",
               action: "checkbox#toggleAll"
             }
         %>
-        <label class="form-check-label" for="select_all" data-checkbox-target="label">
+        <label class="form-check-label" for="select-all" data-checkbox-target="label">
           Select All Ingredients
         </label>
       </div>
