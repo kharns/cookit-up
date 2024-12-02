@@ -2,6 +2,7 @@
   <div id="show-ingredient-list">
     <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
 
+    <%# Div de toute la page %>
     <div class="all-ingredient", data-controller="checkbox">
       <div class="add-ingredient">
         <%= render 'form', fridge_scan: @fridge_scan %>
@@ -17,7 +18,7 @@
             }
         %>
         <label class="form-check-label" for="select-all" data-checkbox-target="label">
-          Select All Ingredients
+          Select all ingredients
         </label>
       </div>
 
@@ -34,21 +35,21 @@
           </div>
           <% end %>
 
-      <div class="end-page-btn">
-          <%# Filter Bouton %>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter
-            </button>
-            <div class="dropdown-menu">
-                <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
-                <%= f.input :guest, collection: (1..10), selected: 2 %>
+      <div class="bottom-buttons-container">
+        <%# Filter Bouton %>
+        <div class="btn-group dropup">
+          <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter
+          </button>
+          <div class="dropdown-menu">
+              <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
+              <%= f.input :guest, collection: (1..10), selected: 2 %>
 
-            </div>
           </div>
+        </div>
 
           <%# Bouton Create Recipe %>
-            <%= f.submit "Create Recipe", class: 'btn btn-warning', id: 'btn-create' %>
+            <%= f.submit "Cooking time!", class: 'btn btn-warning', id: 'btn-create' %>
           <% end %>
         </div>
     </div>
