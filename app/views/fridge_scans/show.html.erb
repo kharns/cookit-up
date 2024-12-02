@@ -24,12 +24,12 @@
       <%# Check box Select item %>
       <%= simple_form_for [@fridge_scan, @recipe],  html: { class: 'px-4 py-3' } do |f| %>
           <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-          <div id="each-ingredient" class="form-check mb-3">
+          <div id="all-ingredient" class="form-check mb-3">
             <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
               id: ingredient.parameterize,
               data: {
-                target: "checkbox.item",
-                action: "checkbox#toggleItem" }
+              target: "checkbox.item",
+              action: "checkbox#toggleItem" }
             %>
             <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
           </div>
