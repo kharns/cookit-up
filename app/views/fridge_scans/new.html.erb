@@ -1,5 +1,7 @@
-  <div class="new-scan-background flex-grow-1" data-controller="waiting-page" data-waiting-page-target="newScanDom">
+  <div class="new-scan-background flex-grow-1" data-controller="waiting-page"
+  >
     <div class="mx-4">
+    <div class=""data-waiting-page-target="newScanDom"></div>
       <%= simple_form_for @fridge_scan, html: { data: {waiting_page_target: "form"} } do |f| %>
         <%= f.input :photo, as: :file, label: false, required: true %>
         <%= f.submit "Validate photo", class:'home-buttons w-100', data: { action: "click->waiting-page#wait"} %>
