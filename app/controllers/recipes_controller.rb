@@ -98,7 +98,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     cooking_steps.
     Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
     Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'
-    IMPORTANT : I need at least 2 recipes."
+    IMPORTANT : I need #{recipes_count} recipes."
 
     return message
   end
