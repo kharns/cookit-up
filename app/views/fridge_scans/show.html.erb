@@ -27,9 +27,8 @@
           <div id="all-ingredient" class="form-check mb-3">
             <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
               id: ingredient.parameterize,
-              data: {
-              target: "checkbox.item",
-              action: "checkbox#toggleItem" }
+              data: { checkbox_target: "item"},
+              action: "checkbox#toggleItem"
             %>
             <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
           </div>
