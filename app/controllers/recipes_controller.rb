@@ -44,7 +44,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     @recipe = Recipe.find(params[:id])
     @recipe.favourite = true
     if @recipe.save!
-      redirect_to fridge_scan_recipes_path(@recipe.fridge_scan)
+      redirect_back(fallback_location: recipe_path(@recipe))
     else
       render :index, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     @recipe = Recipe.find(params[:id])
     @recipe.favourite = false
     if @recipe.save!
-      redirect_to fridge_scan_recipes_path(@recipe.fridge_scan)
+      redirect_back(fallback_location: recipe_path(@recipe))
     else
       render :index, status: :unprocessable_entity
     end
@@ -62,6 +62,11 @@ skip_before_action :authenticate_user!, only: %i[create index show]
 
   def show
     @recipe = Recipe.find(params[:id])
+  end
+
+  def favourites
+    # presque pareil que index
+    @recipes = current_user.recipes.where(favourite: true)
   end
 
   private
