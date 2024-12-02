@@ -47,8 +47,11 @@ class FridgeScansController < ApplicationController
 
     ############ END OpenAI ############
 
-    @fridge_scan.save
-    redirect_to fridge_scan_path(@fridge_scan)
+    if @fridge_scan.save
+      redirect_to fridge_scan_path(@fridge_scan)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
