@@ -2,11 +2,10 @@ require "json"
 require "open-uri"
 
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create index show]
+skip_before_action :authenticate_user!, only: %i[create index show]
 
   def create
     @fridge_scan = FridgeScan.find(params[:fridge_scan_id])
-
     # pour éviter de générer de nouvelles recettes lorsqu'on revient en arrière
     # puis qu'on recherche sans changer les paramètres, il faudrait ajouter une/des colonne(s)
     # "paramètres de recherche" dans la recette pour pouvoir vérifier s'ils ont changé
@@ -75,17 +74,15 @@ class RecipesController < ApplicationController
     # on récupère les paramètres de recherches
     number_of_guests = params[:recipe][:guest]
     search_difficulty = params[:recipe][:difficulty]
-
-    # on récupère les ingrédients du fridge_scan
-    search_ingredients = @fridge_scan.ingredient_list
+    search_ingredients = params[:recipe][:ingredient_ids]
 
     # définition du nombre de recettes à générer
-    recipes_count = 6
+    recipes_count = 4
 
     # en appliquant les paramètres de recherche s'il y en a
     difficulty_instruction = case search_difficulty
     when "1"
-      "return only easy recipes (1)"
+      "return only easy recipes (1 out of 3)"
     when "2"
       "return only easy and medium recipes (1 and 2 out of 3)"
     else
@@ -94,11 +91,14 @@ class RecipesController < ApplicationController
 
     # Message à transmettre à OpenAI
     message = "I want a list of #{recipes_count} different recipes, following these instructions:
-    Here are all the ingredients available for the recipes: #{search_ingredients}.
+    Here are all the ingredients available for the recipes: #{search_ingredients.join(', ')}.
     The recipes are for #{number_of_guests} people.
     Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
-    cooking_steps."
+    cooking_steps.
+    Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
+    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'
+    IMPORTANT : I need at least 2 recipes."
 
     return message
   end
@@ -118,9 +118,9 @@ class RecipesController < ApplicationController
       })
 
     # Récupération de la réponse d'OpenAI
-    serialized_response = request.dig("choices", 0, "message", "content")
+    @serialized_response = request.dig("choices", 0, "message", "content")
     # On extrait de la réponse l'array de recettes
-    recipes = JSON.parse(serialized_response)["recipes"]
+    recipes = JSON.parse(@serialized_response)["recipes"]
     return recipes
   end
 

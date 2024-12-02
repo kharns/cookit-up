@@ -1,6 +1,9 @@
-<h1>Photo</h1>
 
-<%= simple_form_for @fridge_scan do |f| %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit "Validate photo", class:'btn btn-primary' %>
-<% end %>
+<div class="new-scan-background min-vh-100">
+  <div class="mx-4">
+    <%= simple_form_for @fridge_scan do |f| %>
+      <%= f.input :photo, as: :file, label: false %>
+      <%= f.submit "Validate photo", class:'home-buttons w-100' %>
+    <% end %>
+  </div>
+</div>

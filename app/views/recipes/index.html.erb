@@ -8,7 +8,11 @@
 
           <li class="card-recipe">
             <%= link_to recipe_path(recipe) do %>
-              <%= cl_image_tag(recipe.photo.key) %>
+              <% if recipe.photo.key.nil? %>
+                <%= image_tag("repas.png") %>
+              <% else %>
+                <%= cl_image_tag(recipe.photo.key) %>
+              <% end %>
             <% end %>
             <div class="heart-card" data-controller="favourite">
               <% if recipe.favourite %>
