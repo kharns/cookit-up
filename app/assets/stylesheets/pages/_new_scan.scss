@@ -1,4 +1,5 @@
 .new-scan-background{
+  min-height: 100%;
   background-image: linear-gradient(rgba(9, 193, 255, 0.2), rgba(9, 193, 255, 0.2)), url(frigo_home.png);
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -6,4 +7,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.waiting-gif {
+  padding-inline: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 20px;
+    font-family: "Chocolate Classical Sans", sans-serif;;
+    color: #A2580E;
+    text-align: center;
+    background-color: #e9e373;
+    border-radius: 100px;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 30px;
+  }
+  img {
+    width: 60%;
+    height: 55vh;
+    object-fit: cover;
+    box-shadow: 0px 0px 10px rgb(227, 180, 104);
+    border-radius: 20px;
+  }
 }
