@@ -77,7 +77,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     search_ingredients = params[:recipe][:ingredient_ids]
 
     # définition du nombre de recettes à générer
-    recipes_count = 6
+    recipes_count = 4
 
     # en appliquant les paramètres de recherche s'il y en a
     difficulty_instruction = case search_difficulty
@@ -90,7 +90,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     end
 
     # Message à transmettre à OpenAI
-    message = "I want a list of maximum #{recipes_count} different recipes, following these instructions:
+    message = "I want a list of #{recipes_count} different recipes, following these instructions:
     Here are all the ingredients available for the recipes: #{search_ingredients.join(', ')}.
     The recipes are for #{number_of_guests} people.
     Difficulty rank for the recipes goes from 1 (easy) to 3 (difficult). #{difficulty_instruction}.
