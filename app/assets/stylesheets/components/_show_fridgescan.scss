@@ -7,14 +7,20 @@
 // Div de la page
 #show-ingredient-list {
   text-align: center;
-  justify-content: space-evenly;
+  // display: flex;
 }
 
 // Btn add new ingredient
 .add-ingredient {
   margin: 15px 0; /* Espacement autour du bouton */
   text-align: center; /* Centrer le contenu du div */
-  
+}
+
+.input-container {
+  display: flex; /* Utilise Flexbox pour aligner les éléments sur la même ligne */
+  justify-content: center; /* Centre les éléments horizontalement */
+  align-items: center; /* Aligne verticalement les éléments au centre */
+  width: 80%;
 }
 
 #fridge_scan_new_ingredient {
