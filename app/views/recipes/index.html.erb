@@ -1,12 +1,11 @@
 <div class="pages-container">
-  <h1 id="title-index">Your recipes</h1>
+  <h1 id="title-index">Chief recipes</h1>
 
 
     <%# INDEX %>
-    <ul class="recipe-grid">
+    <div class="recipe-grid">
       <% @recipes.each do |recipe| %>
-
-          <li class="card-recipe">
+          <div class="card-recipe">
             <%= link_to recipe_path(recipe) do %>
               <% if recipe.photo.key.nil? %>
                 <%= image_tag("repas.png") %>
@@ -37,7 +36,7 @@
               <div class="title-card"><h2> <%= recipe.title %> </h2>
               </div>
             </div>
-          </li>
+          </div>
       <% end %>
-    </ul>
+    </div>
 </div>
