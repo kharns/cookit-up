@@ -78,3 +78,4 @@ gem "cloudinary"
 gem "ruby-openai"
 gem 'faker'
 gem "solid_queue"
+gem "solid_cable"
