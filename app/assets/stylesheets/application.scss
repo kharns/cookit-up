@@ -2,12 +2,12 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
-@import "components/index";
 
 // External libraries
 @import "bootstrap";
 @import "font-awesome";
 
 // Your CSS partials
+@import "components/index";
 @import "recipes/index";
 @import "pages/index";
