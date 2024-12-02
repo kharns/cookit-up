@@ -10,6 +10,36 @@
   justify-content: space-evenly;
 }
 
+// Btn add new ingredient
+.add-ingredient {
+  margin: 15px 0; /* Espacement autour du bouton */
+  text-align: center; /* Centrer le contenu du div */
+  
+}
+
+#fridge_scan_new_ingredient {
+  padding: 10px; /* Espacement interne pour le champ de texte */
+  border: 1px solid #D1FFDE; /* Bordure du champ de texte */
+  border-radius: 5px; /* Coins arrondis */
+  font-size: 16px; /* Taille de la police */
+  width: calc(80% - 80px); /* Largeur du champ, ajustez selon vos besoins */
+  margin-right: 10px; /* Espacement à droite pour séparer le champ du bouton */
+  text-align: center;
+
+}
+
+.add-ingredient-btn {
+  background-color: #98f9b4; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  padding: 10px 20px; /* Espacement interne */
+  border-radius: 5px; /* Coins arrondis */
+  font-size: 16px; /* Taille de la police */
+  font-weight: bold; /* Texte en gras */
+  cursor: pointer; /* Curseur en forme de main au survol */
+  transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
+}
+
 /////////////////////////////
 /// Select all Checkbox /////
 /////////////////////////////
@@ -92,6 +122,21 @@
   z-index: 1000;
 }
 
+
+#btn-create {
+  background-color: #F5D351;
+  color: #A2580E;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px; /* Bordures plus arrondies */
+  font-weight: bold;
+  font-size: 18px;     /* Police plus grande */
+  width: 80%;          /* Largeur importante */
+  max-width: 400px;    /* Largeur maximale */
+  margin: 0; /* Espace en dessous */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Ombre plus prononcée */
+}
+
 /* Bouton Filtre - En bas à droite */
 .btn-group.dropup {
   position: fixed;
@@ -102,7 +147,7 @@
 .btn-warning.dropdown-toggle {
   /* Styles pour le bouton filtre */
   background-color: #FFF5D1;
-  color: #A2580E;
+  color: #F5D351;
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
@@ -111,39 +156,41 @@
 }
 
 .dropdown-menu {
-  /* Styles pour le menu déroulant */
-  background-color: #FFF5D1;
-  border: 1px solid #A2580E;
-  border-radius: 10px;
-  padding: 10px;
+  background-color: #FFF5D1; /* Couleur de fond */
+  border: 1px solid #F5D351; /* Bordure */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Ombre */
+  padding: 15px; /* Espacement interne */
+  min-width: 250px; /* Largeur minimale */
 }
 
-#btn-create {
-  background-color: #A2580E;
-  color: white;
-  border: none;
-  padding: 15px 30px;  /* Plus grand padding */
-  border-radius: 30px; /* Bordures plus arrondies */
-  font-weight: bold;
-  font-size: 18px;     /* Police plus grande */
-  width: 80%;          /* Largeur importante */
-  max-width: 400px;    /* Largeur maximale */
-  margin-bottom: 15px; /* Espace en dessous */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Ombre plus prononcée */
+/* Styles pour le label de la difficulté */
+#difficulty_label {
+  color: #A2580E; /* Couleur du texte */
+  font-weight: bold; /* Gras */
+  font-family: "Poppins", sans-serif; /* Police */
+  text-transform: uppercase; /* Mettre en majuscules */
+  margin-bottom: 5px; /* Espace en bas */
 }
 
-/* Media Query pour iPhone 11 */
+/* Styles pour le label du nombre d'invités */
+#guest_label {
+  color: #A2580E; /* Couleur du texte */
+  font-weight: bold; /* Gras */
+  font-family: "Poppins", sans-serif; /* Police */
+  text-transform: uppercase; /* Mettre en majuscules */
+  margin-bottom: 5px; /* Espace en bas */
+}
+
+.form-label abbr[title="required"] {
+  display: none; /* Cache l'étoile obligatoire */
+}
+
+
+/* Media Query pour iPhone 11 (414px x 896px) */
 @media only screen and (min-width: 414px) and (max-width: 896px) {
-
-  .bottom-buttons-container {
-     padding: 0; /* Ajustez le padding si nécessaire */
-  }
-
-  .btn-group.dropup .btn-warning.dropdown-toggle,
   #btn-create {
-     width: calc(50% - 10px); /* Ajustez la largeur des boutons pour qu'ils s'adaptent bien */
-     margin-bottom: 10px; /* Ajoutez un espacement en bas si nécessaire */
-     margin-right: 10px;
-     margin-left: 10px;
+      width: calc(80% - 40px); /* Prend presque toute la largeur avec des marges */
+      max-width: none; /* Supprime la largeur maximale pour s'adapter à l'écran */
   }
 }

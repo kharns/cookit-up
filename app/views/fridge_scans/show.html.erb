@@ -39,12 +39,24 @@
         <%# Filter Bouton %>
         <div class="btn-group dropup">
           <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Filter
+            Filters
           </button>
           <div class="dropdown-menu">
-              <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
-              <%= f.input :guest, collection: (1..10), selected: 2 %>
+            <div class="mb-3">
+              <%= f.input :difficulty,
+                          collection: [1, 2, 3],
+                          label: 'Difficulty',
+                          selected: 3,
+                          label_html: { id: 'difficulty_label' } %>
+            </div>
 
+            <div class="mb-3">
+              <%= f.input :guest,
+                          collection: (1..10),
+                          label: 'Number of guests',
+                          selected: 2,
+                          label_html: { id: 'guest_label' } %>
+            </div>
           </div>
         </div>
 
