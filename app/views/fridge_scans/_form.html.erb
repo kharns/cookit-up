@@ -1,6 +1,4 @@
 <%= form_with(model: @fridge_scan, local: true) do |f| %>
-  <div class="input-container">
     <%= f.text_field :new_ingredient, placeholder: "New ingredient" %>
     <%= f.submit "+",  class: 'add-ingredient-btn' %>
-  </div>
 <% end %>

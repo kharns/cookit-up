@@ -14,13 +14,10 @@
 .add-ingredient {
   margin: 15px 0; /* Espacement autour du bouton */
   text-align: center; /* Centrer le contenu du div */
-}
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 
-.input-container {
-  display: flex; /* Utilise Flexbox pour aligner les éléments sur la même ligne */
-  justify-content: center; /* Centre les éléments horizontalement */
-  align-items: center; /* Aligne verticalement les éléments au centre */
-  width: 80%;
 }
 
 #fridge_scan_new_ingredient {
@@ -31,16 +28,16 @@
   width: calc(80% - 80px); /* Largeur du champ, ajustez selon vos besoins */
   margin-right: 10px; /* Espacement à droite pour séparer le champ du bouton */
   text-align: center;
-
+  display: none;
 }
 
 .add-ingredient-btn {
-  background-color: #98f9b4; /* Couleur de fond du bouton */
+  background-color: #61f58b; /* Couleur de fond du bouton */
   color: white; /* Couleur du texte */
   border: none; /* Pas de bordure */
   padding: 10px 20px; /* Espacement interne */
-  border-radius: 5px; /* Coins arrondis */
-  font-size: 16px; /* Taille de la police */
+  border-radius: 40px; /* Coins arrondis */
+  font-size: 20px; /* Taille de la police */
   font-weight: bold; /* Texte en gras */
   cursor: pointer; /* Curseur en forme de main au survol */
   transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
