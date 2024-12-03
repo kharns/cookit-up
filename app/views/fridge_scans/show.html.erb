@@ -1,7 +1,6 @@
 <div class="container" data-controller="waiting-page">
   <div class="" data-waiting-page-target="waitingDom"></div>
   <div id="show-ingredient-list" data-waiting-page-target="dom">
-    <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
 
     <div data-controller="show-add-ingredient">
 
@@ -20,7 +19,7 @@
     </div>
 
     <%# Div de toute la page (- add new ingredient) %>
-    <div class="all-ingredient", data-controller="checkbox">
+    <div class="all-ingredient" data-controller="checkbox">
 
       <%# Check box Select all %>
       <div class="form-check">
@@ -32,7 +31,7 @@
             }
         %>
         <label class="form-check-label" for="select-all" data-checkbox-target="label">
-          SELECT ALL INGREDIENTS
+          UNSELECT ALL INGREDIENTS
         </label>
       </div>
 
@@ -42,8 +41,8 @@
           <div id="all-ingredient" class="form-check">
             <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
               id: ingredient.parameterize,
-              data: { checkbox_target: "item"},
-              action: "checkbox#toggleItem"
+              data: { checkbox_target: "item",
+              action: "checkbox#toggleItem"}
             %>
             <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
           </div>
