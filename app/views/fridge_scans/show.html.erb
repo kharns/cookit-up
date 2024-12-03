@@ -1,5 +1,6 @@
-<div class="container">
-  <div id="show-ingredient-list">
+<div class="container" data-controller="waiting-page">
+  <div class="" data-waiting-page-target="waitingDom"></div>
+  <div id="show-ingredient-list" data-waiting-page-target="dom">
     <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
 
     <%# Div de toute la page %>
@@ -23,7 +24,7 @@
       </div>
 
       <%# Check box Select item %>
-      <%= simple_form_for [@fridge_scan, @recipe] do |f| %>
+      <%= simple_form_for [@fridge_scan, @recipe], html: { data: {waiting_page_target: "form"} } do |f| %>
           <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
           <div id="all-ingredient" class="form-check">
             <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
@@ -61,7 +62,7 @@
         </div>
 
           <%# Bouton Create Recipe %>
-            <%= f.submit "Cooking time!", class: 'btn btn-warning', id: 'btn-create' %>
+            <%= f.submit "Cooking time!", class: 'btn btn-warning', id: 'btn-create', data: { action: "click->waiting-page#wait"} %>
           <% end %>
         </div>
     </div>
