@@ -1,12 +1,12 @@
 <div class="container">
   <div id="show-ingredient-list">
-    <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
+      <div class="add-ingredient">
+        <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
+        <%= render 'form', fridge_scan: @fridge_scan %>
+      </div>
 
     <%# Div de toute la page %>
     <div class="all-ingredient", data-controller="checkbox">
-      <div class="add-ingredient">
-        <%= render 'form', fridge_scan: @fridge_scan %>
-      </div>
 
       <%# Check box Select all %>
       <div class="form-check">
@@ -18,7 +18,7 @@
             }
         %>
         <label class="form-check-label" for="select-all" data-checkbox-target="label">
-          Select all ingredients
+          SELECT ALL INGREDIENTS
         </label>
       </div>
 
@@ -44,8 +44,8 @@
           <div class="dropdown-menu">
             <div class="mb-3">
               <%= f.input :difficulty,
-                          collection: [1, 2, 3],
-                          label: 'Difficulty',
+                          collection: [['Easy', 1], ['Medium', 2], ['Hard', 3]],
+                          label: 'Cooking level (max)',
                           selected: 3,
                           label_html: { id: 'difficulty_label' } %>
             </div>
