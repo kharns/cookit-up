@@ -3,7 +3,7 @@
   <%= turbo_stream_from dom_id(recipe) %>
   <%= link_to recipe_path(recipe) do %>
     <% if recipe.photo.key.nil? %>
-      <%= image_tag("repas.png") %>
+      <%= image_tag("waiting_doritos.webp") %>
     <% else %>
       <%= cl_image_tag(recipe.photo.key) %>
     <% end %>
