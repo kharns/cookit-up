@@ -52,7 +52,7 @@ recipe1 = Recipe.new(
   difficulty: 3,
   guest: 4,
   favourite: true,
-  fridge_scan_id: fridge_scans.sample.id
+  fridge_scan_id: fridge_scans.first.id
 )
 recipe1.photo.attach(io: file, filename: "#{recipe1.title.parameterize}.jpg", content_type: 'image/jpeg')
 recipe1.save!
@@ -67,7 +67,7 @@ recipe2 = Recipe.new(
   difficulty: 2,
   guest: 3,
   favourite: false,
-  fridge_scan_id: fridge_scans.sample.id
+  fridge_scan_id: fridge_scans.first.id
 )
 recipe2.photo.attach(io: file, filename: "#{recipe2.title.parameterize}.jpg", content_type: 'image/jpeg')
 recipe2.save!
@@ -82,7 +82,7 @@ recipe3 = Recipe.new(
   difficulty: 1,
   guest: 2,
   favourite: true,
-  fridge_scan_id: fridge_scans.sample.id
+  fridge_scan_id: fridge_scans.first.id
 )
 recipe3.photo.attach(io: file, filename: "#{recipe3.title.parameterize}.jpg", content_type: 'image/jpeg')
 recipe3.save!
@@ -97,7 +97,7 @@ recipe4 = Recipe.new(
   difficulty: 3,
   guest: 4,
   favourite: true,
-  fridge_scan_id: fridge_scans.sample.id
+  fridge_scan_id: fridge_scans.first.id
 )
 recipe4.photo.attach(io: file, filename: "#{recipe4.title.parameterize}.jpg", content_type: 'image/jpeg')
 recipe4.save!
