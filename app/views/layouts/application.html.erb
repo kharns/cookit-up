@@ -41,6 +41,10 @@
     <%# Link to manifest.json %>
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
+
+    <%# FAVICON CHECKLIST %>
+    <%= favicon_link_tag %>
+
   </head>
 
   <body class="min-vh-100 d-flex flex-column">
