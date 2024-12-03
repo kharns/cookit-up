@@ -1,7 +1,12 @@
 {
-  "background_color": "white",
-  "description": "Scan your Fridge !",
   "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Scan your Fridge !",
   "name": "Fridge2Plate",
   "icons": [
     <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
