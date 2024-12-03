@@ -1,11 +1,23 @@
 <div class="container">
   <div id="show-ingredient-list">
+
+    <div data-controller="show-add-ingredient">
+
       <div class="add-ingredient">
-        <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
-        <%= render 'form', fridge_scan: @fridge_scan %>
+        <h2 id="ingredient-title">Check your ingredients</h2>
+        <%# Ajout d'un autre bouton '+' %>
+        <button data-action="click->show-add-ingredient#toggle"
+            data-show-add-ingredient-target="toggleButton"
+            class="add-ingredient-btn">+</button>
       </div>
 
-    <%# Div de toute la page %>
+      <div data-show-add-ingredient-target="formContainer" style="display: none;">
+        <%= render 'form', fridge_scan: @fridge_scan %>
+      </div>
+      
+    </div>
+
+    <%# Div de toute la page (- add new ingredient) %>
     <div class="all-ingredient", data-controller="checkbox">
 
       <%# Check box Select all %>

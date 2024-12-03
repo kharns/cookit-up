@@ -1,9 +1,7 @@
 #ingredient-title {
   text-align: center;
-  margin: 7px;
+  margin: 15px;
   color:#A2580E;
-  // font-family: "Chocolate Classical Sans", sans-serif;
-  // font-family: "Poppins", sans-serif;
   font-family: "Protest Riot", sans-serif;
 }
 
@@ -23,6 +21,7 @@
 
 }
 
+// Inpput (Text Field) du add form
 #fridge_scan_new_ingredient {
   padding: 10px; /* Espacement interne pour le champ de texte */
   border: 1px solid #D1FFDE; /* Bordure du champ de texte */
