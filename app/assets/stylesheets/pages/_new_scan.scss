@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.waiting-gif {
+.waiting-scan-gif {
   padding-inline: 20px;
   display: flex;
   flex-direction: column;
@@ -17,14 +17,15 @@
   align-items: center;
 
   h3 {
-    font-size: 20px;
-    font-family: "Chocolate Classical Sans", sans-serif;;
+    font-size: 21px;
+    font-family: "Chocolate Classical Sans", sans-serif;
     color: #A2580E;
     text-align: center;
     background-color: #e9e373;
     border-radius: 100px;
     padding: 10px 10px 10px 10px;
     margin-bottom: 30px;
+    width: 100%;
   }
   img {
     width: 60%;
