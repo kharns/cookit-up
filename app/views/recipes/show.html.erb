@@ -40,7 +40,7 @@
         <ul class="list-unstyled poppins">
           <% @recipe.ingredient_list.split(',').each do |ingredient| %>
             <div class="list-ingredients-show">
-              <li><%= ingredient.strip.capitalize %></li>
+              <li class="ingredients-li-show"><%= ingredient.strip.capitalize %></li>
             </div>
           <% end %>
         </ul>
