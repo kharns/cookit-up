@@ -2,6 +2,9 @@
   text-align: center;
   margin: 7px;
   color:#A2580E;
+  // font-family: "Chocolate Classical Sans", sans-serif;
+  // font-family: "Poppins", sans-serif;
+  font-family: "Protest Riot", sans-serif;
 }
 
 // Div de la page
@@ -31,12 +34,14 @@
   display: none;
 }
 
+// Btn '+'
 .add-ingredient-btn {
-  background-color: #61f58b; /* Couleur de fond du bouton */
+  background-color: #0eca37; /* Couleur de fond du bouton */
   color: white; /* Couleur du texte */
   border: none; /* Pas de bordure */
-  padding: 10px 20px; /* Espacement interne */
-  border-radius: 40px; /* Coins arrondis */
+  width: 40px;           /* Largeur du carré */
+  height: 40px;          /* Hauteur du carré */
+  border-radius: 50%;     /* Transforme le carré en cercle */
   font-size: 20px; /* Taille de la police */
   font-weight: bold; /* Texte en gras */
   cursor: pointer; /* Curseur en forme de main au survol */
