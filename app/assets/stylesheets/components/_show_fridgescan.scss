@@ -1,50 +1,72 @@
 #ingredient-title {
   text-align: center;
-  margin: 7px;
+  margin-top: 15px;
   color:#A2580E;
+  font-family: "Protest Riot", sans-serif;
 }
 
 // Div de la page
 #show-ingredient-list {
   text-align: center;
   // display: flex;
+  // flex-direction: column;
+  // gap: 10px; /* Espace entre les divs */
 }
 
 // Btn add new ingredient
 .add-ingredient {
   margin: 15px 0; /* Espacement autour du bouton */
   text-align: center; /* Centrer le contenu du div */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
 }
 
-.input-container {
-  display: flex; /* Utilise Flexbox pour aligner les éléments sur la même ligne */
-  justify-content: center; /* Centre les éléments horizontalement */
-  align-items: center; /* Aligne verticalement les éléments au centre */
-  width: 80%;
+// Div form-add-ingredient
+#form-add-ingredient {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 
+// Inpput (Text Field) du add form
 #fridge_scan_new_ingredient {
   padding: 10px; /* Espacement interne pour le champ de texte */
-  border: 1px solid #D1FFDE; /* Bordure du champ de texte */
+  border: 1px solid #48be69; /* Bordure du champ de texte */
   border-radius: 5px; /* Coins arrondis */
   font-size: 16px; /* Taille de la police */
   width: calc(80% - 80px); /* Largeur du champ, ajustez selon vos besoins */
   margin-right: 10px; /* Espacement à droite pour séparer le champ du bouton */
   text-align: center;
-
+  display: none;
 }
 
+// Btn '+'
 .add-ingredient-btn {
-  background-color: #98f9b4; /* Couleur de fond du bouton */
+  background-color: #0eca37; /* Couleur de fond du bouton */
   color: white; /* Couleur du texte */
   border: none; /* Pas de bordure */
-  padding: 10px 20px; /* Espacement interne */
-  border-radius: 5px; /* Coins arrondis */
-  font-size: 16px; /* Taille de la police */
+  width: 40px;           /* Largeur du carré */
+  height: 40px;          /* Hauteur du carré */
+  border-radius: 50%;     /* Transforme le carré en cercle */
+  font-size: 20px; /* Taille de la police */
   font-weight: bold; /* Texte en gras */
   cursor: pointer; /* Curseur en forme de main au survol */
   transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
 }
+
+////////////////////////
+// Div All ingredient //
+////////////////////////
+
+.all-ingredient {
+  display: flex;
+  flex-direction: column; /* Assure que les éléments s'empilent */
+  overflow: auto; /* Permet le défilement si nécessaire */
+  padding-bottom: 100px; /* Ajustez cette valeur selon la hauteur de vos boutons */
+}
+
 
 /////////////////////////////
 /// Select all Checkbox /////
@@ -58,6 +80,7 @@
   width: 80%;
   cursor: pointer;
   font-size: larger;
+  font-weight: bold;
   background-color: #FFF5D1;
   border-radius: 10px;
   margin-top: 10px;
@@ -68,6 +91,7 @@
 #select-all:checked + label {
   width: 80%;
   font-size: larger;
+  text-shadow: rgb(255, 255, 255) 0.5px 0px 0px, rgb(255, 255, 255) 1.75517px 0.958851px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) -0.832294px 1.81859px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px -0.5px 0px, rgb(255, 255, 255) -1.30729px -1.5136px 0px, rgb(255, 255, 255) -0.421592px -1.95506px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px;
   background-color: #fade78;
   border-radius: 10px;
   margin-top: 10px;
@@ -80,6 +104,11 @@
 //// Select Item Checkbox ////
 //////////////////////////////
 
+// Enlever default padding left simple form checkbox
+.form-check {
+  padding-left: 0px;
+}
+
 /* Style de base pour tous les checkboxes d'ingrédients */
 #all-ingredient input[type="checkbox"] {
   position: absolute;
@@ -90,7 +119,8 @@
 #all-ingredient input[type="checkbox"] + label {
   cursor: pointer;
   width: 80%;
-  font-size: larger;
+  font-weight: bold;
+  font-size: large;
   background-color: #FFF5D1;
   border-radius: 10px;
   margin-top: 10px;
@@ -101,7 +131,8 @@
 /* Style pour les labels des checkboxes cochées */
 #all-ingredient input[type="checkbox"]:checked + label {
   width: 80%;
-  font-size: larger;
+  font-weight: bold;
+  font-size: large;
   background-color: #fade78;
   border-radius: 10px;
   margin-top: 10px;
@@ -109,16 +140,11 @@
   color: #A2580E;
 }
 
-/* Style responsive */
-@media (max-width: 600px) {
-  #all-ingredient input[type="checkbox"] + label {
-    font-size: medium;
-  }
-}
-
-///////////////////////////////////
+////////////////////////////////////
+/// Div des 2 btn du bas de page ///
+////////////////////////////////////
 .bottom-buttons-container {
-  position: fixed;
+  position: fixed; /* Changer de fixed à relative */
   bottom: 20px;
   left: 0;
   right: 0;
@@ -128,7 +154,7 @@
   z-index: 1000;
 }
 
-
+// Cooking Btn
 #btn-create {
   background-color: #F5D351;
   color: #A2580E;
@@ -141,6 +167,7 @@
   max-width: 400px;    /* Largeur maximale */
   margin: 0; /* Espace en dessous */
   box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Ombre plus prononcée */
+  text-shadow: rgb(255, 255, 255) 0.5px 0px 0px, rgb(255, 255, 255) 1.75517px 0.958851px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) -0.832294px 1.81859px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px -0.5px 0px, rgb(255, 255, 255) -1.30729px -1.5136px 0px, rgb(255, 255, 255) -0.421592px -1.95506px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px;
 }
 
 /* Bouton Filtre - En bas à droite */
@@ -153,7 +180,7 @@
 .btn-warning.dropdown-toggle {
   /* Styles pour le bouton filtre */
   background-color: #FFF5D1;
-  color: #F5D351;
+  color: #ba6b1d;
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
@@ -199,4 +226,30 @@
       width: calc(80% - 40px); /* Prend presque toute la largeur avec des marges */
       max-width: none; /* Supprime la largeur maximale pour s'adapter à l'écran */
   }
+}
+
+
+.waiting-recipes-gif {
+  padding-inline: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    color:#A2580E;
+    font-family: "Protest Riot", sans-serif;;
+    text-align: center;
+    margin-block: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  img {
+    width: 80%;
+    height: 70vh;
+    object-fit: cover;
+    box-shadow: 0px 0px 10px rgb(227, 180, 104);
+    border-radius: 20px;
+  }
+
 }

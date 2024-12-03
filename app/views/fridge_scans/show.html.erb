@@ -1,12 +1,26 @@
-<div class="container">
-  <div id="show-ingredient-list">
+<div class="container" data-controller="waiting-page">
+  <div class="" data-waiting-page-target="waitingDom"></div>
+  <div id="show-ingredient-list" data-waiting-page-target="dom">
     <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
 
-    <%# Div de toute la page %>
-    <div class="all-ingredient", data-controller="checkbox">
+    <div data-controller="show-add-ingredient">
+
       <div class="add-ingredient">
+        <h2 id="ingredient-title">Check your ingredients</h2>
+        <%# Ajout d'un autre bouton '+' %>
+        <button data-action="click->show-add-ingredient#toggle"
+            data-show-add-ingredient-target="toggleButton"
+            class="add-ingredient-btn">+</button>
+      </div>
+
+      <div id="form-add-ingredient" data-show-add-ingredient-target="formContainer" style="display: none;">
         <%= render 'form', fridge_scan: @fridge_scan %>
       </div>
+
+    </div>
+
+    <%# Div de toute la page (- add new ingredient) %>
+    <div class="all-ingredient", data-controller="checkbox">
 
       <%# Check box Select all %>
       <div class="form-check">
@@ -18,12 +32,12 @@
             }
         %>
         <label class="form-check-label" for="select-all" data-checkbox-target="label">
-          Select all ingredients
+          SELECT ALL INGREDIENTS
         </label>
       </div>
 
       <%# Check box Select item %>
-      <%= simple_form_for [@fridge_scan, @recipe] do |f| %>
+      <%= simple_form_for [@fridge_scan, @recipe], html: { data: {waiting_page_target: "form"} } do |f| %>
           <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
           <div id="all-ingredient" class="form-check">
             <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
@@ -44,8 +58,8 @@
           <div class="dropdown-menu">
             <div class="mb-3">
               <%= f.input :difficulty,
-                          collection: [1, 2, 3],
-                          label: 'Difficulty',
+                          collection: [['Easy', 1], ['Medium', 2], ['Hard', 3]],
+                          label: 'Cooking level (max)',
                           selected: 3,
                           label_html: { id: 'difficulty_label' } %>
             </div>
@@ -61,7 +75,7 @@
         </div>
 
           <%# Bouton Create Recipe %>
-            <%= f.submit "Cooking time!", class: 'btn btn-warning', id: 'btn-create' %>
+            <%= f.submit "Cooking time!", class: 'btn btn-warning', id: 'btn-create', data: { action: "click->waiting-page#wait"} %>
           <% end %>
         </div>
     </div>

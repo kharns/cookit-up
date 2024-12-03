@@ -44,6 +44,6 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 # Comme vu dans le cours, pour lancer les jobs sur le même serveur avec rails s
-if Rails.env.development?
+if rails_env == "development"
   plugin :solid_queue
 end
