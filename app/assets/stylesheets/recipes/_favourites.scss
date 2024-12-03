@@ -1,0 +1,16 @@
+// une partie du code est dans _index.scss
+
+.search_favourites {
+  margin: 1rem;
+  box-shadow: 5px 5px 5px lightgray;
+
+  .form-control{
+    opacity: 0.7;
+  }
+  .submit_search {
+    background-color: #F5D351;
+    border: none;
+    font-size: 20px;
+    color: #A2580E;
+  }
+}
