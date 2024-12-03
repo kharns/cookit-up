@@ -4,14 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["all", "item"]
 
-  connect() {
-    this.updateLabel()
-  }
-
   toggleAll() {
     const checked = this.allTarget.checked
     this.itemTargets.forEach(checkbox => checkbox.checked = checked)
-    this.updateLabel()
   }
 
   toggleItem() {

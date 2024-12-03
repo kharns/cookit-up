@@ -2,54 +2,66 @@
   <div id="show-ingredient-list">
     <h2 id="ingredient-title" class="chocolate-classical-sans">Check your ingredients</h2>
 
+    <%# Div de toute la page %>
     <div class="all-ingredient", data-controller="checkbox">
       <div class="add-ingredient">
         <%= render 'form', fridge_scan: @fridge_scan %>
       </div>
 
       <%# Check box Select all %>
-      <div id="select-all" class="form-check mb-3">
-        <%= check_box_tag "select_all", nil, true,
+      <div class="form-check">
+        <%= check_box_tag "select-all", nil, true,
             class: "form-check-input",
             data: {
               checkbox_target: "all",
               action: "checkbox#toggleAll"
             }
         %>
-        <label class="form-check-label" for="select_all" data-checkbox-target="label">
-          Select All Ingredients
+        <label class="form-check-label" for="select-all" data-checkbox-target="label">
+          Select all ingredients
         </label>
       </div>
 
       <%# Check box Select item %>
-      <%= simple_form_for [@fridge_scan, @recipe],  html: { class: 'px-4 py-3' } do |f| %>
+      <%= simple_form_for [@fridge_scan, @recipe] do |f| %>
           <% @fridge_scan.ingredient_list.split(", ").each do |ingredient| %>
-          <div id="each-ingredient" class="form-check mb-3">
+          <div id="all-ingredient" class="form-check">
             <%= check_box_tag "recipe[ingredient_ids][]", ingredient, true,
               id: ingredient.parameterize,
-              data: {
-                target: "checkbox.item",
-                action: "checkbox#toggleItem" }
+              data: { checkbox_target: "item"},
+              action: "checkbox#toggleItem"
             %>
             <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
           </div>
           <% end %>
 
-      <div class="end-page-btn">
-          <%# Filter Bouton %>
-          <div class="btn-group dropup">
-            <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter
-            </button>
-            <div class="dropdown-menu">
-                <%= f.input :difficulty, collection: [1, 2, 3], selected: 3 %>
-                <%= f.input :guest, collection: (1..10), selected: 2 %>
+      <div class="bottom-buttons-container">
+        <%# Filter Bouton %>
+        <div class="btn-group dropup">
+          <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Filters
+          </button>
+          <div class="dropdown-menu">
+            <div class="mb-3">
+              <%= f.input :difficulty,
+                          collection: [1, 2, 3],
+                          label: 'Difficulty',
+                          selected: 3,
+                          label_html: { id: 'difficulty_label' } %>
+            </div>
 
+            <div class="mb-3">
+              <%= f.input :guest,
+                          collection: (1..10),
+                          label: 'Number of guests',
+                          selected: 2,
+                          label_html: { id: 'guest_label' } %>
             </div>
           </div>
+        </div>
 
           <%# Bouton Create Recipe %>
-            <%= f.submit "Create Recipe", class: 'btn btn-warning', id: 'btn-create' %>
+            <%= f.submit "Cooking time!", class: 'btn btn-warning', id: 'btn-create' %>
           <% end %>
         </div>
     </div>

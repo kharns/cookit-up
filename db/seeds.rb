@@ -185,7 +185,7 @@ recipe10 = Recipe.new(
   cooking_time: "20 minutes",
   difficulty: 2,
   guest: 2,
-  favourite: false,
+  favourite: true,
   fridge_scan_id: fridge_scans.sample.id
 )
 file = URI.parse("https://s23209.pcdn.co/wp-content/uploads/2023/01/220905_DD_Chx-Caesar-Salad_051-500x375.jpg").open
