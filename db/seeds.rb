@@ -39,7 +39,6 @@ fridge_scans = []
   )
 end
 
-
 # Creating recipes and associating them with fridge scans and photos
 
 # Recipe 1: Beef Stroganoff
@@ -191,6 +190,156 @@ recipe10 = Recipe.new(
 file = URI.parse("https://s23209.pcdn.co/wp-content/uploads/2023/01/220905_DD_Chx-Caesar-Salad_051-500x375.jpg").open
 recipe10.photo.attach(io: file, filename: "#{recipe10.title.parameterize}.jpg", content_type: 'image/jpeg')
 recipe10.save!
+
+# 11 Lemon Garlic Roasted Chicken
+recipe11 = Recipe.new(
+  title: "Lemon Garlic Roasted Chicken",
+  ingredient_list: "whole chicken, lemon, garlic, rosemary, olive oil, salt, pepper",
+  content: "step1:Preheat oven to 425°F (220°C).%%step2:Mix lemon juice, garlic, and herbs.%%step3:Rub mixture under and over chicken skin.%%step4:Roast for 1 hour or until cooked through.%%step5:Let rest before carving.",
+  cooking_time: "1 hour 15 minutes",
+  difficulty: 2,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://www.eatwell101.com/wp-content/uploads/2021/02/baked-chicken-thighs-recipe-5.jpg").open
+recipe11.photo.attach(io: file, filename: "#{recipe11.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe11.save!
+
+# 12 Vegetarian Spinach and Ricotta Lasagna
+recipe12 = Recipe.new(
+  title: "Vegetarian Spinach and Ricotta Lasagna",
+  ingredient_list: "lasagna sheets, spinach, ricotta, mozzarella, tomato sauce, garlic, nutmeg",
+  content: "step1:Mix spinach, ricotta, and nutmeg.%%step2:Layer lasagna sheets, spinach mixture, and tomato sauce.%%step3:Top with mozzarella.%%step4:Bake at 375°F (190°C) for 30-35 minutes.",
+  cooking_time: "50 minutes",
+  difficulty: 3,
+  guest: 6,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://static01.nyt.com/images/2024/03/27/multimedia/hm-spinach-and-ricotta-torn-lasagna-gvmh/hm-spinach-and-ricotta-torn-lasagna-gvmh-jumbo.jpg?quality=75&auto=webp").open
+recipe12.photo.attach(io: file, filename: "#{recipe12.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe12.save!
+
+# 13 Teriyaki Salmon with Stir-Fried Vegetables
+recipe13 = Recipe.new(
+  title: "Teriyaki Salmon with Stir-Fried Vegetables",
+  ingredient_list: "salmon fillets, teriyaki sauce, mixed vegetables, rice, sesame seeds",
+  content: "step1:Marinate salmon in teriyaki sauce.%%step2:Grill or pan-fry salmon.%%step3:Stir-fry vegetables.%%Step4:Serve salmon over rice with vegetables.",
+  cooking_time: "30 minutes",
+  difficulty: 2,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://www.thefoodblog.net/wp-content/uploads/2023/04/salmon-stir-fry-6-of-13.jpg").open
+recipe13.photo.attach(io: file, filename: "#{recipe13.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe13.save!
+
+# 14 Spicy Thai Green Curry
+recipe14 = Recipe.new(
+  title: "Spicy Thai Green Curry",
+  ingredient_list: "green curry paste, coconut milk, chicken or tofu, vegetables, fish sauce, lime leaves",
+  content: "step1:Fry curry paste in oil.%%step2:Add coconut milk and simmer.%%step3:Add protein and vegetables.%%Step4:Season with fish sauce and lime leaves.%%step5:Serve with rice.",
+  cooking_time: "35 minutes",
+  difficulty: 3,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://as1.ftcdn.net/v2/jpg/09/88/05/66/1000_F_988056695_vkAyklAr7R8YdCQpd5ZYtAKqnLHKF3G8.jpg").open
+recipe14.photo.attach(io: file, filename: "#{recipe14.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe14.save!
+
+# 15 Homemade Beef Burgers
+recipe15 = Recipe.new(
+  title: "Homemade Beef Burgers",
+  ingredient_list: "ground beef, onion, garlic, egg, breadcrumbs, burger buns, lettuce, tomato, cheese",
+  content: "step1:Mix beef with onion, garlic, egg, and breadcrumbs.%%step2:Form into patties.%%step3:Grill or pan-fry until cooked.%%Step4:Assemble burgers with toppings.",
+  cooking_time: "25 minutes",
+  difficulty: 2,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://www.buywesteatbest.org.au/wp-content/uploads/2021/12/Homemade-beef-burgers-650x484-jpeg.webp").open
+recipe15.photo.attach(io: file, filename: "#{recipe15.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe15.save!
+
+# 16 Vegetable Paella
+recipe16 = Recipe.new(
+  title: "Vegetable Paella",
+  ingredient_list: "rice, saffron, vegetable broth, bell peppers, peas, artichokes, tomatoes, garlic",
+  content: "step1:Toast rice with saffron.%%step2:Add vegetables and broth.%%step3:Simmer until rice is cooked.%%Step4:Create a crispy bottom crust.",
+  cooking_time: "40 minutes",
+  difficulty: 3,
+  guest: 6,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://realfood.tesco.com/media/images/1400x919Vegetablepaellarecipe-9e034e9a-478a-4ee9-8d7a-5c4229c206eb-0-1400x919.jpg").open
+recipe16.photo.attach(io: file, filename: "#{recipe16.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe16.save!
+
+# 17 Creamy Tomato Basil Soup
+recipe17 = Recipe.new(
+  title: "Creamy Tomato Basil Soup",
+  ingredient_list: "tomatoes, onion, garlic, basil, cream, vegetable broth, olive oil",
+  content: "step1:Sauté onion and garlic.%%step2:Add tomatoes and broth, simmer.%%step3:Blend until smooth.%%Step4:Stir in cream and basil.",
+  cooking_time: "30 minutes",
+  difficulty: 2,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://www.seriouseats.com/thmb/iunDAJIVV2lTiXG3bWWigO3totQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/053123_TomatoSoup-MPPSoupsAndStews-Morgan-Hunt-Glaze-f59a081d7efb4625a75a1a907a6b1cbf.jpg").open
+recipe17.photo.attach(io: file, filename: "#{recipe17.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe17.save!
+
+# 18 Lemon Herb Grilled Shrimp Skewers
+recipe18 = Recipe.new(
+  title: "Lemon Herb Grilled Shrimp Skewers",
+  ingredient_list: "shrimp, lemon juice, olive oil, garlic, herbs, skewers",
+  content: "step1:Marinate shrimp in lemon, oil, garlic, and herbs.%%step2:Thread onto skewers.%%step3:Grill for 2-3 minutes per side.%%Step4:Serve with lemon wedges.",
+  cooking_time: "20 minutes",
+  difficulty: 2,
+  guest: 4,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://cdn.shopify.com/s/files/1/0093/2537/9669/files/original_1216936183_-_resize_2048x2048.jpg?v=1578515554").open
+recipe18.photo.attach(io: file, filename: "#{recipe18.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe18.save!
+
+# 19 Banoffee Pie
+recipe19 = Recipe.new(
+  title: "Banoffee Pie",
+  ingredient_list: "bananas, caramel, cream, biscuits, chocolate",
+  content: "step1:Prepare biscuit base.%%step2:Add caramel.%%step3:Layer bananas.%%Step4:Cover with cream.",
+  cooking_time: "30 minutes",
+  difficulty: 2,
+  guest: 6,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://www.ocado.com/cmscontent/recipe_image_large/33362710.png?awth").open
+recipe19.photo.attach(io: file, filename: "#{recipe19.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe19.save!
+
+# 20 Apple Crumble
+recipe20 = Recipe.new(
+  title: "Apple Crumble",
+  ingredient_list: "apples, flour, butter, sugar, cinnamon",
+  content: "step1:Prepare apples.%%step2:Make crumble topping.%%step3:Cover fruits.%%Step4:Bake until golden.",
+  cooking_time: "45 minutes",
+  difficulty: 2,
+  guest: 6,
+  favourite: true,
+  fridge_scan_id: fridge_scans.sample.id
+)
+file = URI.parse("https://hips.hearstapps.com/hmg-prod/images/delish-091621-apple-crumb-pie-02-jg-1632846997.jpg").open
+recipe20.photo.attach(io: file, filename: "#{recipe20.title.parameterize}.jpg", content_type: 'image/jpeg')
+recipe20.save!
 
 puts "#{Recipe.count} recipes created."
 
