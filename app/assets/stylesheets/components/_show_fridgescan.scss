@@ -6,10 +6,13 @@
   text-shadow: rgb(255, 255, 255) 0.5px 0px 0px, rgb(255, 255, 255) 1.75517px 0.958851px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) -0.832294px 1.81859px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px -0.5px 0px, rgb(255, 255, 255) -1.30729px -1.5136px 0px, rgb(255, 255, 255) -0.421592px -1.95506px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px;
 }
 
+.background-show-fridge {
+  background-image: linear-gradient(rgba(9, 193, 255, 0.2), rgba(9, 193, 255, 0.2)), url(frigo_home.png);
+}
 // Div de la page
 #show-ingredient-list {
   text-align: center;
-  background-image: linear-gradient(rgba(9, 193, 255, 0.2), rgba(9, 193, 255, 0.2)), url(frigo_home.png);
+  // background-image: linear-gradient(rgba(9, 193, 255, 0.2), rgba(9, 193, 255, 0.2)), url(frigo_home.png);
   // display: flex;
   // flex-direction: column;
   // gap: 10px; /* Espace entre les divs */
@@ -22,7 +25,6 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
 }
 
 // Div form-add-ingredient
@@ -61,6 +63,15 @@
   box-shadow: 0px 0px 10px white;
   cursor: pointer; /* Curseur en forme de main au survol */
   transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
+}
+
+// Le bouton '+' responsive
+@media (max-width: 768px) {
+  .add-ingredient-btn {
+    width: 3rem; /* Ajuste la largeur pour les écrans mobiles */
+    height: 3rem; /* Ajuste la hauteur pour les écrans mobiles */
+    font-size: 1.5rem; /* Ajuste la taille de la police pour les écrans mobiles */
+  }
 }
 
 ////////////////////////
@@ -133,6 +144,7 @@
   margin-top: 10px;
   padding: 5px;
   color: rgb(236, 180, 50);
+  border: 3px solid rgb(216, 102, 96);
 }
 
 /* Style pour les labels des checkboxes cochées */
@@ -145,6 +157,7 @@
   margin-top: 10px;
   padding: 5px;
   color: #A2580E;
+  border: 3px solid #0eca37;
 }
 
 ////////////////////////////////////
