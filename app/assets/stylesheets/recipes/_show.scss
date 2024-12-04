@@ -114,3 +114,20 @@
   color: #874605;
   margin: 3px 0px 3px 0px;
 }
+
+.share {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.social-share-button {
+  .ssb-icon {
+    background-size: 30px 30px;
+    height: 45px;
+    width: 45px;
+  }
+}
