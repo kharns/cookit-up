@@ -2,3 +2,10 @@
 
 $orange-text: #CB6703;
 $yellow-app: #F5D351;
+
+.container {
+  margin: 0 auto;
+  position: relative; /* Assurez-vous que le conteneur parent est relatif */
+  overflow-y: auto; /* Permet le défilement si nécessaire */
+  height: calc(100vh - 60px); /* Ajustez la hauteur pour laisser de l'espace pour les boutons */
+}
