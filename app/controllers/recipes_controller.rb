@@ -69,10 +69,10 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     unless params[:query].nil? || params[:query].empty?
       query = params[:query]
       sql_subquery = <<~SQL
-      recipes.title @@ :query
-      OR recipes.content @@ :query
+      recipes.title ILIKE :query
+      OR recipes.content ILIKE :query
       SQL
-      @recipes = Recipe.where(sql_subquery, query: query.downcase)
+      @recipes = @recipes.where(sql_subquery, query: "%#{query}%")
     end
   end
 
