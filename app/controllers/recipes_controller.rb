@@ -109,7 +109,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
     cooking_steps.
     Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
-    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'
+    Here is the ingredient_list template : 'ingredient1:500.grams, ingredient2:3.units, ingredient3:10.ml'
     IMPORTANT : I need #{recipes_count} recipes."
 
     return message
