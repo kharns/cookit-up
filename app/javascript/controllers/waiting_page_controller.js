@@ -10,7 +10,7 @@ export default class extends Controller {
     const form = this.formTarget
     if (form.checkValidity() === true) {
       if (form.id === "new_fridge_scan") {
-        form.classList.add("d-none")
+        this.domTarget.classList.add("d-none")
         this.waitingDomTarget.innerHTML = `
         <div class="waiting-scan-gif">
           <h3>Looking for your ingredients</h3>
@@ -25,6 +25,5 @@ export default class extends Controller {
           </div>`
       }
     }
-
   }
 }
