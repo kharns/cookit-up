@@ -55,7 +55,7 @@
   </div>
 
   <ul class="list-unstyled poppins"> <% @recipe.content.split('%%').each_with_index do |step, index| %>
-    <li class="ms-3 step-item"><strong style="font-size: 23px">Step <%= index + 1 %>:</strong> <br> <%= step.split(':').drop(1).join(':') %>
+    <li class="ms-3 step-item"><strong style="font-size: 23px">Step <%= index + 1 %></strong> <br> <%= step.split(':').drop(1).join(':') %>
     </li>
     <% end %>
   </ul>

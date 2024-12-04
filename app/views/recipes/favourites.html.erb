@@ -15,33 +15,7 @@
     <%# FAVORIS %>
     <div class="recipe-grid">
       <% @recipes.each do |recipe| %>
-
-          <div class="card-recipe">
-            <%= link_to recipe_path(recipe) do %>
-              <% if recipe.photo.key.nil? %>
-                <%= image_tag("repas.png") %>
-              <% else %>
-                <%= cl_image_tag(recipe.photo.key) %>
-              <% end %>
-            <% end %>
-            <div class="heart-card" data-controller="favourite">
-                <%= link_to remove_favorite_recipe_path(recipe), class: "favheart",data: {turbo_method: :patch} do%>
-                  <i class="fa-solid fa-heart" style="color: #ef0b39;"></i>
-                <% end %>
-            </div>
-
-            <div class="card-recipe-infos">
-              <div class="time-difficulty">
-                <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= recipe.cooking_time.delete('^0-9') %>'</p>
-                <p><% recipe.difficulty.times do %>
-                  <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
-                  <% end %>
-                  </p>
-              </div>
-              <div class="title-card"><h2> <%= recipe.title %> </h2>
-              </div>
-            </div>
-          </div>
+        <%= render "recipe_card_index", recipe: recipe %>
       <% end %>
     </div>
 </div>
