@@ -8,7 +8,9 @@ export default class extends Controller {
 
   wait() {
     const form = this.formTarget
+    // Si le formulaire est valide, on fait disparaitre le contenu de la page et on affiche un titre et un gif d'attente
     if (form.checkValidity() === true) {
+      // Pour le scan de l'image
       if (form.id === "new_fridge_scan") {
         this.domTarget.classList.add("d-none")
         this.waitingDomTarget.innerHTML = `
@@ -16,6 +18,7 @@ export default class extends Controller {
           <h3>Looking for your ingredients</h3>
           <img src="https://media2.giphy.com/media/3o6gEd7LbHXWWiLbuE/200w.webp?cid=dda24d50986bef2kcb6251do3b8rr76vlt2cfhhgp3kxpteh&amp;ep=v1_internal_gif_by_id&amp;rid=200w.webp&amp;ct=g" srcset="https://media2.giphy.com/media/3o6gEd7LbHXWWiLbuE/200w.webp?cid=dda24d50986bef2kcb6251do3b8rr76vlt2cfhhgp3kxpteh&amp;ep=v1_internal_gif_by_id&amp;rid=200w.webp&amp;ct=g 200w,https://media2.giphy.com/media/3o6gEd7LbHXWWiLbuE/giphy.webp?cid=dda24d50986bef2kcb6251do3b8rr76vlt2cfhhgp3kxpteh&amp;ep=v1_internal_gif_by_id&amp;rid=giphy.webp&amp;ct=g 480w," alt="Fridge scanning gif"></img>
         </div>`
+      // pour la création des recettes
       } else {
           this.domTarget.classList.add("d-none")
           this.waitingDomTarget.innerHTML = `

@@ -10,20 +10,23 @@ export default class extends Controller {
   }
 
   preview() {
-
+    // file = fichier uploadé par user
     const file = this.inputTarget.files[0]
+
+    // Si file présent
     if (file) {
+      // On affiche le bouton submit du formulaire
       this.submitTarget.classList.remove('d-none')
+
+      // pour la preview de l'image //
       const reader = new FileReader()
       reader.onload = (e) => {
+        // Au chargement de l'image, on met à jour la src de l'img du DOM
         this.previewTarget.src = e.target.result
+        // On retire le display-none
         this.previewTarget.style.display = ""
       }
       reader.readAsDataURL(file)
     }
-
-    console.log(this.formTarget)
-    console.log(this.inputTarget.files[0])
-
   }
 }
