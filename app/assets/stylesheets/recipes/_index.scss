@@ -3,6 +3,7 @@
 // index.html
 // Import your components CSS files here.
  @import "show";
+ @import "favourites";
 
 .recipe-grid {
   background-color: white;
@@ -40,7 +41,7 @@
     font-size: 1.5rem;
   }
 
-  
+
 .card-recipe-infos {
     padding: 10px;
     flex-grow: 1;
