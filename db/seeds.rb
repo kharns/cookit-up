@@ -13,6 +13,8 @@ user1 = User.create!(name: "bob", email: "bob@bob.com", password: "123456")
 user2 = User.create!(name: "tom", email: "tom@tom.com", password: "123456")
 user3 = User.create!(name: "jo", email: "jo@jo.com", password: "123456")
 
+favorite_user = user1
+
 puts "Creating 10 fridge scans..."
 ingredients = [
   "tomato", "lettuce", "cheddar cheese", "mozzarella", "chicken breast", "ground beef", "carrot", "red onion",
@@ -35,7 +37,7 @@ fridge_scans = []
 10.times do
   fridge_scans << FridgeScan.create!(
     ingredient_list: ingredients.sample(rand(8..15)).join(", "),
-    user: [user1, user2, user3].sample
+    user: favorite_user
   )
 end
 
