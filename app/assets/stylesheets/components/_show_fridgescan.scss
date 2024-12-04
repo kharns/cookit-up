@@ -82,7 +82,7 @@
   display: flex;
   flex-direction: column; /* Assure que les éléments s'empilent */
   overflow: auto; /* Permet le défilement si nécessaire */
-  padding-bottom: 100px; /* Ajustez cette valeur selon la hauteur de vos boutons */
+  padding-bottom: 120px; /* Ajustez cette valeur selon la hauteur de vos boutons */
 }
 
 
@@ -173,8 +173,8 @@
   padding: 0 20px;
   z-index: 1000;
   background-color: rgba(245, 211, 81, 0.7);
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 
 // Cooking Btn

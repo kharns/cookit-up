@@ -58,8 +58,8 @@
             <div class="dropdown-menu">
               <div class="mb-3">
                 <%= f.input :difficulty,
-                            collection: [['Easy', 1], ['Medium', 2], ['Hard', 3]],
-                            label: 'Cooking level (max)',
+                            collection: [['Only Easy', 1], ['Easy, Medium', 2], ['Easy, Medium & Hard', 3]],
+                            label: 'Cooking level',
                             selected: 3,
                             label_html: { id: 'difficulty_label' } %>
               </div>
@@ -67,7 +67,7 @@
               <div class="mb-3">
                 <%= f.input :guest,
                             collection: (1..10),
-                            label: 'Number of guests',
+                            label: 'Hungry people',
                             selected: 2,
                             label_html: { id: 'guest_label' } %>
               </div>
