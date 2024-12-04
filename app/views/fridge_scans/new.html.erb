@@ -1,10 +1,16 @@
   <div class="new-scan-background flex-grow-1" data-controller="waiting-page"
   >
-    <div class="mx-4">
-    <div class=""data-waiting-page-target="waitingDom"></div>
-      <%= simple_form_for @fridge_scan, html: { data: {waiting_page_target: "form"} } do |f| %>
-        <%= f.input :photo, as: :file, label: false, required: true %>
-        <%= f.submit "Validate photo", class:'home-buttons w-100', data: { action: "click->waiting-page#wait"} %>
-      <% end %>
+    <div id="new-scan-content" class="mx-4" data-controller="photo-upload">
+    <div data-waiting-page-target="waitingDom"></div>
+      <div id="preview-img-div">
+        <img id="photo-preview" src="#" alt="Prévisualisation" style="display: none;" data-photo-upload-target="preview">
+      </div>
+      <div class="form">
+        <%= simple_form_for @fridge_scan, html: { data: {waiting_page_target: "form"} } do |f| %>
+          <%= f.input :photo, as: :file, label: false, required: true, input_html: { class: 'd-none', data: { photo_upload_target: 'input', action: 'change->photo-upload#preview' }} %>
+          <%= f.label :photo, 'Choisir une photo', class: 'home-buttons mt-1' %>
+          <%= f.submit "Validate photo", class:'home-buttons d-none', id: "submit-photo", data: { action: "click->waiting-page#wait", photo_upload_target: "submit"} %>
+        <% end %>
+      </div>
     </div>
   </div>
