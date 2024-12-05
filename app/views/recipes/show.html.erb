@@ -4,7 +4,7 @@
   <div class="card-show-image-ingredients">
     <div class="recipe-photo-container">
       <% if @recipe.photo.key.nil? %>
-        <%= image_tag("repas.png", width: 180, height: 250, class:"show-recipe-photo object-fit-cover") %>
+        <%= image_tag("repas.png", width: 200, height: 277, class:"show-recipe-photo object-fit-cover") %>
       <% else %>
         <%= cl_image_tag(@recipe.photo.key, width: 200, height: 277, crop: :fill, gravity: :face, class:"show-recipe-photo") %>
       <% end %>
