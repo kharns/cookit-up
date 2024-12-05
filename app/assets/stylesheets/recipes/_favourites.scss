@@ -1,8 +1,20 @@
 // une partie du code est dans _index.scss
 
+// .recipe-grid {
+//   margin-top: 1em;
+//   background-color: white;
+//   list-style-type: none;
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 10px;
+//   padding-bottom: 10px;
+//   padding-right: 10px;
+//   position: absolute;
+//   }
+
 .search_favourites {
-  margin: 1rem;
-  box-shadow: 5px 5px 5px lightgray;
+    padding: 1em;
+    box-shadow: 5px 5px 5px lightgray;
 
   .form-control{
     opacity: 0.7;
