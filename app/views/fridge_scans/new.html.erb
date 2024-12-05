@@ -17,9 +17,9 @@
       <%= simple_form_for @fridge_scan, html: { data: {waiting_page_target: "form"} } do |f| %>
         <%# Input en d-none, c'est le label qui fait office d'input afin de lui donner le style voulu %>
         <%= f.input :photo, as: :file, label: false, required: true, input_html: { class: 'd-none', data: { photo_upload_target: 'input', action: 'change->photo-upload#preview' }} %>
-        <%= f.label :photo, 'Choisir une photo', class: 'home-buttons mt-1' %>
+        <%= f.label :photo, 'Take a photo', class: 'home-buttons mt-1' %>
         <%# Bouton submit pour lancer le scan de l'image. le bouton est en d-none tant que l'utilisateur n'a pas upload d'image %>
-        <%= f.submit "Validate photo", class:'home-buttons d-none', id: "submit-photo", data: { action: "click->waiting-page#wait", photo_upload_target: "submit"} %>
+        <%= f.submit "LET'S SCAN!", class:'home-buttons d-none', id: "submit-photo", data: { action: "click->waiting-page#wait", photo_upload_target: "submit"} %>
       <% end %>
     </div>
   </div>
