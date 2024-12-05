@@ -14,7 +14,7 @@
 
     <%# FAVORIS %>
     <div class="recipe-grid">
-      <% @recipes.each do |recipe| %>
+      <% @recipes.sort_by(&:title).each do |recipe| %>
         <%= render "recipe_card_index", recipe: recipe %>
       <% end %>
     </div>
