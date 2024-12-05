@@ -1,10 +1,26 @@
-  <div class="new-scan-background flex-grow-1" data-controller="waiting-page"
-  >
-    <div class="mx-4">
-    <div class=""data-waiting-page-target="waitingDom"></div>
+<%# Fond d'écran %>
+<div class="new-scan-background flex-grow-1" data-controller="waiting-page">
+
+  <%# Div vide dans laquelle on va intégrer la page d'attente %>
+  <div id="waiting-scan-gif" data-waiting-page-target="waitingDom"></div>
+
+  <%# Div du contenu de la page %>
+  <div id="new-scan-content" class="mx-4" data-controller="photo-upload" data-waiting-page-target="dom">
+    <%# Div autour de la preview afin de réserver un espace fixe dans le DOM %>
+    <div id="preview-img-div">
+      <%# Preview de l'image uploadée par l'utilisateur : src vide de base %>
+      <img id="photo-preview" src="#" alt="Prévisualisation" style="display: none;" data-photo-upload-target="preview">
+    </div>
+
+    <%# Formulaire d'upload de la photo%>
+    <div class="form">
       <%= simple_form_for @fridge_scan, html: { data: {waiting_page_target: "form"} } do |f| %>
-        <%= f.input :photo, as: :file, label: false, required: true %>
-        <%= f.submit "Validate photo", class:'home-buttons w-100', data: { action: "click->waiting-page#wait"} %>
+        <%# Input en d-none, c'est le label qui fait office d'input afin de lui donner le style voulu %>
+        <%= f.input :photo, as: :file, label: false, required: true, input_html: { class: 'd-none', data: { photo_upload_target: 'input', action: 'change->photo-upload#preview' }} %>
+        <%= f.label :photo, 'Choisir une photo', class: 'home-buttons mt-1' %>
+        <%# Bouton submit pour lancer le scan de l'image. le bouton est en d-none tant que l'utilisateur n'a pas upload d'image %>
+        <%= f.submit "Validate photo", class:'home-buttons d-none', id: "submit-photo", data: { action: "click->waiting-page#wait", photo_upload_target: "submit"} %>
       <% end %>
     </div>
   </div>
+</div>
