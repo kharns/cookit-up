@@ -64,15 +64,10 @@ skip_before_action :authenticate_user!, only: %i[create index show]
   end
 
   def favourites
-    # presque pareil que index
-    @recipes = current_user.recipes.where(favourite: true)
-    unless params[:query].nil? || params[:query].empty?
-      query = params[:query]
-      sql_subquery = <<~SQL
-      recipes.title ILIKE :query
-      OR recipes.content ILIKE :query
-      SQL
-      @recipes = @recipes.where(sql_subquery, query: "%#{query}%")
+    if params[:query].present?
+        @recipes = Recipe.search_by_all(params[:query])
+    else
+        @recipes = current_user.recipes.where(favourite: true)
     end
   end
 
