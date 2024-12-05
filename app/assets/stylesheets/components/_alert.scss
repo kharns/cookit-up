@@ -1,16 +1,18 @@
 .alert {
-  position: fixed;
-  bottom: 100px;
-  right: 50px;
-  left: 50px;
-  z-index: 1000;
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
-  border-radius: 4px;
-  margin: 8px;
-  border: 2px solid #1EDD88;
+  border-radius: 20px;
+}
+
+.alert-valid {
+  background-color: #fade78;
+  border: 3px solid rgb(77, 194, 38);
+  color: rgb(77, 194, 38);
+  font-weight: bold;
+}
+
+.alert-unvalid {
+  background-color: #fade78;
+  border: 3px solid rgb(223, 61, 61);
+  color: rgb(223, 61, 61);
+  font-weight: bold;
+
 }
