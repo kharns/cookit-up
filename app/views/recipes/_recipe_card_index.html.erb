@@ -1,7 +1,7 @@
 <%# PARTIAL OF RECIPE CARD FOR INDEX %>
 <div class="recipe-grid" data-favourites-search-target="list">
 
-<% @recipes.each do |recipe| %>
+<% recipes.each do |recipe| %>
   <div id="<%= dom_id(recipe) %>" class="card-recipe">
     <%= turbo_stream_from dom_id(recipe) %>
     <%= link_to recipe_path(recipe) do %>

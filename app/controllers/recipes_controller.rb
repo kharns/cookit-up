@@ -94,13 +94,13 @@ skip_before_action :authenticate_user!, only: %i[create index show]
 
     # en appliquant les paramètres de recherche s'il y en a
     difficulty_instruction = case search_difficulty
-    when "1"
-      "return only easy recipes (1 out of 3)"
-    when "2"
-      "return only easy and medium recipes (1 and 2 out of 3)"
-    else
-      "return at least one recipe from each difficulty (1, 2 and 3)"
-    end
+                            when "1"
+                              "return only easy recipes (1 out of 3)"
+                            when "2"
+                              "return only easy and medium recipes (1 and 2 out of 3)"
+                            else
+                              "return at least one recipe from each difficulty (1, 2 and 3)"
+                            end
 
     # Message à transmettre à OpenAI
     message = "I want a list of #{recipes_count} different recipes, following these instructions:
