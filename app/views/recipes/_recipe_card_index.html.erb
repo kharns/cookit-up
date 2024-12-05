@@ -1,40 +1,34 @@
 <%# PARTIAL OF RECIPE CARD FOR INDEX %>
-<div class="recipe-grid" data-favourites-search-target="list">
-
-<% recipes.each do |recipe| %>
-  <div id="<%= dom_id(recipe) %>" class="card-recipe">
-    <%= turbo_stream_from dom_id(recipe) %>
-    <%= link_to recipe_path(recipe) do %>
-      <% if recipe.photo.key.nil? %>
-        <%= image_tag("waiting_doritos.webp") %>
-      <% else %>
-        <%= cl_image_tag(recipe.photo.key) %>
+<div id="<%= dom_id(recipe) %>" class="card-recipe">
+  <%= turbo_stream_from dom_id(recipe) %>
+  <%= link_to recipe_path(recipe) do %>
+    <% if recipe.photo.key.nil? %>
+      <%= image_tag("waiting_doritos.webp") %>
+    <% else %>
+      <%= cl_image_tag(recipe.photo.key) %>
+    <% end %>
+  <% end %>
+  <div class="heart-card" data-controller="favourite">
+    <% if recipe.favourite %>
+      <%= link_to remove_favorite_recipe_path(recipe), class: "favheart",data: {turbo_method: :patch} do%>
+        <i class="fa-solid fa-heart" style="color: #ef0b39;"></i>
+      <% end %>
+    <% else %>
+      <%= link_to add_favorite_recipe_path(recipe), class: "favheart",data: {turbo_method: :patch} do%>
+        <i class="fa-solid fa-heart" style="color: black;"></i>
       <% end %>
     <% end %>
-    <div class="heart-card" data-controller="favourite">
-      <% if recipe.favourite %>
-        <%= link_to remove_favorite_recipe_path(recipe), class: "favheart",data: {turbo_method: :patch} do%>
-          <i class="fa-solid fa-heart" style="color: #ef0b39;"></i>
-        <% end %>
-      <% else %>
-        <%= link_to add_favorite_recipe_path(recipe), class: "favheart",data: {turbo_method: :patch} do%>
-          <i class="fa-solid fa-heart" style="color: black;"></i>
-        <% end %>
-      <% end %>
-    </div>
+  </div>
 
-    <div class="card-recipe-infos">
-      <div class="time-difficulty">
-        <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= recipe.cooking_time.delete('^0-9') %>'</p>
-        <p><% recipe.difficulty.times do %>
-          <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
-          <% end %>
-          </p>
-      </div>
-      <div class="title-card"><h2> <%= recipe.title %> </h2>
-      </div>
+  <div class="card-recipe-infos">
+    <div class="time-difficulty">
+      <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= recipe.cooking_time.delete('^0-9') %>'</p>
+      <p><% recipe.difficulty.times do %>
+        <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
+        <% end %>
+        </p>
+    </div>
+    <div class="title-card"><h2> <%= recipe.title %> </h2>
     </div>
   </div>
-<% end %>
-
 </div>

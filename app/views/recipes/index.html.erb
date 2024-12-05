@@ -3,7 +3,9 @@
 
 
     <%# INDEX %>
-    <div id="recipes_index">
-        <%= render "recipe_card_index" %>
+    <div id="recipes_index" class="recipe-grid">
+      <% @recipes.each do |recipe| %>
+        <%= render "recipe_card_index", recipe: recipe %>
+      <% end %>
     </div>
 </div>
