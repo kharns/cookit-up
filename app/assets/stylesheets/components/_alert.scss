@@ -1,43 +1,18 @@
-.div-alerts {
-  display: flex;
-  justify-content: center;
-}
-// .notice, .alert {
-//   display: flex;
-//   align-items: center; /* Aligne verticalement */
-//   justify-content: space-between; /* Sépare le texte et le bouton */
-//   width: 80%;
-//   max-width: 500px;
-//   padding: 16px 16px;
-//   margin: 0;
-//   font-weight: bold;
-//   font-size: 18px;
-//   border-radius: 10px;
-//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-//   position: relative; /* Pour positionner correctement le bouton */
-//   padding-right: 3rem; /* Espace pour le bouton de fermeture */
-// }
-
-// .btn-close {
-//   position: absolute;
-//   right: 10px; /* Ajustez selon vos préférences */
-//   top: 50%;
-//   transform: translateY(-50%);
-// }
-
-.notice {
-  background-color: #e6f7d9;
-  color: #2c7a1f;
-  border: 3px solid #0eca37;
-}
-
 .alert {
-  background-color: #fde8e8;
-  color: #c11b1b;
-  border: 3px solid #d23535;
+  border-radius: 20px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, -60%); }
-  to { opacity: 1; transform: translate(-50%, -50%); }
+.alert-valid {
+  background-color: #fade78;
+  border: 3px solid rgb(77, 194, 38);
+  color: rgb(77, 194, 38);
+  font-weight: bold;
+}
+
+.alert-unvalid {
+  background-color: #fade78;
+  border: 3px solid rgb(223, 61, 61);
+  color: rgb(223, 61, 61);
+  font-weight: bold;
+
 }
