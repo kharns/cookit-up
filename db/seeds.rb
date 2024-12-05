@@ -209,7 +209,7 @@ file = URI.parse("https://kitchenswagger.com/wp-content/uploads/2023/05/margheri
 recipe5 = Recipe.new(
   title: "Homemade Pizza Margherita",
   ingredient_list: "pizza dough, tomato sauce, fresh mozzarella, basil leaves",
-  content: "step1:Preheat the oven to 475°F (245°C).%%step2:Roll out the pizza dough on a floured surface to your desired thickness.%%step3:Spread a layer of tomato sauce evenly over the dough.%%step4:Place slices of fresh mozzarella on top of the sauce.%%step5:Add fresh basil leaves for flavor.%%step6:Bake in the oven for 10-15 minutes until the crust is golden and the cheese is bubbly.",
+  content: "step1:Preheat the oven to 245°C.%%step2:Roll out the pizza dough on a floured surface to your desired thickness.%%step3:Spread a layer of tomato sauce evenly over the dough.%%step4:Place slices of fresh mozzarella on top of the sauce.%%step5:Add fresh basil leaves for flavor.%%step6:Bake in the oven for 10-15 minutes until the crust is golden and the cheese is bubbly.",
   cooking_time: "30 minutes",
   difficulty: 3,
   guest: 3,
@@ -223,7 +223,7 @@ recipe5.save!
 file = URI.parse("https://www.cubesnjuliennes.com/wp-content/uploads/2022/01/Homemade-Chicken-Noodle-Soup-Recipe.jpg").open
 recipe6 = Recipe.new(
   title: "Chicken Noodle Soup",
-  ingredient_list: "chicken breast, egg noodles, carrots, celery, onion",
+  ingredient_list: "4 chicken breasts%%6 eggs%%500g of noodles%%4 carrots%%1 celery%%3 onions",
   content: "step1:In a large pot, bring water to a boil and add chicken breast.%%step2:Cook until the chicken is no longer pink, then remove and shred it.%%step3:Add diced onions, carrots, and celery to the pot and simmer until tender.%%step4:Stir in egg noodles and cook according to package instructions.%%step5:Add the shredded chicken back to the pot and season with salt and pepper.%%step6:Serve hot, garnished with fresh herbs if desired.",
   cooking_time: "45 minutes",
   difficulty: 2,
