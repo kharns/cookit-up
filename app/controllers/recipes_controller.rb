@@ -65,12 +65,12 @@ skip_before_action :authenticate_user!, only: %i[create index show]
 
   def favourites
     # presque pareil que index
-    @recipes = current_user.recipes.where(favourite: true)
+    @recipes = current_user.recipes.where(favourite: true).sort_by(&:title)
     unless params[:query].nil? || params[:query].empty?
       query = params[:query]
       sql_subquery = <<~SQL
-      recipes.title ILIKE :query
-      OR recipes.content ILIKE :query
+        recipes.title ILIKE :query
+        OR recipes.content ILIKE :query
       SQL
       @recipes = @recipes.where(sql_subquery, query: "%#{query}%")
     end
