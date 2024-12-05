@@ -179,7 +179,7 @@ file = URI.parse("https://www.acouplecooks.com/wp-content/uploads/2022/02/Lava-C
 recipe3 = Recipe.new(
   title: "Chocolate Lava Cake",
   ingredient_list: "200g of dark chocolate%%100g of butter%%2 eggs%%100g of sugar%%200g of flour",
-  content: "step1:Preheat the oven to 425°F (220°C).%%step2:In a bowl, melt dark chocolate and butter together.%%step3:Whisk in eggs and sugar until smooth.%%step4:Fold in flour gently until just combined.%%step5:Pour the mixture into greased ramekins and bake for 12-14 minutes.%%step6:Let cool for a minute, then invert onto a plate and serve warm.",
+  content: "step1:Preheat the oven to 220°C.%%step2:In a bowl, melt dark chocolate and butter together.%%step3:Whisk in eggs and sugar until smooth.%%step4:Fold in flour gently until just combined.%%step5:Pour the mixture into greased ramekins and bake for 12-14 minutes.%%step6:Let cool for a minute, then invert onto a plate and serve warm.",
   cooking_time: "18 minutes",
   difficulty: 1,
   guest: 2,
