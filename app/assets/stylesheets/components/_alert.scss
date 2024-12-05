@@ -2,28 +2,28 @@
   display: flex;
   justify-content: center;
 }
-.notice {
-  display: flex;
-  width: 80%;
-  max-width: 500px;
-  padding: 16px 16px;
-  margin: 0;
-  font-weight: bold;
-  font-size: 18px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.alert {
-  display: flex;
-  width: 80%;
-  max-width: 500px;
-  padding: 16px 16px;
-  margin: 0;
-  font-weight: bold;
-  font-size: 18px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+// .notice, .alert {
+//   display: flex;
+//   align-items: center; /* Aligne verticalement */
+//   justify-content: space-between; /* Sépare le texte et le bouton */
+//   width: 80%;
+//   max-width: 500px;
+//   padding: 16px 16px;
+//   margin: 0;
+//   font-weight: bold;
+//   font-size: 18px;
+//   border-radius: 10px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   position: relative; /* Pour positionner correctement le bouton */
+//   padding-right: 3rem; /* Espace pour le bouton de fermeture */
+// }
+
+// .btn-close {
+//   position: absolute;
+//   right: 10px; /* Ajustez selon vos préférences */
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
 
 .notice {
   background-color: #e6f7d9;
