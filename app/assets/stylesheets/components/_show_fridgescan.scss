@@ -56,27 +56,13 @@
   background-color: #0eca37; /* Couleur de fond du bouton */
   color: white; /* Couleur du texte */
   border: none; /* Pas de bordure */
-  width: 40px;           /* Largeur du carré */
-  height: 40px;          /* Hauteur du carré */
-  border-radius: 50%;     /* Transforme le carré en cercle */
-  font-size: 20px; /* Taille de la police */
-  font-weight: bold; /* Texte en gras */
+  width: 40px;  /* Largeur du carré */
+  height: 40px; /* Hauteur du carré */
+  border-radius: 50%;  /* Transforme le carré en cercle */
   box-shadow: 0px 0px 10px white;
   cursor: pointer; /* Curseur en forme de main au survol */
   transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
-
-   /* Ajuster la position du texte */
-   line-height: 1;
-   padding: 0;
-}
-
-// Le bouton '+' responsive
-@media (max-width: 768px) {
-  .add-ingredient-btn {
-    width: 3rem; /* Ajuste la largeur pour les écrans mobiles */
-    height: 3rem; /* Ajuste la hauteur pour les écrans mobiles */
-    font-size: 1.5rem; /* Ajuste la taille de la police pour les écrans mobiles */
-  }
+  font-weight: bold;
 }
 
 ////////////////////////
