@@ -1,21 +1,26 @@
 <div class="pages-container">
   <h1 id="title-index">My favourites</h1>
 
-  <div class="search_favourites">
-    <%= form_with url: favourites_recipes_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: ""
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary submit_search" %>
-    <% end %>
-  </div>
-
-    <%# FAVORIS %>
-    <div class="recipe-grid">
-      <% @recipes.each do |recipe| %>
-        <%= render "recipe_card_index", recipe: recipe %>
+  <div class="page_favourites" data-controller="favourites-search">
+    <div class="search_favourites" >
+      <%= form_with url: favourites_recipes_path, method: :get, html: { data: {favourites_search_target: "form"}}, class: "d-flex" do %>
+        <%= text_field_tag :query,
+             params[:query],
+             class: "form-control",
+              placeholder: "",
+             data: {
+                favourites_search_target: "input",
+                action: "keyup->favourites-search#update"
+             }
+         %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary submit_search" %>
       <% end %>
     </div>
+
+    <div class="cards-favourites">
+
+    <%# FAVORIS %>
+        <%= render "recipe_card_index" %>
+    </div>
+  </div>
 </div>
