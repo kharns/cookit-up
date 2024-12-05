@@ -1,4 +1,3 @@
-
 <div class="container">
   <h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
 
@@ -37,7 +36,7 @@
       </div>
 
       <div class="card-ingredients-show">
-        <h3 >Ingredients :</h3>
+        <h3 >Ingredients:</h3>
         <ul class="list-unstyled poppins">
           <% @recipe.ingredient_list.split('%%').each do |ingredient| %>
             <div class="list-ingredients-show">
@@ -60,20 +59,10 @@
     </li>
     <% end %>
   </ul>
+
   <div class="message-congratulations">
     <div>
       <h3>CONGRATULATIONS ! <br>  YOU’RE A CHEF</h3>
-    </div>
-  </div>
-
-  <div class="share">
-    <div class="message-share">
-      <h3>share my recipe</h3>
-    </div>
-    <div class="share-buttons">
-      <%= social_share_button_tag 'Hey! Check the amazing recipe I found thanks to Fridge2plate!',
-      allow_sites: %w(facebook whatsapp_web),
-      url: recipe_url(@recipe), desc:"la magie dans un app" %>
     </div>
   </div>
 </div>
