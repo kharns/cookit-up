@@ -71,7 +71,7 @@ class FridgeScansController < ApplicationController
       # On tente de sauvegarder les modifications.
       if @fridge_scan.save
         # Si la sauvegarde réussit, on redirige vers la page de visualisation du FridgeScan avec un message de succès.
-        redirect_to @fridge_scan, notice: 'Ingredient successfully add ! 🎉  '
+        redirect_to @fridge_scan, notice: 'Ingredient successfully add🎉'
       else
         # Si la sauvegarde échoue, on réaffiche la page show (probablement pour montrer les erreurs de validation).
         render :show
