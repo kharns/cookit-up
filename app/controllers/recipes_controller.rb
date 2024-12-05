@@ -17,7 +17,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
       # CREATE RECIPE
       new_recipe = Recipe.new(
         title: recipe["title"],
-        ingredient_list: recipe["ingredient_list"],
+        ingredient_list: recipe["ingredient_list"].join('%%'),
         difficulty: recipe["difficulty"],
         cooking_time: recipe["cooking_time"],
         content: recipe["cooking_steps"].join('%%'), # Join with %% so that we can retrieve easily each step in the recipe show
@@ -110,7 +110,7 @@ skip_before_action :authenticate_user!, only: %i[create index show]
     the recipe format I want is a JSON with these keys : title, ingredient_list, difficulty, cooking_time (in minutes),
     cooking_steps.
     Here is the cooking_steps template : ['step1:xxxxx','step2:xxxxx'].
-    Here is the ingredient_list template : 'ingredient1, ingredient2, ingredient3'
+    Don't add any comment in the ingredient_list, only ingredients and their quantities in an array, exemple : ['500g of ingredient1', '10cl of ingredient2', '3 ingredient3']
     IMPORTANT : I need #{recipes_count} recipes."
 
     return message
