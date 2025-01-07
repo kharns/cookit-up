@@ -48,6 +48,7 @@
   </head>
 
   <body class="min-vh-100 d-flex flex-column">
+    <%# Affichage de la navbar uniquement si on n'est pas sur la homepage %>
     <% unless current_page?(root_path) %>
       <%= render "shared/navbar" %>
     <% end %>
