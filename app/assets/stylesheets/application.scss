@@ -11,3 +11,59 @@
 @import "components/index";
 @import "recipes/index";
 @import "pages/index";
+
+
+// MEDIA QUERIES
+//// Small and mid screen
+@media only screen and (max-width: 1020px) {
+  // We only display the app itself
+  #phone-frame-top, #phone-frame-bottom, #computer-right-side {
+    display: none;
+  }
+
+  // We set min height for the app to 100vh
+  #mobile-format {
+    min-height: 100vh;
+  }
+  #app-content {
+    min-height: 100vh;
+  }
+  // All sections will have 100vh height
+  section {
+    min-height: 100vh;
+  }
+}
+
+//// Large screen and over
+@media only screen and (min-width: 1021px) {
+  body {
+    background-color: rgb(255, 242, 159);
+  }
+
+  #pc-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  #mobile-format {
+    width: 300px;
+    height: 600px;
+    outline: solid 2px #000;
+    margin-inline: auto;
+    border-radius: 3rem;
+    overflow: hidden
+  }
+  #phone-frame-top {
+    background-color: #fff;
+  }
+
+  #phone-frame-bottom {
+    background-color: #D6F1EF;
+  }
+
+  #app-content {
+    width: 300px;
+    height: 520px;
+  }
+}
