@@ -1,0 +1,85 @@
+
+// MEDIA QUERIES
+//// Small and mid screen
+@media only screen and (max-width: 1020px) {
+  // We only display the app itself
+  #phone-frame-top, #phone-frame-bottom, #computer-right-side {
+    display: none;
+  }
+
+  // We set min height for the app to 100vh
+  #mobile-format {
+    min-height: 100vh;
+  }
+  #app-content {
+    min-height: 100vh;
+  }
+  // All sections will have 100vh height
+  section {
+    min-height: 100vh;
+  }
+}
+
+//// Large screen and over
+@media only screen and (min-width: 1021px) {
+  body {
+    background-color: rgb(251, 240, 168);
+  }
+
+  #pc-container {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    align-items: center;
+  }
+
+  #mobile-format {
+    width: 300px;
+    height: 37rem;
+    outline: solid 2px #000;
+    margin-inline: auto;
+    border-radius: 3rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #phone-frame-top {
+    background-color: #fff;
+  }
+
+  #phone-frame-bottom {
+    background-color: #D6F1EF;
+  }
+
+  #app-content {
+    width: 300px;
+    flex-grow: 1;
+  }
+}
+
+#qr-cookitup {
+  width: 13rem;
+  border-radius: 2rem;
+}
+
+#computer-right-side {
+  height: 37rem;
+  color: $orange-text;
+  font-size: 1.5rem;
+  margin-right: 4rem;
+  font-family: "Chocolate Classical Sans", sans-serif;
+
+
+  span {
+    font-family: "Protest Riot", sans-serif;
+    font-size: 1.7rem;
+  }
+}
+
+#pc-title {
+  color: #000000;
+  font-size: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin-bottom: 0;
+}

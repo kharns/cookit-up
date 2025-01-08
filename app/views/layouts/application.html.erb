@@ -20,16 +20,7 @@
     <%# GOOGLE FONTS %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <%# Protest Riot %>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Protest+Riot&family=Varela+Round&display=swap" rel="stylesheet">
-    <%# Delicius unicase %>
-    <link href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Protest+Riot&family=Varela+Round&display=swap" rel="stylesheet">
-    <%# Chocolate Classical Sans %>
-    <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Delius+Unicase:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Protest+Riot&family=Varela+Round&display=swap" rel="stylesheet">
-    <%# Quando %>
-    <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Delius+Unicase:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Protest+Riot&family=Quando&family=Varela+Round&display=swap" rel="stylesheet">
-    <%# Poppins %>
-    <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Delius+Unicase:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&family=Quando&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Delius+Unicase:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&family=Quando&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -86,7 +77,13 @@
 
       <%# Partie visible uniquement sur ordinateur %>
       <div id="computer-right-side">
-        <div class="bg-success"></div>
+        <div>
+        <p id="pc-title">Pas d'idée pour le dîner?</p>
+        <p class="mt-2">🔎 <span> CookIt-Up</span> analyse ton frigo en un clin d'œil et te propose de délicieuses recettes ! 🥧🥗🍛</p>
+        </div>
+        <p class="mt-5 mb-3"><span>📱</span> Pour une expérience optimale, utilise l'app sur ton smartphone !</p>
+        <%= image_tag "qr_cookitup.png", alt: "qr-code cookit-up", id: "qr-cookitup" %>
+        <p class="mt-3"><span>👆</span> Scanne le <span>QR code</span> pour accéder directement à l'app. </p>
       </div>
     </div>
 
