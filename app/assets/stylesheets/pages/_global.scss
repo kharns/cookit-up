@@ -9,7 +9,6 @@
   flex-grow: 1;
 }
 
-
 // MEDIA QUERIES
 //// Small and mid screen
 @media only screen and (max-width: 1020px) {
@@ -50,13 +49,14 @@
   }
 
   #phone-frame-bottom {
-    background-color: #D6F1EF;
+    background-color: #fff;
   }
 
   #app-content {
     width: 300px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
   }
 }
 

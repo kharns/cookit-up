@@ -1,20 +1,30 @@
 .navbar-lewagon {
-  justify-content: space-between;
+  justify-content: space-around;
   background: #F5D351;
-  padding: 10px 15px;
+  padding-top: .7rem;
+  padding-bottom: .4rem;
+  padding-inline: .4rem;
+  position: absolute;
+  width: 100%;
+  z-index: 1030;
+}
+
+@media only screen and (max-width: 1020px) {
+  .navbar-lewagon {
+    position: fixed;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+#back-icon {
   width: 45px;
 }
 
 .title-navbar h2{
   a{
-
     text-decoration: none;
     font-size: 1.8rem;
     color: white;
@@ -31,7 +41,7 @@
   box-shadow: none;
 }
 
-.navbar-toggler-menu {
+#navbar-toggler-icon {
   width: 49px; /* Ajuster la taille de l’icône du menu */
   height: auto;
 }
@@ -51,15 +61,12 @@
 
 .navbar-collapse {
   justify-content: flex-end; /* Aligne le contenu du menu sur la droite */
-}
-
-.collapse.show {
   background-color: #fff; /* Fond blanc pour le menu déroulant */
   border-radius: 8px;
   padding: 10px;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #fff; /* Passe au blanc lorsque vous passez le curseur */
-  background-color: #f1d15e; /* Fond jaune lorsque vous passez le curseur */
+  color: #fff;
+  background-color: #f1d15e;
 }
