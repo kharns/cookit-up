@@ -1,5 +1,5 @@
 # config/meta.yml
-meta_product_name: "Fridge2Plate"
-meta_title: "Fridge2Plate - Discover amazing recipes"
-meta_description: "You have food in your fridge but you don't know what to cook? Let us show you amazing recipes with what you have!"
+meta_product_name: "CookIt-up"
+meta_title: "CookIt-up - Quand ton frigo te donne les recettes !"
+meta_description: "Pas d'idée pour le dîner ? CookIt-up analyse ton frigo en un clin d'oeil !"
 meta_image: "meta_photo.jpg" # should exist in `app/assets/images/`

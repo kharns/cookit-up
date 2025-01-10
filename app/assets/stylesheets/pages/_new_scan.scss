@@ -1,20 +1,23 @@
+// background
 .new-scan-background{
-  min-height: 100%;
+  flex-grow: 1;
   background-image: linear-gradient(rgba(9, 193, 255, 0.2), rgba(9, 193, 255, 0.2)), url(frigo_home.png);
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-position: center; // Center the image
+  background-repeat: no-repeat; // Do not repeat the image
+  background-size: cover; // Resize the background image to cover the entire container
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
+// waiting page style
 .waiting-scan-gif {
   padding-inline: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 4vh;
 
   h3 {
     font-size: 21px;
@@ -36,30 +39,35 @@
   }
 }
 
+// container
+#new-scan-content {
+  margin-top: 4vh;
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+// Fix div for picture preview, so the preview doesn't affect the page's style
 #preview-img-div {
   height: 40vh;
-  width: 80vw;
+  width: 90%;
+  margin-inline: auto;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
+// Preview of loaded picture
 #photo-preview {
   max-width: 80vw;
   max-height: 40vh;
 }
 
-#new-scan-content {
-  margin-top: 4vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+// submit button
 #submit-photo {
   background-color: #dcf57a;
 }
 
-#waiting-scan-gif{
-  margin-top: 4vh;
+// Buttons div
+#new_fridge_scan {
 }

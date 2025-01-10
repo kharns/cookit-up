@@ -1,5 +1,5 @@
 <%# Fond d'écran %>
-<div class="new-scan-background flex-grow-1" data-controller="waiting-page">
+<div class="new-scan-background" data-controller="waiting-page">
 
   <%# Div vide dans laquelle on va intégrer la page d'attente %>
   <div id="waiting-scan-gif" data-waiting-page-target="waitingDom"></div>
@@ -12,8 +12,8 @@
       <img id="photo-preview" src="#" alt="Prévisualisation" style="display: none;" data-photo-upload-target="preview">
     </div>
 
-    <%# Formulaire d'upload de la photo%>
-    <div class="form">
+    <%# Formulaire d'upload de la photo %>
+    <div>
       <%= simple_form_for @fridge_scan, html: { data: {waiting_page_target: "form"} } do |f| %>
         <%# Input en d-none, c'est le label qui fait office d'input afin de lui donner le style voulu %>
         <%= f.input :photo, as: :file, label: false, required: true, input_html: { class: 'd-none', data: { photo_upload_target: 'input', action: 'change->photo-upload#preview' }} %>
