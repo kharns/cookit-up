@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 4vh;
+  margin-top: 5rem;
 
   h3 {
     font-size: 21px;
@@ -41,7 +41,7 @@
 
 // container
 #new-scan-content {
-  margin-top: 4vh;
+  margin-top: 5rem;
   width: 100%;
   flex-grow: 1;
   margin-bottom: 1rem;
@@ -66,8 +66,4 @@
 // submit button
 #submit-photo {
   background-color: #dcf57a;
-}
-
-// Buttons div
-#new_fridge_scan {
 }
