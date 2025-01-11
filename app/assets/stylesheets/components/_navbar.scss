@@ -1,8 +1,8 @@
 .navbar-lewagon {
   justify-content: space-around;
   background: #F5D351;
-  padding-top: .7rem;
-  padding-bottom: .4rem;
+  padding-top: .9rem;
+  padding-bottom: .5rem;
   padding-inline: .4rem;
   position: absolute;
   width: 100%;
@@ -34,6 +34,7 @@
 
 .navbar-toggler {
   border: none; /* Supprime le bord du bouton */
+  padding: 0px;
 }
 
 .navbar-toggler:focus {
