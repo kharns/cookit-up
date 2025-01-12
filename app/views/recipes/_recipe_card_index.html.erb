@@ -5,7 +5,7 @@
     <% if recipe.photo.key.nil? %>
       <%= image_tag("waiting_doritos.webp") %>
     <% else %>
-      <%= cl_image_tag(recipe.photo.key) %>
+      <%= cl_image_tag(recipe.photo.key, class: "photo-recipe-index") %>
     <% end %>
   <% end %>
   <div class="heart-card" data-controller="favourite">
@@ -22,11 +22,11 @@
 
   <div class="card-recipe-infos">
     <div class="time-difficulty">
-      <p><img src="<%= asset_path('montre.png') %>" alt="montre" class="montre-icon">   <%= recipe.cooking_time.delete('^0-9') %>'</p>
-      <p><% recipe.difficulty.times do %>
-        <img src="<%= asset_path('toque.png') %>" alt="Chef Hat" class="chef-toque-icon">
+      <div><img src="<%= asset_path('montre.png') %>" alt="Timer icon" class="timer-icon-index">   <%= recipe.cooking_time.delete('^0-9') %>'</div>
+      <div><% recipe.difficulty.times do %>
+        <img src="<%= asset_path('toque.png') %>" alt="Chef Hat icon" class="chef-icon-index">
         <% end %>
-        </p>
+        </div>
     </div>
     <div class="title-card"><h2> <%= recipe.title %> </h2>
     </div>

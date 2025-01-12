@@ -1,0 +1,76 @@
+
+.recipe-grid {
+  background-color: white;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  }
+
+.card-recipe {
+    background: white;
+    box-shadow: 0px 0px 5px gray;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 260px; /* Ajustez selon vos besoins */
+    position: relative;
+}
+
+.photo-recipe-index {
+    height: 190px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+
+.heart-card {
+    text-shadow: 1.5px 0 0 white, 1.5px 1.5px 0 white, 0 1.5px 0 white, -1.5px 1.5px 0 white, -1.5px 0 0 white, -1.5px -1.5px 0 white, 0 -1.5px 0 white, 1.5px -1.5px 0 white;
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 1.5rem;
+  }
+
+
+.card-recipe-infos {
+    padding: 4px 10px 10px 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+.time-difficulty {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.title-index {
+    color: #A2580E;
+    font-size: 34px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 5px;
+    }
+
+.title-card {
+    margin-top: 5px;
+    height: 20px;
+
+    h2 {
+      font-size: 16px;
+      text-overflow: ellipsis;
+    }
+  }
+
+.timer-icon-index, .chef-icon-index {
+    height: 2vh;
+    width: auto;
+    vertical-align: middle;
+    padding-top: 0%;
+  }

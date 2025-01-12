@@ -12,10 +12,10 @@
     <% end %>
   </div>
 
-    <%# FAVORIS %>
-    <div class="recipe-grid">
-      <% @recipes.sort_by(&:title).each do |recipe| %>
-        <%= render "recipe_card_index", recipe: recipe %>
-      <% end %>
-    </div>
+  <%# FAVORIS %>
+  <div class="recipe-grid">
+    <% @recipes.sort_by(&:title).each do |recipe| %>
+      <%= render "recipe_card_index", recipe: recipe %>
+    <% end %>
+  </div>
 </div>
