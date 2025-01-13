@@ -161,14 +161,19 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
+  display: grid;
+  direction: rtl;
+  gap: 3px;
+  grid-template-columns: 1fr 3fr;
+  padding-inline: 1vh;
   z-index: 1000;
   background-color: rgba(245, 211, 81, 0.7);
-  padding-bottom: 30px;
-  padding-top: 30px;
 }
+
+.bottom-buttons-container > * {
+  direction: ltr;
+}
+
 
 // Cooking Btn
 #btn-create {
@@ -179,21 +184,14 @@
   border-radius: 30px; /* Bordures plus arrondies */
   font-weight: bold;
   font-size: 18px;     /* Police plus grande */
-  width: 80%;          /* Largeur importante */
-  max-width: 400px;    /* Largeur maximale */
+  width: 100%;          /* Largeur importante */
   margin: 0; /* Espace en dessous */
   box-shadow: 0 4px 6px rgba(197, 169, 169, 0.2); /* Ombre plus prononcée */
   // text-shadow: rgb(255, 255, 255) 0.5px 0px 0px, rgb(255, 255, 255) 1.75517px 0.958851px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) 0.5px 0.5px 0px, rgb(255, 255, 255) -0.832294px 1.81859px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px 0.5px 0px, rgb(255, 255, 255) -0.5px -0.5px 0px, rgb(255, 255, 255) -1.30729px -1.5136px 0px, rgb(255, 255, 255) -0.421592px -1.95506px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px, rgb(255, 255, 255) 0.5px -0.5px 0px;
   align-items: center;
 }
 
-/* Bouton Filtre - En bas à droite */
-.btn-group.dropup {
-  position: absolute;
-  right: 20px;
-}
-
-.btn-warning.dropdown-toggle {
+.dropdown-toggle {
   /* Styles pour le bouton filtre */
   background-color: #FFF5D1;
   color: #ba6b1d;
@@ -268,11 +266,19 @@
   .scan-container {
     height: calc(100vh - 60px) !important;
   }
+
+  .bottom-buttons-container {
+    padding-block: 25px;
+  }
 }
 
 //// big screen
 @media only screen and (min-width: 1021px) {
   .scan-container {
     height: 468px !important;
+  }
+
+  .bottom-buttons-container {
+    padding-block: 10px;
   }
 }
