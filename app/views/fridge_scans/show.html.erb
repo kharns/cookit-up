@@ -2,7 +2,7 @@
   <div class="div-alerts">
     <%= render "shared/flashes" %>
   </div>
-  <div class="container" data-controller="waiting-page">
+  <div class="scan-container" data-controller="waiting-page">
     <div class="" data-waiting-page-target="waitingDom"></div>
     <div id="show-ingredient-list" data-waiting-page-target="dom">
 
@@ -50,7 +50,7 @@
               %>
               <%= label_tag ingredient.parameterize, ingredient.capitalize, class: "form-check-label" %>
             </div>
-            <% end %>
+        <% end %>
 
         <div class="bottom-buttons-container">
           <%# Filter Bouton %>
