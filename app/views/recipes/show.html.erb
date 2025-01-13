@@ -1,4 +1,4 @@
-<div class="container">
+<div class="recipe-container">
   <h1 class="title-pages"><%= @recipe.title.capitalize%></h1>
 
   <div class="card-show-image-ingredients">
@@ -39,9 +39,7 @@
         <h3 >Ingredients :</h3>
         <ul class="list-unstyled poppins">
           <% @recipe.ingredient_list.split('%%').each do |ingredient| %>
-            <div class="list-ingredients-show">
               <li class="ingredients-li-show"><%= ingredient.strip.capitalize %></li>
-            </div>
           <% end %>
         </ul>
       </div>

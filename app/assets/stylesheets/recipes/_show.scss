@@ -1,5 +1,6 @@
-.container {
+.recipe-container {
   margin: 0 auto;
+  padding-inline: 3%;
 }
 
 /* title recipe */
@@ -7,14 +8,14 @@
   font-family: "Chocolate Classical Sans", sans-serif;;
   color: #A2580E;
   text-align: center;
-  margin: 3px 3px 3px 3px;
+  margin: 3px;
   padding: 8px;
 }
 
 /* div image recete, ingredients, minutes et difficulté*/
 .card-show-image-ingredients {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: flex-start;
   padding-bottom: 8px;
   padding-top: 6px;
@@ -23,8 +24,8 @@
 /* photo de la recette*/
 .show-recipe-photo {
   border-radius: 10px;
-  margin: 5px 3px 0px 3px;
-  padding-left: 6px;
+  width: 100%;
+  object-fit: cover;
 }
 
 /* heart pour ajouter a favoris*/
@@ -38,6 +39,9 @@
 
 .recipe-photo-container {
   position: relative;
+  width: 55%;
+  display: block;
+  height: auto;
 }
 
 .details-container {
@@ -45,6 +49,7 @@
   flex-direction: column;
   justify-content: flex-start;
   margin-left: 5px;
+  width: 42%;
 }
 
 .icons-show-recipe {
@@ -52,20 +57,22 @@
   flex-direction: row;
   justify-content: space-between;
   margin-top: 5px;
-  margin-inline: 5px;
-  margin-left: 0;
-  margin-right: 20px;
+  margin-bottom: 1vh;
+  margin-right: 5px;
+}
+
+.icons-show p {
+  margin-bottom: 0;
 }
 
 .chef-toque-icon {
-  width: 20px;
-  height: auto;
-
+  height: 2vh;
+  width: auto;
 }
 
 .montre-icon {
-  width: 20px;
-  height: auto;
+  height: 2vh;
+  width: auto;
   margin-left: 2px;
 }
 
@@ -73,21 +80,20 @@
 .card-ingredients-show h3 {
   text-align:left;
   font-family: "Poppins", sans-serif;
+  margin-bottom: 1vh;
 }
 
 /* title et ingredients*/
 .card-ingredients-show {
   font-family: "Poppins", sans-serif;
   margin-left: 3px;
-}
-
-.list-ingredients-show {
-  margin-left: 0;
-  margin-right: 5px;
+  overflow: auto;
 }
 
 .ingredients-li-show {
   padding-top: 3px;
+  margin-left: 0;
+  margin-right: 5px;
 }
 
  /* title Steps to be a chef : */
@@ -126,4 +132,27 @@
   font-weight: bold;
   letter-spacing: 1px;
   text-shadow: white 2px 0px 0px, white 1.75517px 0.958851px 0px, white 1.0806px 1.68294px 0px, white 0.141474px 1.99499px 0px, white -0.832294px 1.81859px 0px, white -1.60229px 1.19694px 0px, white -1.97998px 0.28224px 0px, white -1.87291px -0.701566px 0px, white -1.30729px -1.5136px 0px, white -0.421592px -1.95506px 0px, white 0.567324px -1.91785px 0px, white 1.41734px -1.41108px 0px, white 1.92034px -0.558831px 0px;
+}
+
+
+// MEDIA QUERIES
+//// Small and mid screen
+@media only screen and (max-width: 1020px) {
+  .card-ingredients-show h3 {
+    font-size: 1.3rem;
+  }
+  .ingredients-li-show {
+    font-size: 1rem;
+  }
+}
+
+
+//// Big screens
+@media only screen and (min-width: 1021px) {
+  .card-ingredients-show h3 {
+    font-size: 1.1rem;
+  }
+  .ingredients-li-show {
+    font-size: 0.8rem;
+  }
 }
