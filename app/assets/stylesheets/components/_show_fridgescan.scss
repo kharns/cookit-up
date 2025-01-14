@@ -9,6 +9,9 @@
 
 .background-show-fridge {
   background-image: linear-gradient(rgba(9, 193, 255, 0.2), rgba(9, 193, 255, 0.2)), url(frigo_home.png);
+  background-position: center; // Center the image
+  background-repeat: no-repeat; // Do not repeat the image
+  background-size: cover; // Resize the background image to cover the entire container
 }
 // Div de la page
 #show-ingredient-list {
