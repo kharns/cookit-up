@@ -5,21 +5,19 @@
   background-position: center; // Center the image
   background-repeat: no-repeat; // Do not repeat the image
   background-size: cover; // Resize the background image to cover the entire container
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }
 
 // waiting page style
+
 .waiting-scan-gif {
   padding-inline: 20px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-top: 5rem;
 
   h3 {
+    margin-top: 5rem;
     font-size: 21px;
     font-family: "Chocolate Classical Sans", sans-serif;
     color: #A2580E;
@@ -27,21 +25,29 @@
     background-color: #e9e373;
     border-radius: 100px;
     padding: 10px 10px 10px 10px;
-    margin-bottom: 30px;
     width: 100%;
+    margin-bottom: 1rem;
   }
   img {
-    width: 60%;
-    height: 55vh;
+    flex-grow: 1;
+    width: 70%;
     object-fit: cover;
     box-shadow: 0px 0px 10px rgb(227, 180, 104);
     border-radius: 20px;
+    margin-bottom: 10px;
+    margin-inline: auto;
   }
+}
+
+@media only screen and (max-width: 1020px) {
+  .waiting-scan-gif img {
+    height: 55vh;
+  }
+
 }
 
 // container
 #new-scan-content {
-  margin-top: 5rem;
   width: 100%;
   flex-grow: 1;
   margin-bottom: 1rem;
@@ -49,6 +55,7 @@
 
 // Fix div for picture preview, so the preview doesn't affect the page's style
 #preview-img-div {
+  margin-top: 5rem;
   height: 40vh;
   width: 90%;
   margin-inline: auto;
@@ -59,8 +66,8 @@
 
 // Preview of loaded picture
 #photo-preview {
-  max-width: 80vw;
-  max-height: 40vh;
+  max-width: 110%;
+  max-height: 100%;
 }
 
 // submit button
