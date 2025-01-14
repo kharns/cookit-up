@@ -6,13 +6,15 @@ export default class extends Controller {
   connect() {
   }
 
-  wait() {
+  wait(event) {
+    event.preventDefault()
     const form = this.formTarget
     // Si le formulaire est valide, on fait disparaitre le contenu de la page et on affiche un titre et un gif d'attente
     if (form.checkValidity() === true) {
       // Pour le scan de l'image
       if (form.id === "new_fridge_scan") {
         this.domTarget.classList.add("d-none")
+        this.waitingDomTarget.classList.add("h-100")
         this.waitingDomTarget.innerHTML = `
         <div class="waiting-scan-gif">
           <h3>Looking for your ingredients</h3>
