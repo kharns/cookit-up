@@ -21,6 +21,7 @@ export default class extends Controller {
       // pour la création des recettes
       } else {
           this.domTarget.classList.add("d-none")
+          this.waitingDomTarget.classList.add("h-100")
           this.waitingDomTarget.innerHTML = `
           <div class="waiting-recipes-gif">
             <h2>Just a moment, our chef is preparing your delicious recipes</h2>

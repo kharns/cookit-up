@@ -249,8 +249,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 
   h2 {
+    font-size: 1.5rem;
     color:#A2580E;
     font-family: "Protest Riot", sans-serif;;
     text-align: center;
@@ -262,10 +264,11 @@
 
   img {
     width: 80%;
-    height: 70vh;
+    flex-grow: 1;
     object-fit: cover;
     box-shadow: 0px 0px 10px rgb(227, 180, 104);
     border-radius: 20px;
+    margin-bottom: 20px;
   }
 
 }
@@ -274,7 +277,7 @@
 //// Small and mid screen
 @media only screen and (max-width: 1020px) {
   .scan-container {
-    height: calc(100vh - 60px) !important;
+    height: calc(100vh - 65px) !important;
   }
 
   .bottom-buttons-container {
@@ -290,5 +293,9 @@
 
   .bottom-buttons-container {
     padding-block: 10px;
+  }
+
+  .waiting-recipes-gif h2 {
+    font-size: 3vh;
   }
 }
