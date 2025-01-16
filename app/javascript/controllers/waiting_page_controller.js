@@ -6,8 +6,7 @@ export default class extends Controller {
   connect() {
   }
 
-  wait(event) {
-    event.preventDefault()
+  wait() {
     const form = this.formTarget
     // Si le formulaire est valide, on fait disparaitre le contenu de la page et on affiche un titre et un gif d'attente
     if (form.checkValidity() === true) {
